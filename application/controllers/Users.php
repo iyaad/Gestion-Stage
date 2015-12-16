@@ -11,8 +11,15 @@ class Users extends MY_Controller {
 
 	public function login()
 	{
-		$data['title'] = 'Login';
-		$this->render('login', $data);
+		$this->form_validation->set_rules('username', 'Login', 'required|trim');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim');
+
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Login';
+			$this->render('login', $data);
+		} else {
+			echo 'Validé';
+		}
 	}
 
 }
