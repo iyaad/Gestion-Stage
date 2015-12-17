@@ -13,7 +13,7 @@
 			</div>
 			<div >
 		        <button type="submit" class="btn btn-info waves-effect waves-light">Se Connecter</button>
-		        <a class="pull-right" href="<?= base_url('Users/register') ?>">Creer un Ccompte</a>
+		        <a class="pull-right" href="<?= base_url('users/register') ?>">Creer un Compte</a>
 		    </div>
 		</form>
 	</div>
