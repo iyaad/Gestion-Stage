@@ -6,9 +6,8 @@
 		<div class="panel-body">
 			<?= form_open_multipart("tuteur/importer") ?>
 				<div class="form-group ">
-					
-		 					<input type="file" name="file">
-					
+					<label for="liste">Fichier .csv à importer</label>
+					<input type="file" name="liste">
 				</div>
 				<div class="form-group text-center m-t-40">
 					<div>

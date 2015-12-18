@@ -12,8 +12,8 @@ class Users extends MY_Controller {
 
 	public function login()
 	{
-		$this->form_validation->set_rules('username', 'Login', 'required|trim|callback_check_login');
-		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim');
+		$this->form_validation->set_rules('username', 'Login', 'required|trim|callback_check_username');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|callback_check_password');
 		$this->form_validation->set_message('required', 'Le champs %s est obligatoire');
 
 		if ($this->form_validation->run() == false) {
@@ -24,19 +24,18 @@ class Users extends MY_Controller {
 		}
 	}
 
-	public function check_login($username)
+	public function check_username($username)
 	{
-		$user = $this->user_model->getUserByUsername($username);
-		if (!$user) {
-			$this->form_validation->set_message('check_login', '%s inexistant');
-			return false;
-		}
-		$password = $this->input->post('password');
-		if (!$this->hash->check_password($password, $user->password)) {
-			$this->form_validation->set_message('check_login', 'Mot de passe incorrect');
-			return false;
-		}
-		return true;
+		$this->form_validation->set_message('check_username', '%s inexistant');
+		return (bool) $this->user_model->getUserByUsername($username);
+	}
+
+	public function check_password($password)
+	{
+		$this->load->library('hash');
+		$user = $this->user_model->getUserByUsername($this->input->post('username'));
+		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
+		return $this->hash->check_password($password, $user->password);
 	}
 
 	public function test()

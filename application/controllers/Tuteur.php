@@ -29,6 +29,6 @@ class Tuteur extends MY_Controller {
 			}
 		}
 		$data['title'] = 'Importer depuis CSV';
-		$this->render('tuteur/importer');
+		$this->render('tuteur/importer', $data);
 	}
 }
