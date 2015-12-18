@@ -28,3 +28,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 # Config files
 application/config/database.php
+
+# Vendor files
+vendor/
+uploads/

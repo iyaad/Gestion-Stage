@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class Etudiant_model extends CI_Model {
 
 	public function createEtudiant($Data) {
@@ -9,7 +11,7 @@ class Etudiant_model extends CI_Model {
 			'filiere' => $Data['filiere'],
 			'niveau' =>  $Data['niveau'],
 			'cne' =>  $Data['cne'],
-			'dateNaissance' => date('Y-m-d', $dateTime),
+			'dateNaissance' => Carbon::createFromFormat('d-m-Y', $Data['dateNaissance']),
 			'createdAt' => gmdate('Y-m-d H:i:s'),
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
