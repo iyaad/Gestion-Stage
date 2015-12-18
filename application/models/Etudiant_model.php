@@ -1,27 +1,18 @@
-<?
+<?php
 
-class Eudiant extends MY_Controller{
+class Etudiant_model extends CI_Model {
 
-	public function createEtudiant($Data){
-
+	public function createEtudiant($Data) {
 		$data = array(
-
-			'nom' => $Data['nom'] ,
-			'prenom' => $Data['prenom'] ,
-			'filiere' => $Data['filiere'] ,
-			'niveau' =>  $Data['niveau'] ,
-			'cne' =>  $Data['cne'] ,
-			'dateNaissance' => $Data['dateNaissance'] ,
-			'createdAt' => $Data['createdAt'] ,
-			'updatedAt' => $Data['updatedAt'] ,
+			'nom' => $Data['nom'],
+			'prenom' => $Data['prenom'],
+			'filiere' => $Data['filiere'],
+			'niveau' =>  $Data['niveau'],
+			'cne' =>  $Data['cne'],
+			'dateNaissance' => date('Y-m-d', $dateTime),
+			'createdAt' => gmdate('Y-m-d H:i:s'),
+			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
-
-		$this->db->insert("Etudiant" , $data);
-
-
-
-
-			)
-
+		return $this->db->insert("Etudiant" , $data);
 	}
 }

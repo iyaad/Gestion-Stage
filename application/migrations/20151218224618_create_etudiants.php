@@ -33,10 +33,10 @@ class Migration_create_etudiants extends CI_Migration {
 				'type' => 'DATE',
 			),
 			'createdAt' => array(
-				'type' => 'DATE',
+				'type' => 'DATETIME',
 			),
 			'updatedAt' => array(
-				'type' => 'DATE',
+				'type' => 'DATETIME',
 			),
 		));
 		$this->dbforge->add_key('etudiantId', TRUE);

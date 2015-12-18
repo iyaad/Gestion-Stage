@@ -23,9 +23,12 @@ class Tuteur extends MY_Controller {
 				$file_data = $this->upload->data();
 				$file_path = FCPATH.'uploads/'.$file_data['file_name'];
 				if ($csv_array = $this->csvimport->get_array($file_path)) {
-					$this->etudiant_model->createEtudiant($csv_array);
+					foreach ($csv_array as $etudiant) {
+						var_dump($etudiant['dateNaissance']);
+						die();
+						$this->etudiant_model->createEtudiant($etudiant);
+					}
 				}
-				return;
 			} else {
 				$data['error'] = $this->upload->display_errors();
 			}
