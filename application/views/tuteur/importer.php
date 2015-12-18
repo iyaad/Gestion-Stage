@@ -9,10 +9,9 @@
 					<label for="liste">Fichier .csv à importer</label>
 					<input type="file" name="liste">
 				</div>
+				<p><?= form_error('liste') ?></p>
 				<div class="form-group text-center m-t-40">
-					<div>
-						<button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">Importer</button>
-					</div>
+					<button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">Importer</button>
 				</div>
 			</form>
 		</div>
