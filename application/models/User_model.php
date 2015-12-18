@@ -7,5 +7,14 @@ class User_model extends CI_Model {
 		return $query->row();
 	}
 
+	public function createUser($data){
+		return $this->db->insert('User', $data);
+	}
+
+	public function updateUser($id, $data){
+		$this->db->where('userId', $id);
+		return $this->db->update('User', $data);
+	}
+
 }
 
