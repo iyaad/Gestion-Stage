@@ -7,35 +7,31 @@ class Tuteur extends MY_Controller {
 		parent::__construct();
 		$this->load->library('csvimport');
 		$this->load->library('form_validation');
+		$this->load->model('etudiant_model');
 	}
 
 	public function importer()
 	{
-		$this->form_validation->set_rules('liste', 'Liste des Etudiants', 'required|trim|callback_check_file');
-
-		if ($this->form_validation->run()) {
-			echo 'uploaded';
-		} else {
-			$data['title'] = 'Importer depuis CSV';
-			$this->render('tuteur/importer', $data);
+		// If the form was submitted
+		if (isset($_FILES['liste'])) {
+			$config['upload_path'] = FCPATH.'uploads/';
+			$config['file_name'] = 'liste';
+			$config['allowed_types'] = 'csv';
+			$this->load->library('upload', $config);
+			// If upload failed display error
+			if ($this->upload->do_upload('liste')) {
+				$file_data = $this->upload->data();
+				$file_path = FCPATH.'uploads/'.$file_data['file_name'];
+				if ($csv_array = $this->csvimport->get_array($file_path)) {
+					$this->etudiant_model->createEtudiant($csv_array);
+				}
+				return;
+			} else {
+				$data['error'] = $this->upload->display_errors();
+			}
 		}
+		$data['title'] = 'Importer depuis CSV';
+		$this->render('tuteur/importer', $data);
 	}
 
-	public function check_file()
-	{
-		$config['upload_path'] = FCPATH.'uploads/';
-		$config['file_name'] = 'liste';
-		$config['allowed_types'] = 'pdf';
-		$this->load->library('upload', $config);
-		// If upload failed display error
-		if ($this->upload->do_upload('liste')) {
-			// $file_data = $this->upload->data();
-			// $file_path = FCPATH.'uploads/'.$file_data['file_name'];
-			// echo $file_path;
-			return true;
-		} else {
-			$this->form_validation->set_message('check_file', strip_tags($this->upload->display_errors()));
-			return false;
-		}
-	}
 }
