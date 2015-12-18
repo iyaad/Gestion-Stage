@@ -7,7 +7,12 @@ class User_model extends CI_Model {
 		$query = $this->db->get_where('User', array('userId' => $id);
 		return $query->row();
 	}
-	
+	public function createUser($data){
+		return $this->db->insert('User',$data);
+
+
+	}
+
 
 }
 
