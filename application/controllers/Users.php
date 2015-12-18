@@ -30,4 +30,19 @@ class Users extends MY_Controller {
 		return (bool) $this->user_model->getUserByUsername($username);
 	}
 
+	public function test()
+	{
+		$this->load->library('hash');
+		$data = array(
+			'username' => 'Super' ,
+			'email' => 'test@exemple.com',
+			'password' => $this->hash->password('123'),
+			'numTel' => '0615151515',
+			'adresse' => 'boukha' ,
+			'createdAt' => date("Y-m-d H:i:s"),
+			'updatedAt' => date("Y-m-d H:i:s"),
+		);
+		$this->db->insert("User",$data);
+	}
+
 }
