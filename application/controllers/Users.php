@@ -12,7 +12,7 @@ class Users extends MY_Controller {
 
 	public function login()
 	{
-		$this->form_validation->set_rules('username', 'Login', 'required|trim|callback_check_username');
+		$this->form_validation->set_rules('username', 'Login', 'required|trim|callback_check_login');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim');
 		$this->form_validation->set_message('required', 'Le champs %s est obligatoire');
 
@@ -24,10 +24,19 @@ class Users extends MY_Controller {
 		}
 	}
 
-	public function check_username($username)
+	public function check_login($username)
 	{
-		$this->form_validation->set_message('check_username', '%s inexistant');
-		return (bool) $this->user_model->getUserByUsername($username);
+		$user = $this->user_model->getUserByUsername($username);
+		if (!$user) {
+			$this->form_validation->set_message('check_login', '%s inexistant');
+			return false;
+		}
+		$password = $this->input->post('password');
+		if (!$this->hash->check_password($password, $user->password)) {
+			$this->form_validation->set_message('check_login', 'Mot de passe incorrect');
+			return false;
+		}
+		return true;
 	}
 
 }
