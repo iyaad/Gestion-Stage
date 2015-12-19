@@ -1,6 +1,6 @@
 <?php
 
-class Migration_create_sujet extends CI_Migration {
+class Migration_Sujet extends CI_Migration {
 
 	public function up() {
 		$this->dbforge->add_field(array(
@@ -29,14 +29,13 @@ class Migration_create_sujet extends CI_Migration {
 				'type' => 'VARCHAR',
 				'constraint' => 255,
 			),
-
 		));
-		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('create_sujet');
+		$this->dbforge->add_key('sujetId', TRUE);
+		$this->dbforge->create_table('sujet');
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('create_sujet');
+		$this->dbforge->drop_table('sujet');
 	}
 
 }

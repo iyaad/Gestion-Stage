@@ -1,10 +1,10 @@
 <?php
 
-class Migration_create_entreprise extends CI_Migration {
+class Migration_Entreprise extends CI_Migration {
 
 	public function up() {
 		$this->dbforge->add_field(array(
-			'entrepriseId' => array(
+				'entrepriseId' => array(
 				'type' => 'INT',
 				'constraint' => 11,
 				'auto_increment' => TRUE
@@ -33,14 +33,13 @@ class Migration_create_entreprise extends CI_Migration {
 				'type'=>'varchar',
 				'constraint'=>255,
 			),
-
 		));
-		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('create_entreprise');
+		$this->dbforge->add_key('entrepriseId', TRUE);
+		$this->dbforge->create_table('entreprise');
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('create_entreprise');
+		$this->dbforge->drop_table('entreprise');
 	}
 
 }
