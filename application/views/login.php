@@ -5,14 +5,14 @@
 		</div> 
 		<div class="panel-body">
 			<?= form_open("login", 'class="form-horizontal m-t-20"') ?>
-				<div class="form-group ">
+				<div class="form-group <?= form_error('username') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('username') ?>
-						<input class="form-control" type="text" placeholder="Login" name="username">
+						<input class="form-control" type="text" placeholder="Login" name="username" value="<?= set_value('username') ?>" autofocus>
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group <?= form_error('password') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('password') ?>
 						<input class="form-control" type="password" placeholder="Mot de passe" name="password">
