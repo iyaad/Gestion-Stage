@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Sujet extends CI_Migration {
+class Migration_create_sujet extends CI_Migration {
 
 	public function up() {
 		$this->dbforge->add_field(array(
@@ -31,11 +31,11 @@ class Migration_Sujet extends CI_Migration {
 			),
 		));
 		$this->dbforge->add_key('sujetId', TRUE);
-		$this->dbforge->create_table('sujet');
+		$this->dbforge->create_table('Sujet');
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('sujet');
+		$this->dbforge->drop_table('Sujet');
 	}
 
 }
