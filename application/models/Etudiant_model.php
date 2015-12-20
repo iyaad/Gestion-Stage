@@ -4,8 +4,6 @@ use Carbon\Carbon;
 
 class Etudiant_model extends CI_Model {
 
-
-
 	public function createEtudiant($Data) {
 		$this->load->library('hash');
 		$user = array(
@@ -17,10 +15,8 @@ class Etudiant_model extends CI_Model {
 			'createdAt' => gmdate('Y-m-d H:i:s'),
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
-
 		$this->db->insert('User',$user);
 		$userId = $this->db->insert_id();
-
 
 		$data = array(
 			'etudiantId' => $userId,
@@ -33,8 +29,8 @@ class Etudiant_model extends CI_Model {
 			'createdAt' => gmdate('Y-m-d H:i:s'),
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
-		return $this->db->insert("Etudiant" , $data);
+		$this->db->insert("Etudiant" , $data);
+		return $this->db->insert_id();
 	}
-
 
 }

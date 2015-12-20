@@ -10,6 +10,7 @@ class Tuteur extends MY_Controller {
 		$this->load->library('email');
 		$this->load->model('etudiant_model');
 		$this->load->model('tuteur_model');
+		$this->load->model('user_model');
 	}
 
 	public function importer()
@@ -26,10 +27,10 @@ class Tuteur extends MY_Controller {
 				$file_path = FCPATH.'uploads/'.$file_data['file_name'];
 				if ($csv_array = $this->csvimport->get_array($file_path)) {
 					foreach ($csv_array as $etudiant) {
-						$this->etudiant_model->createEtudiant($etudiant);
-
+						$userId = $this->etudiant_model->createEtudiant($etudiant);
+						$user = $this->user_model->getUser($userId);
+						$this->tuteur_model->emailEtudiant($user);
 					}
-					$this->tuteur_model->sendEmail();
 				}
 			} else {
 				$data['error'] = $this->upload->display_errors();
