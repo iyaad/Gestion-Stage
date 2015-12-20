@@ -7,10 +7,10 @@ class Etudiant_model extends CI_Model {
 
 
 	public function createEtudiant($Data) {
-
+		$this->load->library('hash');
 		$user = array(
 			'username' => $Data['cne'],
-			'password' => $Data['cne'],
+			'password' => $this->hash->password($Data['cne']),
 			'email' => $Data['email'],
 			'numTel' => $Data['numTel'],
 			'adresse' => "tanger",
