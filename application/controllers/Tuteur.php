@@ -7,7 +7,9 @@ class Tuteur extends MY_Controller {
 		parent::__construct();
 		$this->load->library('csvimport');
 		$this->load->library('form_validation');
+		$this->load->library('email');
 		$this->load->model('etudiant_model');
+		$this->load->model('tuteur_model');
 	}
 
 	public function importer()
@@ -25,7 +27,9 @@ class Tuteur extends MY_Controller {
 				if ($csv_array = $this->csvimport->get_array($file_path)) {
 					foreach ($csv_array as $etudiant) {
 						$this->etudiant_model->createEtudiant($etudiant);
+
 					}
+					$this->tuteur_model->sendEmail();
 				}
 			} else {
 				$data['error'] = $this->upload->display_errors();
