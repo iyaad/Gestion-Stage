@@ -69,13 +69,8 @@
                     </div>
 				</div>
 
-				
-
-
-
-				<p><?= isset($error) ? $error : '' ?></p>
 				<div class="form-group text-center m-t-40">
-					<button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">Importer</button>
+					<button type="submit" class="btn btn-purple waves-effect waves-light">Mettre a jour</button>
 				</div>
 			</form>
 		</div>
