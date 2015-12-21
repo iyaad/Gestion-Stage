@@ -12,7 +12,9 @@ class Etudiant extends MY_Controller {
 
 	public function profil($id)
 	{
-		$data['etudiant'] = $this->etudiant_model->getEtudiant($id);
+		$etudiant = $this->etudiant_model->getEtudiant($id);
+		$data['title'] = 'Profil de '.$etudiant->nom.' '.$etudiant->prenom;
+		$data['etudiant'] = $etudiant;
 		$this->render('etudiant/infos', $data);
 	}
 }
