@@ -30,7 +30,7 @@ class Etudiant_model extends CI_Model {
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
 		$this->db->insert("Etudiant" , $data);
-		return $this->db->insert_id();
+		return $userId;
 	}
 
 }
