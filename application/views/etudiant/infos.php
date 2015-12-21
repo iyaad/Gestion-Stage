@@ -4,26 +4,72 @@
 			<h3 class="text-center"> Finaliser votre inscription <strong class="text-custom"></strong> </h3>
 		</div> 
 		<div class="panel-body">
-			<div>
+			<form class="form-horizontal">
 				<div class="form-group ">
-					<label for="nom">Nom complet</label>
-					<input type="text" value="<?= $etudiant->nom.' '.$etudiant->prenom?>">
+					<label class="col-md-4 control-label">Nom complet</label>
+					<div class="col-md-8">
+						<p class="form-control-static"><?= $etudiant->nom.' '.$etudiant->prenom?></p>     
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-md-4 control-label">CNE</label>
+					<div class="col-md-8">
+						<p class="form-control-static"><?= $etudiant->cne?></p>     
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-md-4 control-label">Filiere</label>
+					<div class="col-md-8">
+						<p class="form-control-static"><?= $etudiant->filiere?></p>     
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-md-4 control-label">Niveau</label>
+					<div class="col-md-8">
+						<p class="form-control-static"><?= $etudiant->niveau?></p>     
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-md-4 control-label">Date de Naissance</label>
+					<div class="col-md-8">
+						<p class="form-control-static"><?= $etudiant->dateNaissance?></p>     
+                    </div>
+				</div>
+			</form>
+				
+
+			
+			<?= form_open("Etudiant/",'class="form-horizontal"') ?>
+				<div class="form-group ">
+					<label class="col-sm-4 control-label">Mot de passe actuel</label>
+					<div class="col-md-8">
+						<?= form_error('password') ?>
+                        <input type="password" class="form-control"  name="password">
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-sm-4 control-label">Nouveau mot de passe</label>
+					<div class="col-md-8">
+						<?= form_error('new_password') ?>
+                        <input type="password" class="form-control"  name="new_password">
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-sm-4 control-label">Adresse</label>
+					<div class="col-md-8">
+						<?= form_error('adresse') ?>
+                        <input type="text" class="form-control" name="adresse">
+                    </div>
+				</div>
+				<div class="form-group ">
+					<label class="col-sm-4 control-label">Votre photo</label>
+					<div class="col-md-8">
+						<?= form_error('photo') ?>
+                        <input type="file" class="form-control" name="photo">
+                    </div>
 				</div>
 
-			</div>
-			<?= form_open_multipart("Etudiant/") ?>
-				<div class="form-group ">
-					<label for="adresse">Adresse</label>
-					<input type="text" name="adresse">
-				</div>
-				<div class="form-group ">
-					<label for="pwd">Nouveau mot de passe</label>
-					<input type="password" name="pwd">
-				</div>
-				<div class="form-group ">
-					<label for="img">Image a importer</label>
-					<input type="file" name="img">
-				</div>
+				
 
 
 
