@@ -20,8 +20,18 @@ class Users extends MY_Controller {
 			$data['title'] = 'Login';
 			$this->render('login', $data);
 		} else {
-			echo 'Validé';
+			// Start the session and redirect
+			$user = $this->user_model->getUserByUsername($this->input->post('username'));
+			$sess_array = array(
+				'id' => $user->userId,
+				''
+			);
 		}
+	}
+
+	public function logout()
+	{
+		
 	}
 
 	public function check_username($username)
