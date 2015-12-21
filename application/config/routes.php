@@ -52,4 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'users/login';
 $route['login'] = 'users/login';
-$route['signup']='entreprise/signup';
+$route['signup'] = 'entreprise/signup';
+$route['(:num)/edit'] = 'etudiant/edit_profile/$1';
+$route['(:num)'] = 'etudiant/profile/$1';

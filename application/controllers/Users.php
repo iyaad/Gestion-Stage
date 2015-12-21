@@ -24,14 +24,16 @@ class Users extends MY_Controller {
 			$user = $this->user_model->getUserByUsername($this->input->post('username'));
 			$sess_array = array(
 				'id' => $user->userId,
-				''
+				'role' => $user->role,
 			);
+			$this->session->set_userdata('login', $sess_array);
 		}
 	}
 
 	public function logout()
 	{
-		
+		$this->sessions->unset_userdata('login');
+		session_destroy();
 	}
 
 	public function check_username($username)

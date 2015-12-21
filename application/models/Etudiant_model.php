@@ -34,12 +34,14 @@ class Etudiant_model extends CI_Model {
 		return $userId;
 	}
 
-	public function getEtudiant($id)
+	public function getEtudiant($criteria)
 	{
 		$this->db->select('e.*, u.email, u.numTel, u.adresse');
 		$this->db->from('Etudiant e');
 		$this->db->join('User u', 'u.userId = e.etudiantId');
-		$this->db->where('etudiantId', $id);
+		foreach ($criteria as $key => $value) {
+			$this->db->where($key, $value);
+		}
 		$query = $this->db->get();
 		return $query->row();
 	}

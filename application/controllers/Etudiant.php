@@ -10,11 +10,19 @@ class Etudiant extends MY_Controller {
 		$this->load->model('etudiant_model');
 	}
 
-	public function profil($id)
+	public function edit_profile($cne)
 	{
-		$etudiant = $this->etudiant_model->getEtudiant($id);
+		$etudiant = $this->etudiant_model->getEtudiant(['cne' => $cne]);
 		$data['title'] = 'Profil de '.$etudiant->nom.' '.$etudiant->prenom;
 		$data['etudiant'] = $etudiant;
 		$this->render('etudiant/infos', $data);
+	}
+
+	public function profile($cne)
+	{
+		$etudiant = $this->etudiant_model->getEtudiant(['cne' => $cne]);
+		$data['title'] = 'Profil de '.$etudiant->nom.' '.$etudiant->prenom;
+		$data['etudiant'] = $etudiant;
+		$this->render('etudiant/profile', $data);
 	}
 }
