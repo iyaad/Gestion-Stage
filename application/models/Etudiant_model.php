@@ -9,6 +9,7 @@ class Etudiant_model extends CI_Model {
 		$user = array(
 			'username' => $Data['cne'],
 			'password' => $this->hash->password($Data['cne']),
+			'role' => 'etu',
 			'email' => $Data['email'],
 			'numTel' => $Data['numTel'],
 			'adresse' => "tanger",
@@ -30,7 +31,17 @@ class Etudiant_model extends CI_Model {
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
 		$this->db->insert("Etudiant" , $data);
-		return $this->db->insert_id();
+		return $userId;
+	}
+
+	public function getEtudiant($id)
+	{
+		$this->db->select('e.*, u.email, u.numTel, u.adresse');
+		$this->db->from('Etudiant e');
+		$this->db->join('User u', 'u.userId = e.etudiantId');
+		$this->db->where('etudiantId', $id);
+		$query = $this->db->get();
+		return $query->row();
 	}
 
 }
