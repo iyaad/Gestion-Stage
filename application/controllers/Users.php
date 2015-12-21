@@ -14,7 +14,7 @@ class Users extends MY_Controller {
 	{
 		$this->form_validation->set_rules('username', 'Login', 'required|trim|callback_check_username');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|callback_check_password');
-		$this->form_validation->set_message('required', 'Le champs %s est obligatoire');
+		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
 
 		if ($this->form_validation->run() == false) {
 			$data['title'] = 'Login';
@@ -29,7 +29,6 @@ class Users extends MY_Controller {
 		$this->form_validation->set_message('check_username', '%s inexistant');
 		return (bool) $this->user_model->getUserByUsername($username);
 	}
-
 	public function check_password($password)
 	{
 		$this->load->library('hash');

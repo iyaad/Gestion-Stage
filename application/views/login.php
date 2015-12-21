@@ -33,4 +33,9 @@
 			</form>
 		</div>
 	</div><!-- /.card-box -->
+    <div class="row">
+  		<div class="col-sm-12 text-center">
+  			<p><a href="page-register.html" class="text-primary m-l-5"><b>Inscription entreprises</b></a></p>
+        </div>
+    </div>
 </div>
