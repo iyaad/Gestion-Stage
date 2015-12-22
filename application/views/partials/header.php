@@ -43,7 +43,7 @@
 													<li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
 											</ul>
 									</div>
-									<p class="text-muted m-0">Administrator</p>
+									<p class="text-muted m-0"><?= $etudiant->role ?></p>
 							</div>
 					</div>
 					<!--- Divider -->
