@@ -63,6 +63,8 @@ class Users extends MY_Controller {
 	{	$this->form_validation->set_rules('login', 'Login', 'required|trim|callback_check_username');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
 		if ($this->form_validation->run() == false) {
+		$data['NOTOPBAR'] = true;
+		$data['NOSIDEBAR'] = true;
 		$data['title'] = 'Recuperer le mot de passe';
 		$data['message']='';
 		$this->render('passwordRecovery', $data);
@@ -74,6 +76,8 @@ class Users extends MY_Controller {
 		}else{
 			$data['message']='erreur du serveur SMTP';
 		}
+			$data['NOTOPBAR'] = true;
+			$data['NOSIDEBAR'] = true;	
 			$data['title'] = 'Recuperer le mot de passe';
 			$this->render('passwordRecovery', $data);
 
