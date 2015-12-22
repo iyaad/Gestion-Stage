@@ -29,13 +29,15 @@ class Users extends MY_Controller {
 				'role' => $user->role,
 			);
 			$this->session->set_userdata('login', $sess_array);
+			return redirect('home');
 		}
 	}
 
 	public function logout()
 	{
-		$this->sessions->unset_userdata('login');
+		$this->session->unset_userdata('login');
 		session_destroy();
+		return redirect('home');
 	}
 
 	// Form validation callbacks

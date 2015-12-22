@@ -3,45 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="<?= asset_url('css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= asset_url('css/bootstrap-theme.min.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/core.css') ?>">
+	<link rel="stylesheet" href="<?= asset_url('css/components.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/icons.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/pages.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/responsive.css') ?>">
 	<title><?= $title ?></title>
 </head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="<?= base_url() ?>">Accueil</a>
-	</div>
+<body class="fixed-left">
+	<div class="wrapper container-fluid">
+		<div class="topbar">
+			<!-- LOGO -->
+			<div class="topbar-left">
+				<div class="text-center">
+					<a href="#" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+				</div>
+			</div>
 
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Link</a></li>
-			<li><a href="#">Link</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Link</a></li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li><a href="#">Separated link</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div><!-- /.navbar-collapse -->
-</nav>
-
-<div class="wrapper container-fluid">
+			<!-- Button mobile view to collapse sidebar menu -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container">
+					
+				</div>
+			</div>
+		</div>
