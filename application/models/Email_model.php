@@ -12,6 +12,7 @@ class Email_model extends CI_Model {
 		$this->email->message('Vous êtes inscris sur gestion-stages avec les paramètres suivants:<br>Login : '.$user->username.'<br>Mot de passe : '.$cne);
 		$this->email->send();
 	}
+	
 	public function recoverPassword($login)
 	{
 		$user = $this->db->get_where('user',['username'=>$login])->result()[0];

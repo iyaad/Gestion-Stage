@@ -52,10 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'users/login';
 $route['login'] = 'users/login';
-
+$route['logout'] = 'users/logout';
 $route['passwordRecovery'] = 'users/passwordRecovery';
 
-$route['logout'] = 'users/logout';
+
 $route['register'] = 'entreprise/signup';
 
 $route['(:num)/edit'] = 'etudiant/edit_profile/$1';
