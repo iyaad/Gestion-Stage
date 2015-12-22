@@ -9,7 +9,7 @@ class Tuteur extends MY_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('email');
 		$this->load->model('etudiant_model');
-		$this->load->model('tuteur_model');
+		$this->load->model('email_model');
 		$this->load->model('user_model');
 	}
 
@@ -29,7 +29,7 @@ class Tuteur extends MY_Controller {
 					foreach ($csv_array as $etudiant) {
 						$userId = $this->etudiant_model->createEtudiant($etudiant);
 						$user = $this->user_model->getUser($userId);
-						$this->tuteur_model->emailEtudiant($user);
+						$this->email_model->emailEtudiant($user);
 					}
 				}
 			} else {

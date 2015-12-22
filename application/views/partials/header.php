@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="<?= asset_url('css/icons.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/pages.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/responsive.css') ?>">
+	<link rel="stylesheet" href="<?= asset_url('plugins/morris/morris.css') ?>">
+
 	<title><?= $title ?></title>
 </head>
 <body>
@@ -43,3 +45,4 @@
 		</ul>
 	</div><!-- /.navbar-collapse -->
 </nav>
+

@@ -7,7 +7,9 @@ class Users extends MY_Controller {
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('email');
 		$this->load->model('user_model');
+		$this->load->model('email_model');
 	}
 
 	public function login()
@@ -48,7 +50,26 @@ class Users extends MY_Controller {
 		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
 		return $this->hash->check_password($password, $user->password);
 	}
+	public function passwordRecovery()
+	{	$this->form_validation->set_rules('login', 'Login', 'required|trim|callback_check_username');
+		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
+		if ($this->form_validation->run() == false) {
+		$data['title'] = 'Recuperer le mot de passe';
+		$data['message']='';
+		$this->render('passwordRecovery', $data);
+		}
+		else{
+			if( $this->email_model->recoverPassword($this->input->post('login')) ){
+			
+			$data['message']='email envoye';
+		}else{
+			$data['message']='erreur du serveur SMTP';
+		}
+			$data['title'] = 'Recuperer le mot de passe';
+			$this->render('passwordRecovery', $data);
 
+		}
+	}
 	public function test()
 	{
 		$this->load->library('hash');

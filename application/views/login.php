@@ -27,7 +27,7 @@
 
 				<div class="form-group m-t-30 m-b-0">
 					<div>
-						<a href="#" class="text-dark"><i class="fa fa-lock m-r-5"></i>Mot de passe oublié ?</a>
+						<a href="passwordRecovery" class="text-dark"><i class="fa fa-lock m-r-5"></i>Mot de passe oublié ?</a>
 					</div>
 				</div>
 			</form>
@@ -35,7 +35,7 @@
 	</div><!-- /.card-box -->
     <div class="row">
   		<div class="col-sm-12 text-center">
-  			<p><a href="page-register.html" class="text-primary m-l-5"><b>Inscription entreprises</b></a></p>
+  			<p><a href="signup" class="text-primary m-l-5"><b>Inscription entreprises</b></a></p>
         </div>
     </div>
 </div>
