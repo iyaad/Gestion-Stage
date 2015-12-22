@@ -11,7 +11,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row"></div>
+			<div class="row">
 				<div class="col-md-4">
 					<div class="card-box m-t-20">
 						<h4 class="m-t-0 header-title"><b>Informations Personnelles</b></h4>
@@ -48,7 +48,7 @@
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>	
 		</div>
 	</div>
