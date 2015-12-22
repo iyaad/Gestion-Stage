@@ -11,18 +11,21 @@ class Entreprise extends MY_Controller {
 	}
 
 	public function signup()
-	{	$this->form_validation->set_rules('nom_entreprise','Nom de l\'entreprise','required');
+	{
+		$this->form_validation->set_rules('nom_entreprise', "Nom Entreprise",'required');
 		$this->form_validation->set_rules('pays','Pays','required');
 		$this->form_validation->set_rules('adresse','Adresse','required');
 		$this->form_validation->set_rules('ville','Ville','required');
-		$this->form_validation->set_rules('numtel','numero de telephone','required|exact_length[10]');
-		$this->form_validation->set_rules('email','email','trim|required|valid_email');
-		$this->form_validation->set_rules('description','description','trim|required');
+		$this->form_validation->set_rules('numtel','Numero de Telephone','required|exact_length[10]');
+		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
+		$this->form_validation->set_rules('description','Description','trim|required');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
-		$this->form_validation->set_message('valid_mail', 'email non valide');
+		$this->form_validation->set_message('valid_mail', 'Email invalide');
 		if ($this->form_validation->run() == false) {
-		$data['title'] = 'Inscription entreprises';
-		$this->render('signup',$data);
+			$data['NOTOPBAR'] = true;
+			$data['NOSIDEBAR'] = true;
+			$data['title'] = 'Inscription entreprises';
+			$this->render('signup',$data);
 		} else {
 			$data = array(
 					'nom'=>$this->input->post('nom_entreprise'),

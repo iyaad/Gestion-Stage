@@ -11,7 +11,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row"></div>
+			<div class="row">
 				<div class="col-md-4">
 					<div class="card-box m-t-20">
 						<h4 class="m-t-0 header-title"><b>Informations Personnelles</b></h4>
@@ -19,7 +19,7 @@
 							<div class="about-info-p">
 								<strong>Nom Complet</strong>
 								<br>
-								<p class="text-muted"><?= $etudiant->nom.''.$etudiant->prenom?></p>
+								<p class="text-muted"><?= "$etudiant->nom $etudiant->prenom" ?></p>
 							</div>
 							<div class="about-info-p">
 								<strong>CNE</strong>
@@ -48,8 +48,8 @@
 							</div>
 						</div>
 					</div>
-				</div>		
-			</div>	
+				</div><!-- /.col-md-4 -->	
+			</div><!-- /.row -->
 		</div>
 	</div>
 </div>
