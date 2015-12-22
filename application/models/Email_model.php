@@ -10,7 +10,7 @@ class Email_model extends CI_Model {
 		$this->email->from('stages@ensat.ac.ma', 'Chef de filiere');
 		$this->email->to($user->email);
 		$this->email->subject('Compte pour la plateforme gestion-stages');
-		$this->email->message($this->load->view('email/newAccount'),$data);
+		$this->email->message($this->load->view('email/newAccount', $data, true));
 		$this->email->send();
 	}
 	
@@ -21,7 +21,7 @@ class Email_model extends CI_Model {
 		$this->email->from('stages@ensat.ac.ma', 'Chef de filiere');
 		$this->email->to($user->email);
 		$this->email->subject('recuperation du mot de passe');
-		$this->email->message($this->load->view('email/passwordRecover'),$data);
+		$this->email->message($this->load->view('email/passwordRecover', $data, true));
 		return (bool) $this->email->send();
 	}
 
