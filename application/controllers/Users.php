@@ -12,6 +12,8 @@ class Users extends MY_Controller {
 
 	public function login()
 	{
+		if (loggedIn())
+			return redirect('home');
 		$this->form_validation->set_rules('username', 'Login', 'required|trim|callback_check_username');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|callback_check_password');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
@@ -36,6 +38,7 @@ class Users extends MY_Controller {
 		session_destroy();
 	}
 
+	// Form validation callbacks
 	public function check_username($username)
 	{
 		$this->form_validation->set_message('check_username', '%s inexistant');
@@ -45,6 +48,8 @@ class Users extends MY_Controller {
 	{
 		$this->load->library('hash');
 		$user = $this->user_model->getUserByUsername($this->input->post('username'));
+		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
+		if (!$user) return false;
 		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
 		return $this->hash->check_password($password, $user->password);
 	}
@@ -58,6 +63,7 @@ class Users extends MY_Controller {
 			'password' => $this->hash->password('123'),
 			'numTel' => '0615151515',
 			'adresse' => 'boukha' ,
+			'role' => 'super',
 			'createdAt' => date("Y-m-d H:i:s"),
 			'updatedAt' => date("Y-m-d H:i:s"),
 		);

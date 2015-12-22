@@ -32,6 +32,8 @@ class Tuteur extends MY_Controller {
 						$this->tuteur_model->emailEtudiant($user);
 					}
 				}
+				// Delete the csv file from the server
+				unlink(FCPATH.'uploads/'.$file_data['file_name']);
 			} else {
 				$data['error'] = $this->upload->display_errors();
 			}

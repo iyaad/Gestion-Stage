@@ -43,3 +43,5 @@
 		</ul>
 	</div><!-- /.navbar-collapse -->
 </nav>
+
+<div class="wrapper container-fluid">
