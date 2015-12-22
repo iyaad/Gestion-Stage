@@ -19,7 +19,7 @@
 							<div class="about-info-p">
 								<strong>Nom Complet</strong>
 								<br>
-								<p class="text-muted"><?= $etudiant->nom.''.$etudiant->prenom?></p>
+								<p class="text-muted"><?= $etudiant->nom.' '.$etudiant->prenom?></p>
 							</div>
 							<div class="about-info-p">
 								<strong>CNE</strong>

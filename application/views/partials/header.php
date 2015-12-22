@@ -25,10 +25,28 @@
 				</div>
 			</div>
 
-			<!-- Button mobile view to collapse sidebar menu -->
+			<!-- Infos utilisateur en cours -->
 			<div class="navbar navbar-default" role="navigation">
 				<div class="container">
-					
+					<ul class="nav navbar-nav navbar-right pull-right">
+                                					<div class="user-details">
+							<div class="pull-left">
+									<img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
+							</div>
+							<div class="user-info">
+									<div class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><?= $etudiant->nom.' '.$etudiant->prenom ?>  <span class="caret"></span></a>
+											<ul class="dropdown-menu">
+													<li><a href="<?= base_url($etudiant->cne) ?>"><i class="md md-face-unlock"></i> Profil<div class="ripple-wrapper"></div></a></li>
+													<li><a href="<?= base_url($etudiant->cne.'/edit') ?>"><i class="md md-settings"></i> editer profil</a></li>
+													<li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
+													<li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
+											</ul>
+									</div>
+									<p class="text-muted m-0">Administrator</p>
+							</div>
+					</div>
+					<!--- Divider -->
 				</div>
 			</div>
 		</div><!-- /.topbar -->
@@ -38,23 +56,7 @@
 		<div class="left side-menu">
 			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 297px;">
 				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 297px;">
-					<div class="user-details">
-							<div class="pull-left">
-									<img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
-							</div>
-							<div class="user-info">
-									<div class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">John Doe <span class="caret"></span></a>
-											<ul class="dropdown-menu">
-													<li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-													<li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-													<li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
-													<li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
-											</ul>
-									</div>
-									<p class="text-muted m-0">Administrator</p>
-							</div>
-					</div>
+
 					<!--- Divider -->
 					<div id="sidebar-menu">
 						<ul>
