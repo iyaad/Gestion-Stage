@@ -19,6 +19,8 @@ class Users extends MY_Controller {
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
 
 		if ($this->form_validation->run() == false) {
+			$data['NOTOPBAR'] = true;
+			$data['NOSIDEBAR'] = true;
 			$data['title'] = 'Login';
 			$this->render('login', $data);
 		} else {
