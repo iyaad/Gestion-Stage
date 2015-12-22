@@ -9,7 +9,7 @@ class Etudiant_model extends CI_Model {
 		$user = array(
 			'username' => $Data['cne'],
 			'password' => $this->hash->password($Data['cne']),
-			'role' => 'etu',
+			'role' => 'etudiant',
 			'email' => $Data['email'],
 			'numTel' => $Data['numTel'],
 			'adresse' => "tanger",
@@ -36,7 +36,7 @@ class Etudiant_model extends CI_Model {
 
 	public function getEtudiant($criteria)
 	{
-		$this->db->select('e.*, u.email, u.numTel, u.adresse');
+		$this->db->select('e.*, u.email, u.numTel, u.adresse , u.role');
 		$this->db->from('Etudiant e');
 		$this->db->join('User u', 'u.userId = e.etudiantId');
 		foreach ($criteria as $key => $value) {
