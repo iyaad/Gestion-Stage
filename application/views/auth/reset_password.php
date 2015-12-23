@@ -4,7 +4,7 @@
 			<h3 class="text-center">Nouveau mot de passe </h3>
 		</div> 
 		<div class="panel-body">
-			<?= form_open("recover-password", 'class="form-horizontal m-t-20"') ?>
+			<?= form_open("reset-password?email=$email&identifier=".urlencode($identifier), 'class="form-horizontal m-t-20"') ?>
 				<div class="form-group <?= form_error('password') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('password') ?>

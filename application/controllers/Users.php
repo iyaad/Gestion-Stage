@@ -72,7 +72,7 @@ class Users extends MY_Controller {
 	public function reset_password()
 	{
 		$email = $this->input->get('email');
-		$identifier = urldecode($this->input->get('identifier'));
+		$identifier = $this->input->get('identifier');
 		if (empty($email) || empty($identifier))
 			show_404();
 		$user = $this->user_model->getUser(['email' => $email]);
@@ -87,6 +87,8 @@ class Users extends MY_Controller {
 		if (!$this->form_validation->run()) {
 			$data['NOTOPBAR'] = true;
 			$data['NOSIDEBAR'] = true;
+			$data['email'] = $email;
+			$data['identifier'] = $identifier;
 			$data['title'] = 'Réinitialisez votre mot de passe';
 			$this->render('auth/reset_password', $data);
 		} else {
