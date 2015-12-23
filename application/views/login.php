@@ -27,7 +27,7 @@
 
 				<div class="form-group m-t-30 m-b-0">
 					<div>
-						<a href="passwordRecovery" class="text-dark"><i class="fa fa-lock m-r-5"></i>Mot de passe oublié ?</a>
+						<a href="<?= base_url('recover-password') ?>" class="text-dark"><i class="fa fa-lock m-r-5"></i>Mot de passe oublié ?</a>
 					</div>
 				</div>
 			</form>

@@ -34,6 +34,7 @@
 									<img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
 							</div>
 							<div class="user-info">
+									<!-- Leave this commented
 									<div class="dropdown">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><?= $etudiant->nom.' '.$etudiant->prenom ?>  <span class="caret"></span></a>
 											<ul class="dropdown-menu">
@@ -43,7 +44,7 @@
 													<li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
 											</ul>
 									</div>
-									<p class="text-muted m-0"><?= $etudiant->role ?></p>
+									<p class="text-muted m-0"><?= $etudiant->role ?></p> -->
 							</div>
 					</div>
 					<!--- Divider -->

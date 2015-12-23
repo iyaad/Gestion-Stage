@@ -28,7 +28,7 @@ class Tuteur extends MY_Controller {
 				if ($csv_array = $this->csvimport->get_array($file_path)) {
 					foreach ($csv_array as $etudiant) {
 						$userId = $this->etudiant_model->createEtudiant($etudiant);
-						$user = $this->user_model->getUser($userId);
+						$user = $this->user_model->getUser(['userId' => $userId]);
 						$this->email_model->emailEtudiant($user);
 					}
 				}
@@ -38,6 +38,8 @@ class Tuteur extends MY_Controller {
 				$data['error'] = $this->upload->display_errors();
 			}
 		}
+		$data['NOTOPBAR'] = true;
+		$data['NOSIDEBAR'] = true;
 		$data['title'] = 'Importer depuis CSV';
 		$this->render('tuteur/importer', $data);
 	}

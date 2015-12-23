@@ -78,7 +78,7 @@ class Users extends MY_Controller {
 		if (!$this->hash->check_hash($identifier, $user->recoverHash))
 			dd('wrong hash');
 
-		$this->form_validation->set_rules('password', 'Mot de passe' 'required|trim|min_length[6]');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|min_length[6]');
 		$this->form_validation->set_rules('password_conf', 'Confirmation mot de passe', 'matches[password]');
 		$this->form_validation->set_message('matches', 'Le champ %s doit être le même que Mot de passe');
 
