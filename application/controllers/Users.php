@@ -56,11 +56,11 @@ class Users extends MY_Controller {
 			$data['title'] = 'Recuperer votre mot de passe';
 			$this->render('auth/recover_password', $data);
 		} else {
-			$email = $this->input->post('email'))
+			$email = $this->input->post('email');
 			$identifier = $this->random->generateString(128);
 			$hashed = $this->hash->create_hash($identifier);
 			$this->user_model->updateUser(['email' => $email], ['recoverHash' => $hashed]);
-			if ($this->email_model->recoverPassword($email, $identifier) {
+			if ($this->email_model->recoverPassword($email, $identifier)) {
 				// Alert success
 			} else {
 				// Alert error
