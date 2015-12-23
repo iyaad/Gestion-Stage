@@ -76,7 +76,8 @@ class Users extends MY_Controller {
 		if (empty($email) || empty($identifier))
 			show_404();
 		$user = $this->user_model->getUser(['email' => $email]);
-		if (!$this->hash->check_hash($identifier, $user->recoverHash))
+		$hashed = $this->hash->create_hash($identifier);
+		if (!$this->hash->check_hash($user->recoverHash, $hashed))
 			dd('wrong hash');
 
 		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|min_length[6]');
