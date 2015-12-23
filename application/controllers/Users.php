@@ -71,6 +71,28 @@ class Users extends MY_Controller {
 	public function reset_password()
 	{
 		$email = $this->input->get('email');
+		$identifier = urldecode($this->input->get('identifier'));
+		if (empty($email) || empty($identifier))
+			show_404();
+		$user = $this->user_model->getUser(['email' => $email]);
+		if (!$this->hash->check_hash($identifier, $user->recoverHash))
+			dd('wrong hash');
+
+		$this->form_validation->set_rules('password', 'Mot de passe' 'required|trim|min_length[6]');
+		$this->form_validation->set_rules('password_conf', 'Confirmation mot de passe', 'matches[password]');
+		$this->form_validation->set_message('matches', 'Le champ %s doit être le même que Mot de passe');
+
+		if (!$this->form_validation->run()) {
+			$data['NOTOPBAR'] = true;
+			$data['NOSIDEBAR'] = true;
+			$data['title'] = 'Réinitialisez votre mot de passe';
+			$this->render('auth/reset_password', $data);
+		} else {
+			$password = $this->hash->password($this->input->post('password'));
+			$this->user_model->updateUser(['email' => $email], ['recoverHash' => null, 'password' => $password]);
+			// TODO: Alert success
+			return redirect('login');
+		}
 	}
 
 	// Form validation callbacks

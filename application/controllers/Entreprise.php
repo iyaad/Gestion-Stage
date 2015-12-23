@@ -28,15 +28,15 @@ class Entreprise extends MY_Controller {
 			$this->render('signup',$data);
 		} else {
 			$data = array(
-					'nom'=>$this->input->post('nom_entreprise'),
-					'pays'=>$this->input->post('pays'),
-					'adresse'=>$this->input->post('adresse'),
-					'ville'=>$this->input->post('ville'),
-					'fax'=>$this->input->post('fax'),
-					'numTel'=>$this->input->post('numtel'),
-					'email'=>$this->input->post('email'),
-					'description'=>$this->input->post('description'),
-				);
+				'nom'=>$this->input->post('nom_entreprise'),
+				'pays'=>$this->input->post('pays'),
+				'adresse'=>$this->input->post('adresse'),
+				'ville'=>$this->input->post('ville'),
+				'fax'=>$this->input->post('fax'),
+				'numTel'=>$this->input->post('numtel'),
+				'email'=>$this->input->post('email'),
+				'description'=>$this->input->post('description'),
+			);
 			$this->entreprise_model->createEntreprise($data);
 			echo 'Validé';
 		}
