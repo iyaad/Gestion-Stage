@@ -8,6 +8,7 @@ class Users extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->library('email');
+		$this->load->library('hash');
 		$this->load->library('random');
 		$this->load->model('user_model');
 		$this->load->model('email_model');
