@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'users/login';
 $route['login'] = 'users/login';
 $route['logout'] = 'users/logout';
-$route['passwordRecovery'] = 'users/passwordRecovery';
+$route['recover-password'] = 'users/recover_password';
 
 
 $route['register'] = 'entreprise/signup';

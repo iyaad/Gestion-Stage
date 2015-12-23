@@ -2,22 +2,26 @@
 
 class User_model extends CI_Model {
 
-	public function getUser($id) {
-		$query = $this->db->get_where('User', array('userId' => $id));
+	public function getUser($criteria) {
+		foreach ($criteria as $key => $value) {
+			$this->db->where($key, $value);
+		}
+		$query = $this->db->get('User');
 		return $query->row();
 	}
 
 	public function getUserByUsername($username) {
-		$query = $this->db->get_where('User', array('username' => $username));
-		return $query->row();
+		return $this->getUser(['username' => $username]);
 	}
 
 	public function createUser($data) {
 		return $this->db->insert('User', $data);
 	}
 
-	public function updateUser($id, $data) {
-		$this->db->where('userId', $id);
+	public function updateUser($criteria, $data) {
+		foreach ($criteria as $key => $value) {
+			$this->db->where($key, $value);
+		}
 		return $this->db->update('User', $data);
 	}
 

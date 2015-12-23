@@ -8,6 +8,7 @@ class Users extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->library('email');
+		$this->load->library('random');
 		$this->load->model('user_model');
 		$this->load->model('email_model');
 	}
@@ -44,23 +45,26 @@ class Users extends MY_Controller {
 		return redirect('home');
 	}
 
-	public function passwordRecovery()
+	public function recover_password()
 	{
-		$this->form_validation->set_rules('login', 'Login', 'required|trim|callback_check_username');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email|callback_check_email');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
 		
 		if ($this->form_validation->run() == false) {
 			$data['NOTOPBAR'] = true;
 			$data['NOSIDEBAR'] = true;
-			$data['title'] = 'Recuperer le mot de passe';
-			$this->render('passwordRecovery', $data);
+			$data['title'] = 'Recuperer votre mot de passe';
+			$this->render('auth/recover_password', $data);
 		} else {
-			if ($this->email_model->recoverPassword($this->input->post('login'))) {
+			$email = $this->input->post('email'))
+			$identifier = $this->random->generateString(128);
+			$hashed = $this->hash->create_hash($identifier);
+			$this->user_model->updateUser(['email' => $email], ['recoverHash' => $hashed]);
+			if ($this->email_model->recoverPassword($email, $identifier) {
 				// Alert success
 			} else {
 				// Alert error
 			}
-			$this->render('passwordRecovery', $data);
 		}
 	}
 
@@ -70,11 +74,18 @@ class Users extends MY_Controller {
 		$this->form_validation->set_message('check_username', '%s inexistant');
 		return (bool) $this->user_model->getUserByUsername($username);
 	}
+
+	public function check_email($email)
+	{
+		$this->form_validation->set_message('check_email', 'Utilisateur inexistant');
+		return (bool) $this->user_model->getUser(['email' => $email]);
+	}
+
 	public function check_password($password)
 	{
 		$this->load->library('hash');
 		$user = $this->user_model->getUserByUsername($this->input->post('username'));
-		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
+		$this->form_validation->set_message('check_password', '');
 		if (!$user) return false;
 		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
 		return $this->hash->check_password($password, $user->password);
