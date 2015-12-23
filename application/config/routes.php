@@ -54,7 +54,7 @@ $route['default_controller'] = 'users/login';
 $route['login'] = 'users/login';
 $route['logout'] = 'users/logout';
 $route['recover-password'] = 'users/recover_password';
-
+$route['reset-password'] = 'users/reset_password';
 
 $route['register'] = 'entreprise/signup';
 

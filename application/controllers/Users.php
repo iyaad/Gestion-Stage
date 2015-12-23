@@ -68,6 +68,11 @@ class Users extends MY_Controller {
 		}
 	}
 
+	public function reset_password()
+	{
+		$email = $this->input->get('email');
+	}
+
 	// Form validation callbacks
 	public function check_username($username)
 	{
