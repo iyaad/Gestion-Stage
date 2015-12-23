@@ -1,7 +1,7 @@
 <div class="content-page">
 	<div class="content">
 		<div class="wraper container-fluid">
-			<div class="card-box">
+			<div class="card-box col-sm-6">
 				<div class="panel-heading"> 
 					<h3 class="text-center"> Importer etudiants <strong class="text-custom"></strong> </h3>
 				</div> 

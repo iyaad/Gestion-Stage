@@ -38,8 +38,6 @@ class Tuteur extends MY_Controller {
 				$data['error'] = $this->upload->display_errors();
 			}
 		}
-		$data['NOTOPBAR'] = true;
-		$data['NOSIDEBAR'] = true;
 		$data['title'] = 'Importer depuis CSV';
 		$this->render('tuteur/importer', $data);
 	}

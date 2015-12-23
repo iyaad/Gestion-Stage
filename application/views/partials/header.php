@@ -31,7 +31,7 @@
 					<ul class="nav navbar-nav navbar-right pull-right">
                                 					<div class="user-details">
 							<div class="pull-left">
-									<img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
+									<img src="<?= asset_url('images/users/avatar-1.jpg') ?>" alt="" class="thumb-md img-circle">
 							</div>
 							<div class="user-info">
 									<!-- Leave this commented
