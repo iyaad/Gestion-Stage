@@ -21,5 +21,10 @@ class Superviseur extends MY_Controller{
 		$data['ent_non_verif'] = $ent_non_verif;
 		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);
-	} 
+	}
+
+	public function valider_entreprise($id)
+	{
+		
+	}
 }
