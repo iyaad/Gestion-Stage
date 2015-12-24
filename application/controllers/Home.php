@@ -6,11 +6,15 @@ class Home extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('etudiant_model');
 	}
 
 	public function index()
 	{
-		echo 'Homepage';
+		if (isEtudiant()) {
+			$cne = $this->etudiant_model->getEtudiant(['etudiantId' => currentSession()['id']])->cne;
+			return redirect($cne);
+		}
 	}
 
 }

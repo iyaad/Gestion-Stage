@@ -8,6 +8,17 @@ class Email_model extends CI_Model {
 		$this->load->model('user_model');
 	}
 
+	public function emailEntreprise($username, $password)
+	{
+		$data['username'] = $username;
+		$data['password'] = $password;
+		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
+		$this->email->to($username);
+		$this->email->subject('Compte pour la plateforme gestion-stages');
+		$this->email->message($this->load->view('email/new_entreprise', $data, true));
+		return (bool) $this->email->send();
+	}
+
 	public function emailEtudiant($user)
 	{
 		$user = $this->etudiant_model->getEtudiant(['etudiantId' => $user->userId]);
@@ -16,7 +27,7 @@ class Email_model extends CI_Model {
 		$this->email->to($user->email);
 		$this->email->subject('Compte pour la plateforme gestion-stages');
 		$this->email->message($this->load->view('email/new_etudiant', $data, true));
-		$this->email->send();
+		return (bool) $this->email->send();
 	}
 	
 	public function recoverPassword($email, $identifier)

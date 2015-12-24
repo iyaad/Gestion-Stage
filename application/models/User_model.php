@@ -15,7 +15,8 @@ class User_model extends CI_Model {
 	}
 
 	public function createUser($data) {
-		return $this->db->insert('User', $data);
+		$this->db->insert('User', $data);
+		return $this->db->insert_id();
 	}
 
 	public function updateUser($criteria, $data) {

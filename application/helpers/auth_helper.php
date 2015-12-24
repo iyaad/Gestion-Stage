@@ -1,5 +1,12 @@
 <?php
 
+if (!function_exists('currentSession')) {
+	function currentSession() {
+		$CI =& get_instance();
+		return $CI->session->userdata('login');
+	}
+}
+
 if (!function_exists('loggedIn')) {
 	function loggedIn() {
 		/** 
