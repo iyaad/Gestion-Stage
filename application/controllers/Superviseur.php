@@ -13,11 +13,13 @@ class Superviseur extends MY_Controller{
 		$this->load->model('user_model');
 		$this->load->model('email_model');
 		$this->load->model('entreprise_model');
+		$this->load->model('filiere_model');
 
 	}
 
 	public function index(){
 		$ent_non_verif = $this->entreprise_model->getTempEntreprise();
+		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['ent_non_verif'] = $ent_non_verif;
 		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);
