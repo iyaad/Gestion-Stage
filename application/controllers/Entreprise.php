@@ -12,11 +12,11 @@ class Entreprise extends MY_Controller {
 
 	public function signup()
 	{
-		$this->form_validation->set_rules('nom_entreprise', "Nom Entreprise",'required');
+		$this->form_validation->set_rules('nom_entreprise', "Nom Entreprise",'required|trim');
 		$this->form_validation->set_rules('pays','Pays','required');
-		$this->form_validation->set_rules('adresse','Adresse','required');
+		$this->form_validation->set_rules('adresse','Adresse','required|trim');
 		$this->form_validation->set_rules('ville','Ville','required');
-		$this->form_validation->set_rules('numtel','Numero de Telephone','required|exact_length[10]');
+		$this->form_validation->set_rules('numtel','Numero de Telephone','required|trim');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('description','Description','trim|required');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
