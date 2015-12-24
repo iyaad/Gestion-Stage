@@ -33,26 +33,26 @@
 				<div class="form-group <?= form_error('email') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('email') ?>
-						<input class="form-control" type="text" placeholder="email" name="email">
+						<input class="form-control" type="text" placeholder="Email" name="email">
 					</div>
 				</div>
 				<div class="form-group <?= form_error('fax') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('fax') ?>
-						<input class="form-control" type="text" placeholder="fax (optional)" name="fax">
+						<input class="form-control" type="text" placeholder="Fax (facultatif)" name="fax">
 					</div>
 				</div>
 				<div class="form-group <?= form_error('numtel') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('numtel') ?>
-						<input class="form-control" type="text" placeholder="numero de telephone" name="numtel">
+						<input class="form-control" type="text" placeholder="Numero de téléphone (ex: +212530124578)" name="numtel">
 					</div>
 				</div>				
 				<div class="form-group <?= form_error('description') ? 'has-error' : '' ?>">
 					<div>
 						<?= form_error('description') ?>
 						<textarea  placeholder="Description de l'entreprise"
-						 name="description" data-parsley-id="90"></textarea>
+						 name="description" data-parsley-id="90" class="form-control"></textarea>
 					</div>
 				</div>
 				

@@ -20,7 +20,7 @@
 			<div class="topbar-left">
 				<div class="text-center">
 					<a href="<?= base_url() ?>" class="logo">
-						<i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span>
+						Plateforme Stages
 					</a>
 				</div>
 			</div>
@@ -29,25 +29,13 @@
 			<div class="navbar navbar-default" role="navigation">
 				<div class="container">
 					<ul class="nav navbar-nav navbar-right pull-right">
-                                					<div class="user-details">
-							<div class="pull-left">
-									<img src="<?= asset_url('images/users/avatar-1.jpg') ?>" alt="" class="thumb-md img-circle">
-							</div>
-							<div class="user-info">
-									<!-- Leave this commented
-									<div class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><?= $etudiant->nom.' '.$etudiant->prenom ?>  <span class="caret"></span></a>
-											<ul class="dropdown-menu">
-													<li><a href="<?= base_url($etudiant->cne) ?>"><i class="md md-face-unlock"></i> Profil<div class="ripple-wrapper"></div></a></li>
-													<li><a href="<?= base_url($etudiant->cne.'/edit') ?>"><i class="md md-settings"></i> editer profil</a></li>
-													<li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
-													<li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
-											</ul>
-									</div>
-									<p class="text-muted m-0"><?= $etudiant->role ?></p> -->
-							</div>
-					</div>
-					<!--- Divider -->
+						<?php if (loggedIn()): ?>
+							<li><?= anchor('logout', 'Déconnexion') ?></li>
+						<?php else: ?>
+							<li><?= anchor('login', 'Se connecter') ?></li>
+							<li><?= anchor('register', 'Inscription Entreprises') ?></li>
+						<?php endif ?>
+					</ul>
 				</div>
 			</div>
 		</div><!-- /.topbar -->
