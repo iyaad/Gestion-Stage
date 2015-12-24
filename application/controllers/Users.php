@@ -1,5 +1,7 @@
 <?php
 
+use League\Csv;
+
 class Users extends MY_Controller {
 
 	public function __construct()
@@ -124,18 +126,11 @@ class Users extends MY_Controller {
 
 	public function test()
 	{
-		$this->load->library('hash');
-		$data = array(
-			'username' => 'Super' ,
-			'email' => 'test@exemple.com',
-			'password' => $this->hash->password('123'),
-			'numTel' => '0615151515',
-			'adresse' => 'boukha' ,
-			'role' => 'super',
-			'createdAt' => date("Y-m-d H:i:s"),
-			'updatedAt' => date("Y-m-d H:i:s"),
-		);
-		$this->db->insert("User",$data);
+		if (!ini_get("auto_detect_line_endings")) {
+		    ini_set("auto_detect_line_endings", '1');
+		}
+		$reader = Csv\Reader::createFromPath('/home/imad/Desktop/stagieres.csv');
+		
 	}
 
 }

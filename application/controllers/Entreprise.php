@@ -30,8 +30,8 @@ class Entreprise extends MY_Controller {
 			$data = array(
 				'nom'=>$this->input->post('nom_entreprise'),
 				'pays'=>$this->input->post('pays'),
-				'adresse'=>$this->input->post('adresse'),
 				'ville'=>$this->input->post('ville'),
+				'adresse'=>$this->input->post('adresse'),
 				'fax'=>$this->input->post('fax'),
 				'numTel'=>$this->input->post('numtel'),
 				'email'=>$this->input->post('email'),
