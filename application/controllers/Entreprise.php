@@ -17,12 +17,12 @@ class Entreprise extends MY_Controller {
 		$this->form_validation->set_rules('adresse','Adresse','required|trim');
 		$this->form_validation->set_rules('ville','Ville','required');
 		$this->form_validation->set_rules('numtel','Numero de Telephone','required|trim');
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
+		$this->form_validation->set_rules('email','Email','trim|required|valid_email|is_unique[Entreprise.email]');
 		$this->form_validation->set_rules('description','Description','trim|required');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
 		$this->form_validation->set_message('valid_mail', 'Email invalide');
+		$this->form_validation->set_message('is_unique', 'Une entreprise est déjà enregistrée avec cet email');
 		if ($this->form_validation->run() == false) {
-			$data['NOTOPBAR'] = true;
 			$data['NOSIDEBAR'] = true;
 			$data['title'] = 'Inscription entreprises';
 			$this->render('signup',$data);

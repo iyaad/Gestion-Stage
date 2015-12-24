@@ -2,7 +2,7 @@
 	<div class="content">
 		<div class="wraper container-fluid">
 			<div class="row">
-				<div class="card-box col-sm-6">	
+				<div class="card-box col-sm-8">	
 					<div class="panel-heading"> 
 						<h3 class="text-center"> Entreprises non vérifiées </h3>
 					</div>

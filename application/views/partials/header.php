@@ -12,7 +12,7 @@
 
 	<title><?= $title ?></title>
 </head>
-<body class="fixed-left">
+<body class="fixed-left p-30 p-l-0 p-r-0">
 	<div class="wraper">
 		<?php if (empty($NOTOPBAR)): ?>
 		<div class="topbar">
@@ -33,7 +33,7 @@
 							<li><?= anchor('logout', 'Déconnexion') ?></li>
 						<?php else: ?>
 							<li><?= anchor('login', 'Se connecter') ?></li>
-							<li><?= anchor('register', 'Inscription Entreprises') ?></li>
+							<li><?= anchor('signup', 'Inscription Entreprises') ?></li>
 						<?php endif ?>
 					</ul>
 				</div>
