@@ -19,12 +19,7 @@ class Superviseur extends MY_Controller{
 	public function index(){
 		$ent_non_verif = $this->entreprise_model->getTempEntreprise();
 		$data['ent_non_verif'] = $ent_non_verif;
-		$data['title'] = 'Liste des Entreprises';
-		
-
-		
-
-		
+		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);
 	} 
 }

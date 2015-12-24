@@ -17,7 +17,7 @@
 							<?php foreach ($ent_non_verif as $e ): ?>
 							<tr>
 								<td><?= $e->nom ?></td>
-								<td><?= $e->adresse.','.$e->ville.','.$e->pays?></td>
+								<td><?= "$e->adresse<br>$e->ville, $e->pays" ?></td>
 								<td><?= $e->email ?></td>
 								<td><?= $e->numTel ?></td> 
 							</tr>
