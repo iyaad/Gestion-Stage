@@ -1,7 +1,5 @@
 <?php
 
-use League\Csv;
-
 class Users extends MY_Controller {
 
 	public function __construct()
@@ -126,10 +124,6 @@ class Users extends MY_Controller {
 
 	public function test()
 	{
-		if (!ini_get("auto_detect_line_endings")) {
-		    ini_set("auto_detect_line_endings", '1');
-		}
-		$reader = Csv\Reader::createFromPath('/home/imad/Desktop/stagieres.csv');
 		
 	}
 

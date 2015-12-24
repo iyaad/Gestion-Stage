@@ -25,7 +25,7 @@ class Tuteur extends MY_Controller {
 			if ($this->upload->do_upload('liste')) {
 				$file_data = $this->upload->data();
 				$file_path = FCPATH.'uploads/'.$file_data['file_name'];
-				if ($csv_array = $this->csvimport->get_array($file_path)) {
+				if ($csv_array = $this->csvimport->get_array($file_path, '', true)) {
 					foreach ($csv_array as $etudiant) {
 						$userId = $this->etudiant_model->createEtudiant($etudiant);
 						$user = $this->user_model->getUser(['userId' => $userId]);
