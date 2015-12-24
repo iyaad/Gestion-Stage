@@ -1,43 +1,31 @@
 <div class="content-page">
 	<div class="content">
-		<div class="container">
-		<div class="row">
-			<div class="card-box">
-				<div class="col-lg-6">
-					<h4 class="m-t-0 header-title"><b>Entreprises</b></h4>
-					<p class="text-muted font-13">
-						Liste des entreprise non valises :
-					</p>
-					
-					<div class="p-20">
+		<div class="wraper container-fluid">
+			<div class="row">
+				<div class="card-box col-sm-6">	
+					<div class="panel-heading"> 
+						<h3 class="text-center"> Entreprises non vérifiées </h3>
+					</div>
+					<div class="panel-body">
 						<table class="table m-0" >
-							
-							<thead>
-								<tr>
-									<th>Nom</th>
-									<th>Adresse</th>
-									<th>Email</th>
-									<th>Tel</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ($ent_non_verif as $e ): ?>
-									<tr>
-										<td><?= $e->nom ?></td>
-										<td><?= $e->adresse.','.$e->ville.','.$e->pays?></td>
-										<td><?= $e->email ?></td>
-										<td><?= $e->numTel ?></td> 
-									</tr>
-
-
-								
-								<?php  endforeach; ?>
-							</tbody>
+							<tr>
+								<th>Nom</th>
+								<th>Adresse</th>
+								<th>Email</th>
+								<th>Tel</th>
+							</tr>
+							<?php foreach ($ent_non_verif as $e ): ?>
+							<tr>
+								<td><?= $e->nom ?></td>
+								<td><?= $e->adresse.','.$e->ville.','.$e->pays?></td>
+								<td><?= $e->email ?></td>
+								<td><?= $e->numTel ?></td> 
+							</tr>
+							<?php  endforeach; ?>
 						</table>
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 </div>

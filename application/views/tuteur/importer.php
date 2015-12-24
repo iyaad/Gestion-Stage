@@ -12,6 +12,7 @@
 							<input type="file" name="liste">
 						</div>
 						<p><?= isset($error) ? $error : '' ?></p>
+						<p class="text-muted">Signature:<br> cne,nom,prenom,filiere,niveau,dateNaissance,email,numTel,adresse</p>
 						<div class="form-group text-center m-t-40">
 							<button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">Importer</button>
 						</div>
