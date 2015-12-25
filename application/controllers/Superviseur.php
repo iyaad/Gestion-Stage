@@ -14,15 +14,57 @@ class Superviseur extends MY_Controller{
 		$this->load->model('email_model');
 		$this->load->model('entreprise_model');
 		$this->load->model('filiere_model');
-
+		$this->load->model('tuteur_model');
 	}
 
 	public function index(){
-		$ent_non_verif = $this->entreprise_model->getTempEntreprise();
 		$data['filieres'] = $this->filiere_model->getFilieres();
-		$data['ent_non_verif'] = $ent_non_verif;
+		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
 		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);
+	}
+
+	public function ajouter_chef_filiere()
+	{
+		$this->form_validation->set_rules('departement', 'Département', 'required|trim');
+		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
+		$this->form_validation->set_rules('nom', 'Nom', 'required|trim');
+		$this->form_validation->set_rules('prenom', 'Prénom', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('numtel', 'Téléphone', 'required|trim');
+
+		if (!$this->form_validation->run()) {
+			$this->index();
+		} else {
+			$rand = $this->random->generateString(10);
+			$nom = $this->input->post('nom');
+			$prenom = $this->input->post('prenom');
+			$username = url_title("$nom $prenom", '-', true);
+			$userData = array(
+				'username' => $username,
+				'password' => $this->hash->password($rand),
+				'email' => $this->input->post('email'), 
+				'numTel' => $this->input->post('numtel'),
+				'role' => 'chef filiere',
+				'adresse' => '',
+				'createdAt' => gmdate('Y-m-d H:i:s'),
+				'updatedAt' => gmdate('Y-m-d H:i:s'),
+			);
+			$data = array(
+				'nom' => $nom,
+				'prenom' => $prenom,
+				'departement' => $this->input->post('departement'),
+				'filiere' => $this->input->post('filiere'),
+				'chefId' => NULL,
+			);
+			$this->tuteur_model->createChefFiliere($userData, $data);
+			if ($this->email_model->emailChefFiliere($email, $username, $rand)) {
+				// Alert success
+				return redirect('superviseur');
+			} else {
+				$this->index();
+			}
+		}
 	}
 
 	public function valider_entreprise($id)
@@ -41,6 +83,8 @@ class Superviseur extends MY_Controller{
 		);
 		if ($this->entreprise_model->validerEntreprise($id, $data)) {
 			$this->email_model->emailEntreprise($data['username'], $rand);
+			// Alert success
+			return redirect('superviseur');
 		} else {
 			// Alert error
 			echo 'error';

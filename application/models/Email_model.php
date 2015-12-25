@@ -8,6 +8,17 @@ class Email_model extends CI_Model {
 		$this->load->model('user_model');
 	}
 
+	public function emailChefFiliere($email, $username, $password)
+	{
+		$data['username'] = $username;
+		$data['password'] = $password;
+		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
+		$this->email->to($email);
+		$this->email->subject('Compte pour la plateforme gestion-stages');
+		$this->email->message($this->load->view('email/new_account', $data, true));
+		return (bool) $this->email->send();
+	}
+
 	public function emailEntreprise($username, $password)
 	{
 		$data['username'] = $username;
@@ -15,18 +26,19 @@ class Email_model extends CI_Model {
 		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
 		$this->email->to($username);
 		$this->email->subject('Compte pour la plateforme gestion-stages');
-		$this->email->message($this->load->view('email/new_entreprise', $data, true));
+		$this->email->message($this->load->view('email/new_account', $data, true));
 		return (bool) $this->email->send();
 	}
 
 	public function emailEtudiant($user)
 	{
 		$user = $this->etudiant_model->getEtudiant(['etudiantId' => $user->userId]);
-		$data['user'] = $user;
+		$data['username'] = $user->cne;
+		$data['password'] = $user->cne;
 		$this->email->from('stages@ensat.ac.ma', 'Chef de filiere');
 		$this->email->to($user->email);
 		$this->email->subject('Compte pour la plateforme gestion-stages');
-		$this->email->message($this->load->view('email/new_etudiant', $data, true));
+		$this->email->message($this->load->view('email/new_account', $data, true));
 		return (bool) $this->email->send();
 	}
 	
