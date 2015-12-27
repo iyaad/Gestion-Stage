@@ -45,5 +45,18 @@ class Etudiant_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->row();
 	}
+	public function majEtudiant($user)
+	{
+		$this->load->library('hash');
+		$changes = array(
+			'password'=>$this->hash->password($user['password']),
+			'adresse'=>$user['adresse'],
+			);
 
+		$this->db->set('password',$this->hash->password($user['password']) );
+		$this->db->set('adresse',$user['adresse']);
+		$this->db->where('username',$user['cne']);
+		$this->db->update('user');
+
+	}
 }

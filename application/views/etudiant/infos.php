@@ -39,7 +39,7 @@
 				
 
 			
-			<?= form_open("Etudiant/",'class="form-horizontal"') ?>
+			<?= form_open(base_url($etudiant->cne.'/edit'),'class="form-horizontal"') ?>
 				<div class="form-group ">
 					<label class="col-sm-4 control-label">Mot de passe actuel</label>
 					<div class="col-md-8">
