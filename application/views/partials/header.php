@@ -30,7 +30,7 @@
 				<div class="container">
 					<ul class="nav navbar-nav navbar-right pull-right">
 						<?php if (loggedIn()): ?>
-							<li><?= anchor('logout', 'Déconnexion') ?></li>
+							<li><?= anchor('logout', '<i class="fa fa-power-off m-r-10"></i> Déconnexion') ?></li>
 						<?php else: ?>
 							<li><?= anchor('login', 'Se connecter') ?></li>
 							<li><?= anchor('signup', 'Inscription Entreprises') ?></li>

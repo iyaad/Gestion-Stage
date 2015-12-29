@@ -5,7 +5,7 @@
 				<div class="bg-picture text-center container-fluid">
 					<div class="bg-picture-overlay"></div>
 					<div class="profile-info-name">
-						<img src="<?= asset_url('images/avatar-1.jpg')?>" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+						<img src="<?= $this->etudiant_model->getAvatarUrl($etudiant->cne) ?>" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
 						<h4 class="m-b-5"><b><?= "$etudiant->nom $etudiant->prenom" ?></b></h4>
 						<p class="text-muted"><i class="fa fa-map-marker"></i> Tanger, Maroc</p>
 					</div>
@@ -14,7 +14,12 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="card-box m-t-20">
-						<h4 class="m-t-0 header-title"><b>Informations Personnelles</b></h4>
+						<h4 class="m-t-0 header-title">
+							<b>Informations Personnelles</b>
+							<?php if (currentSession()['id'] == $etudiant->etudiantId): ?>
+							<a href="<?= base_url("$etudiant->cne/edit") ?>"><i class="fa fa-pencil m-l-10"></i></a>
+							<?php endif ?>
+						</h4>
 						<div class="p-20">
 							<div class="about-info-p">
 								<strong>Nom Complet</strong>
@@ -40,6 +45,11 @@
 								<strong>Date de Naissance</strong>
 								<br>
 								<p class="text-muted"><?= $etudiant->dateNaissance?></p>
+							</div>
+							<div class="about-info-p">
+								<strong>Email</strong>
+								<br>
+								<p class="text-muted"><?= $etudiant->email?></p>
 							</div>
 							<div class="about-info-p m-b-0">
 								<strong>Adresse</strong>

@@ -34,6 +34,19 @@ class Etudiant_model extends CI_Model {
 		return $userId;
 	}
 
+	public function getAvatarUrl($cne, $options = [])
+	{
+		$etudiant = $this->getEtudiant(['cne' => $cne]);
+		$path = FCPATH."uploads/photos/$cne.jpg";
+		if (file_exists($path)) {
+			return base_url("uploads/photos/$cne.jpg");
+		}
+		$email = $etudiant->email;
+		$size = isset($options['size']) ? $options['size'] : 100;
+		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&d=identicon';
+	}
+
+
 	public function getEtudiant($criteria)
 	{
 		$this->db->select('e.*, u.email, u.numTel, u.adresse , u.role');
@@ -42,21 +55,12 @@ class Etudiant_model extends CI_Model {
 		foreach ($criteria as $key => $value) {
 			$this->db->where($key, $value);
 		}
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->get()->row();
 	}
-	public function majEtudiant($user)
+
+	public function updateEtudiant($id, $data)
 	{
-		$this->load->library('hash');
-		$changes = array(
-			'password'=>$this->hash->password($user['password']),
-			'adresse'=>$user['adresse'],
-			);
-
-		$this->db->set('password',$this->hash->password($user['password']) );
-		$this->db->set('adresse',$user['adresse']);
-		$this->db->where('username',$user['cne']);
-		$this->db->update('user');
-
+		$this->db->where('userId', $id);
+		$this->db->update('User', $data);
 	}
 }
