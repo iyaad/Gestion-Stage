@@ -46,8 +46,7 @@ class Etudiant_model extends CI_Model {
 		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&d=identicon';
 	}
 
-
-	public function getEtudiant($criteria)
+	public function getEtudiants($criteria)
 	{
 		$this->db->select('e.*, u.email, u.numTel, u.adresse , u.role');
 		$this->db->from('Etudiant e');
@@ -55,7 +54,12 @@ class Etudiant_model extends CI_Model {
 		foreach ($criteria as $key => $value) {
 			$this->db->where($key, $value);
 		}
-		return $this->db->get()->row();
+		return $this->db->get()->result();
+	}
+
+	public function getEtudiant($criteria)
+	{
+		return $this->getEtudiants($criteria)[0];
 	}
 
 	public function updateEtudiant($id, $data)
