@@ -16,7 +16,9 @@
 							</tr>
 							<?php foreach ($etudiants as $e ): ?>
 							<tr>
-								<td><?= $e->cne ?></td>
+								<td style>
+									<a href="<?= base_url($e->cne) ?>"><?= $e->cne ?></a>
+								</td>
 								<td><?= $e->nom ?></td>
 								<td><?= $e->prenom ?></td>
 								<td><?= $e->filiere.''.$e->niveau ?></td> 
