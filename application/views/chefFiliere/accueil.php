@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="card-box col-sm-12">	
 					<div class="panel-heading"> 
-						<h3 class="text-center"> Entreprises non vérifiées </h3>
+						<h3 class="text-center"> Liste des eleves </h3>
 					</div>
 					<div class="panel-body">
 						<table class="table m-0" >
@@ -16,7 +16,7 @@
 							</tr>
 							<?php foreach ($etudiants as $e ): ?>
 							<tr>
-								<td style>
+								<td >
 									<a href="<?= base_url($e->cne) ?>"><?= $e->cne ?></a>
 								</td>
 								<td><?= $e->nom ?></td>
