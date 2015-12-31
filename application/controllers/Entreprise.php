@@ -8,6 +8,9 @@ class Entreprise extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('entreprise_model');
+		$this->load->model('sujet_model');
+		$this->load->model('filiere_model');
+		
 	}
 
 	public function signup()
@@ -41,6 +44,21 @@ class Entreprise extends MY_Controller {
 			echo 'Validé';
 			 
 		}
+	}
+
+	public function index(){
+		
+
+		if(currentSession()['role'] != 'entreprise'){
+			return redirect('home');
+		}
+		$data['filieres'] = $this->filiere_model->getFilieres();
+		$data['sujets'] = $this->sujet_model->getSujets();
+		$data['title'] = 'Acueill Entreprise';
+
+		$this->render('entreprise/accueil',$data);
+
+	
 	}
 
 }
