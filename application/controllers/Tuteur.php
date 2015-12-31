@@ -56,7 +56,7 @@ class Tuteur extends MY_Controller {
 
 
 		$data['etudiants'] = $this->filiere_model->getEtudiants($filiere);
-		$data['title'] = 'Acceuil Chef de filiere';
+		$data['title'] = 'Accueil Chef de filiere';
 		$this->render('chefFiliere/accueil',$data);
 
 	}

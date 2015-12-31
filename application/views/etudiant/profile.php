@@ -59,6 +59,17 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-8">
+					<div class="card-box m-t-20">
+						<object data="<?= base_url('uploads/CV/'.$etudiant->cne.'.pdf') ?>" type="application/pdf" width="100%" height="483">
+ 
+							<p>It appears you don't have a PDF plugin for this browser.
+							No biggie... you can <a href="pdf/aRios.pdf">click here to
+							download the PDF file.</a></p>
+						  
+						</object>
+					</div>
+				</div>
 			</div>	
 		</div>
 	</div>
