@@ -11,6 +11,8 @@ class Tuteur extends MY_Controller {
 		$this->load->model('etudiant_model');
 		$this->load->model('email_model');
 		$this->load->model('user_model');
+		$this->load->model('tuteur_model');
+		$this->load->model('filiere_model');
 	}
 
 	public function importer()
@@ -40,6 +42,23 @@ class Tuteur extends MY_Controller {
 		}
 		$data['title'] = 'Importer depuis CSV';
 		$this->render('tuteur/importer', $data);
+	}
+
+	public function index(){
+
+		if(currentSession()['role'] != 'chef filiere'){
+			return redirect('home');
+		}
+
+		$id = currentSession()['id'];
+		$data['chef'] = $this->tuteur_model->getChefFiliere(['tuteurId'=>$id])[0];
+		$filiere = $data['chef']->filiere ;
+
+
+		$data['etudiants'] = $this->filiere_model->getEtudiants($filiere);
+		$data['title'] = 'Acceuil Chef de filiere';
+		$this->render('chefFiliere/accueil',$data);
+
 	}
 
 }

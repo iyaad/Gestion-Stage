@@ -38,3 +38,18 @@ if (!function_exists('isChefFiliere')) {
 		return loggedIn() && $CI->session->userdata('login')['role'] == 'chef filiere';
 	}
 }
+
+if (!function_exists('isTuteurEnt')) {
+	function isTuteurEnt() {
+		$CI =& get_instance();
+		return loggedIn() && $CI->session->userdata('login')['role'] == 'tuteur';
+	}
+}
+
+if (!function_exists('isTuteur')) {
+	function isTuteur() {
+		$CI =& get_instance();
+		return loggedIn() && $CI->session->userdata('login')['role'] == 'tuteur';
+	}
+}
+
