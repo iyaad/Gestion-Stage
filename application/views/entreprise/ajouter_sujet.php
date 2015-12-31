@@ -6,7 +6,7 @@
 	<div class="form-group <?= form_error('titre') ? 'has-error' : '' ?>">
 			<div>
 				<?= form_error('titre') ?>
-				<input class="form-control" type="text" placeholder="Nom de l'entreprise" name="titre" value="<?= set_value('titre') ?>" autofocus>
+				<input class="form-control" type="text" placeholder="Titre" name="titre" value="<?= set_value('titre') ?>" autofocus>
 			</div>
 	</div>	
 	<div class="form-group <?= form_error('description') ? 'has-error' : '' ?>">
@@ -28,7 +28,7 @@
 		</div>
 	</div>
 	<div class="form-group ">
-		<label class=" control-label" for="niveau">Filiere</label>
+		<label class=" control-label" for="niveau">Niveau</label>
 		<div class="col-md-6">
 			<select name="niveau" class="form-control">
 				<option value="">Choisissez une niveau</option>
@@ -42,7 +42,7 @@
 
 
 
-	<button class="btn btn-primary pull-right m-t-10" type="submit">Ajouter</button>
+	<button class="btn btn-primary  m-t-10" type="submit">Ajouter</button>
 </form>
 
 	

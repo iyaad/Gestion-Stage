@@ -61,4 +61,31 @@ class Entreprise extends MY_Controller {
 	
 	}
 
+	public function ajouter_sujet(){
+
+		$this->form_validation->set_rules('titre', 'Titre', 'required|trim');
+		$this->form_validation->set_rules('description', 'Description', 'required|trim');
+		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
+		$this->form_validation->set_rules('niveau', 'niveau', 'required|trim');
+		
+
+		if (!$this->form_validation->run()) {
+			$this->index();
+		} else {
+			
+			
+			$data = array(
+				'titre' => $this->input->post('titre'),
+				'description' =>$this->input->post('description'),
+				'filiere' =>$this->input->post('filiere'),
+				'niveau' => $this->input->post('niveau'),
+				'entrepriseId' => currentsession()['id']
+			);
+			
+			$this->sujet_model->createSujet($data);
+			redirect('entreprise');
+			
+		}
+	}
+
 }
