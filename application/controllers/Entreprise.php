@@ -42,38 +42,30 @@ class Entreprise extends MY_Controller {
 			);
 			$this->entreprise_model->createEntreprise($data);
 			echo 'Validé';
-			 
 		}
 	}
 
-	public function index(){
-		
-
+	public function index()
+	{
 		if(currentSession()['role'] != 'entreprise'){
 			return redirect('home');
 		}
 		$data['filieres'] = $this->filiere_model->getFilieres();
-		$data['sujets'] = $this->sujet_model->getSujets();
-		$data['title'] = 'Acueill Entreprise';
-
-		$this->render('entreprise/accueil',$data);
-
-	
+		$data['sujets'] = $this->sujet_model->getSujets(['entrepriseId' => currentSession()['id']]);
+		$data['title'] = 'Accueil Entreprise';
+		$this->render('entreprise/accueil', $data);
 	}
 
-	public function ajouter_sujet(){
-
+	public function ajouter_sujet()
+	{
 		$this->form_validation->set_rules('titre', 'Titre', 'required|trim');
 		$this->form_validation->set_rules('description', 'Description', 'required|trim');
 		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
 		$this->form_validation->set_rules('niveau', 'niveau', 'required|trim');
 		
-
 		if (!$this->form_validation->run()) {
 			$this->index();
 		} else {
-			
-			
 			$data = array(
 				'titre' => $this->input->post('titre'),
 				'description' =>$this->input->post('description'),
@@ -81,11 +73,15 @@ class Entreprise extends MY_Controller {
 				'niveau' => $this->input->post('niveau'),
 				'entrepriseId' => currentsession()['id']
 			);
-			
 			$this->sujet_model->createSujet($data);
 			redirect('entreprise');
-			
 		}
+	}
+
+	public function profile($id)
+	{
+		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
+		dd($e);
 	}
 
 }

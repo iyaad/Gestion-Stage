@@ -8,6 +8,11 @@ class Entreprise_model extends CI_Model {
 
 	public function getEntreprise($criteria)
 	{
+		return $this->getEntreprises($criteria)[0];
+	}
+
+	public function getEntreprises($criteria)
+	{
 		foreach ($criteria as $key => $value) {
 			$this->db->where($key, $value);
 		}

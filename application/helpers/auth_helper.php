@@ -18,6 +18,13 @@ if (!function_exists('loggedIn')) {
 	}
 }
 
+if (!function_exists('isSuperviseur')) {
+	function isSuperviseur() {
+		$CI =& get_instance();
+		return loggedIn() && $CI->session->userdata('login')['role'] == 'superviseur';
+	}
+}
+
 if (!function_exists('isEtudiant')) {
 	function isEtudiant() {
 		$CI =& get_instance();

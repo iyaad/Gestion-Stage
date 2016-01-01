@@ -8,8 +8,7 @@ class Sujet_model extends CI_Model {
 		return $this->db->insert('Sujet', $data);
 	}
 
-	public function getSujets($criteria=[]){
-
+	public function getSujets($criteria = []){
 		foreach ($criteria as $key => $value) {
 			$this->db->where($key, $value);
 		}

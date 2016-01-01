@@ -32,6 +32,7 @@ class Superviseur extends MY_Controller{
 		$this->form_validation->set_rules('prenom', 'Prénom', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 		$this->form_validation->set_rules('numtel', 'Téléphone', 'required|trim');
+		$this->form_validation->set_message('required', 'Le champs %s est requis');
 
 		if (!$this->form_validation->run()) {
 			$this->index();

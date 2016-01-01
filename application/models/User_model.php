@@ -32,8 +32,7 @@ class User_model extends CI_Model {
 	}
 
 	public function updatePassword($id, $password) {
-		$this->db->where('userId', $id);
-		return $this->db->update('User', $password);
+		return $this->updateUser(['userId' => $id], ['password' => $password]);
 	}
 
 }

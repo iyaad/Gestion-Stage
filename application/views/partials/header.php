@@ -45,19 +45,13 @@
 		<div class="left side-menu">
 			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 297px;">
 				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 297px;">
-
 					<!--- Divider -->
 					<div id="sidebar-menu">
 						<ul>
-							<li class="text-muted menu-title">Navigation</li>
-								<li class="has_sub">
-										<a href="#" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> </a>
-										<ul class="list-unstyled" style="">
-											<li><a href="index.html">Dashboard 1</a></li>
-											<li><a href="dashboard_2.html">Dashboard 2</a></li>
-											<li><a href="dashboard_3.html">Dashboard 3</a></li>
-										</ul>
-								</li>
+							<?php if (isEntreprise()): ?>
+							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise') ?></li>
+							<li><?= anchor('entreprise', '<i class="fa-file-text-o fa"></i> Sujets de Stage') ?></li>
+							<?php endif ?>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
