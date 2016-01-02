@@ -58,6 +58,7 @@ $route['reset-password'] = 'users/reset_password';
 
 $route['signup'] = 'entreprise/signup';
 $route['entreprise/(:num)'] = 'entreprise/profile/$1';
+$route['entreprise/(:num)/edit'] = 'entreprise/edit_profile/$1';
 
-$route['(\d{10})/edit'] = 'etudiant/edit_profile/$1';
 $route['(\d{10})'] = 'etudiant/profile/$1';
+$route['(\d{10})/edit'] = 'etudiant/edit_profile/$1';

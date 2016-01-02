@@ -17,20 +17,26 @@ class Etudiant extends MY_Controller {
 		if (currentSession()['id'] != $etudiant->etudiantId)
 			return show_404();
 		$this->form_validation->set_rules('adresse', 'Adresse', 'trim|required');
+		$this->form_validation->set_rules('ville', 'Ville', 'trim|required');
+		$this->form_validation->set_rules('pays', 'Pays', 'trim|required');
 		$this->form_validation->set_rules('new_password', 'Nouveau mot de passe', 'trim|min_length[6]');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|callback_check_password');
 		$this->form_validation->set_rules('photo', 'Photo', 'callback_check_photo');
 		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
 		
 		if ($this->form_validation->run() == false) {
-			$data['title'] = 'Profil de '.$etudiant->nom.' '.$etudiant->prenom;
+			$data['title'] = 'Modification du profil';
 			$data['etudiant'] = $etudiant;
-			$this->render('etudiant/infos', $data);
+			$this->render('etudiant/edit_infos', $data);
 		} else {
+			$data = array(
+				'adresse' => $this->input->post('adresse'),
+				'ville' => $this->input->post('ville'),
+				'pays' => $this->input->post('pays'),
+			);
 			$new_pwd = $this->input->post('new_password');
 			if (!empty($new_pwd))
 				$data['password'] = $this->hash->password($new_pwd);
-			$data['adresse'] = $this->input->post('adresse');
 			$this->etudiant_model->updateEtudiant(currentSession()['id'], $data);
 			return redirect ($cne);
 			// If the form was submitted

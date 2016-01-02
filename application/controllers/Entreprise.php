@@ -7,10 +7,12 @@ class Entreprise extends MY_Controller {
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('hash');
 		$this->load->model('entreprise_model');
 		$this->load->model('sujet_model');
+		$this->load->model('etudiant_model');
 		$this->load->model('filiere_model');
-		
+		$this->load->model('user_model');
 	}
 
 	public function signup()
@@ -58,7 +60,9 @@ class Entreprise extends MY_Controller {
 
 	public function ajouter_sujet()
 	{
-		$this->form_validation->set_rules('titre', 'Titre', 'required|trim');
+		if (!isEntreprise())
+			return show_404();
+		$this->form_validation->set_rules('titre', 'Titre', 'required|trim|is_unique[Sujet.titre]');
 		$this->form_validation->set_rules('description', 'Description', 'required|trim');
 		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
 		$this->form_validation->set_rules('niveau', 'niveau', 'required|trim');
@@ -78,10 +82,75 @@ class Entreprise extends MY_Controller {
 		}
 	}
 
-	public function profile($id)
+	public function edit_profile($id)
 	{
-		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
-		dd($e);
+		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
+		if (currentSession()['id'] != $entreprise->entrepriseId)
+			return show_404();
+		$this->form_validation->set_rules('numTel', 'Téléphone', 'trim|required');
+		$this->form_validation->set_rules('adresse', 'Adresse', 'trim|required');
+		$this->form_validation->set_rules('ville', 'Ville', 'trim|required');
+		$this->form_validation->set_rules('pays', 'Pays', 'trim|required');
+		$this->form_validation->set_rules('new_password', 'Nouveau mot de passe', 'trim|min_length[6]');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'required|trim|callback_check_password');
+		$this->form_validation->set_rules('logo', 'Logo', 'callback_check_logo');
+		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
+		
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Modification du Profil';
+			$data['entreprise'] = $entreprise;
+			$this->render('entreprise/edit_infos', $data);
+		} else {
+			$data = array(
+				'numTel' => $this->input->post('numTel'),
+				'adresse' => $this->input->post('adresse'),
+				'ville' => $this->input->post('ville'),
+				'pays' => $this->input->post('pays'),
+			);
+			$new_pwd = $this->input->post('new_password');
+			if (!empty($new_pwd))
+				$data['password'] = $this->hash->password($new_pwd);
+			$this->entreprise_model->updateEntreprise(currentSession()['id'], $data);
+			return redirect("entreprise/$id");
+			// If the form was submitted
+		}
+
 	}
 
+	public function profile($id)
+	{
+		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
+		$data['title'] = "Profil de $entreprise->nom";
+		$data['entreprise'] = $entreprise;
+		$this->render('entreprise/profile', $data);
+	}
+
+	// Form validation callbacks
+	public function check_password($password)
+	{
+		$user = $this->user_model->getUser(['userId' => currentSession()['id']]);
+		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
+		return $this->hash->check_password($password, $user->password);
+	}
+
+	public function check_logo()
+	{
+		// If no photo was chosen, then don't bother trying to do any validation
+		if (empty($_FILES['logo']['name']))
+			return true;
+		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => currentSession()['id']]);
+		$config['upload_path'] = FCPATH.'uploads/logos/';
+		$config['file_name'] = $entreprise->email;
+		$config['max_size'] = 1024;
+		$config['overwrite'] = true;
+		$config['allowed_types'] = 'jpg|png';
+		$this->load->library('upload', $config);
+		// If upload failed display error
+		if ($this->upload->do_upload('logo')) {
+			return true;
+		} else {
+			$this->form_validation->set_message('check_logo', strip_tags($this->upload->display_errors()));
+			return false;
+		}
+	}
 }

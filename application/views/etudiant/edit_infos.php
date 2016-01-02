@@ -47,6 +47,20 @@
                         <input type="text" class="form-control" name="adresse" value="<?= $etudiant->adresse ?>">
                     </div>
 				</div>
+				<div class="form-group <?= form_error('ville') ? 'has-error' : '' ?>">
+					<label class="col-sm-4 control-label">Adresse</label>
+					<div class="col-md-8">
+						<?= form_error('ville') ?>
+                        <input type="text" class="form-control" name="ville" value="<?= $etudiant->ville ?>">
+                    </div>
+				</div>
+				<div class="form-group <?= form_error('pays') ? 'has-error' : '' ?>">
+					<label class="col-sm-4 control-label">Adresse</label>
+					<div class="col-md-8">
+						<?= form_error('pays') ?>
+                        <input type="text" class="form-control" name="pays" value="<?= $etudiant->pays ?>">
+                    </div>
+				</div>
 				<div class="form-group <?= form_error('new_password') ? 'has-error' : '' ?>">
 					<label class="col-sm-4 control-label">Nouveau mot de passe (facultatif)</label>
 					<div class="col-md-8">

@@ -3,11 +3,12 @@
 		<div class="wraper container-fluid">
 			<div class="col-sm-12" >
 				<div class="bg-picture text-center container-fluid">
-					<div class="bg-picture-overlay"></div>
-					<div class="profile-info-name">
+					<div class="bg-picture-overlay">
 						<img src="<?= $this->etudiant_model->getAvatarUrl($etudiant->cne) ?>" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+					</div>
+					<div class="profile-info-name">
 						<h4 class="m-b-5"><b><?= "$etudiant->nom $etudiant->prenom" ?></b></h4>
-						<p class="text-muted"><i class="fa fa-map-marker"></i> Tanger, Maroc</p>
+						<p class="text-muted"><i class="fa fa-map-marker"></i> <?= "$etudiant->ville, $etudiant->pays" ?></p>
 					</div>
 				</div>
 			</div>
