@@ -141,7 +141,7 @@ class Entreprise extends MY_Controller {
 		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => currentSession()['id']]);
 		$config['allowed_types'] = 'jpg|png';
 		$config['upload_path'] = FCPATH.'uploads/logos/';
-		$config['file_name'] = $entreprise->email;
+		$config['file_name'] = $entreprise->entrepriseId;
 		$config['max_size'] = 1024;
 		$config['overwrite'] = true;
 		$this->load->library('upload', $config);

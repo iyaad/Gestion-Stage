@@ -4,7 +4,7 @@
 			<div class="col-sm-12" >
 				<div class="bg-picture text-center container-fluid">
 					<div class="bg-picture-overlay">
-						<img src="<?= $this->entreprise_model->getAvatarUrl($entreprise->email) ?>" class="img-thumbnail" alt="profile-image">
+						<img src="<?= $this->entreprise_model->getAvatarUrl($entreprise->entrepriseId) ?>" class="img-thumbnail img-responsive" width="120" alt="profile-image">
 					</div>
 					<div class="profile-info-name">
 						<h4 class="m-b-5"><b><?= "$entreprise->nom" ?></b></h4>
