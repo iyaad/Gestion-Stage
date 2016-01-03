@@ -6,12 +6,15 @@ class Entreprise_model extends CI_Model {
 		return $this->db->insert('Entreprise',$Data);		
 	}
 
-	public function getAvatarUrl($email, $options = [])
+	public function getAvatarUrl($id, $options = [])
 	{
-		$entreprise = $this->getEntreprise(['email' => $email]);
-		$path = FCPATH."uploads/logos/$email.jpg";
-		if (file_exists($path)) {
-			return base_url("uploads/logos/$email.jpg");
+		$entreprise = $this->getEntreprise(['entrepriseId' => $id]);
+		$path1 = FCPATH."uploads/logos/$id.jpg";
+		$path2 = FCPATH."uploads/logos/$id.png";
+		if (file_exists($path1)) {
+			return base_url("uploads/logos/$id.jpg");
+		} else if (file_exists($path2)) {
+			return base_url("uploads/logos/$id.png");
 		}
 		$size = isset($options['size']) ? $options['size'] : 100;
 		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&d=identicon';
