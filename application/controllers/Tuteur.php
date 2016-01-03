@@ -45,20 +45,15 @@ class Tuteur extends MY_Controller {
 	}
 
 	public function index(){
-
 		if(currentSession()['role'] != 'chef filiere'){
 			return redirect('home');
 		}
-
 		$id = currentSession()['id'];
 		$data['chef'] = $this->tuteur_model->getChefFiliere(['tuteurId'=>$id])[0];
 		$filiere = $data['chef']->filiere ;
-
-
 		$data['etudiants'] = $this->filiere_model->getEtudiants($filiere);
 		$data['title'] = 'Accueil Chef de filiere';
 		$this->render('chefFiliere/accueil',$data);
-
 	}
 
 }

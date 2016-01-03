@@ -30,16 +30,19 @@ class Etudiant extends MY_Controller {
 			$this->render('etudiant/edit_infos', $data);
 		} else {
 			$data = array(
-				'adresse' => $this->input->post('adresse'),
 				'ville' => $this->input->post('ville'),
 				'pays' => $this->input->post('pays'),
 			);
 			$new_pwd = $this->input->post('new_password');
+				
+			$userData = array(
+				'adresse' => $this->input->post('adresse'),
+			);
 			if (!empty($new_pwd))
-				$data['password'] = $this->hash->password($new_pwd);
-			$this->etudiant_model->updateEtudiant(currentSession()['id'], $data);
-			return redirect ($cne);
-			// If the form was submitted
+				$userData['password'] = $this->hash->password($new_pwd);
+			$this->etudiant_model->updateEtudiant(['etudiantId' => currentSession()['id']], $data);
+			$this->user_model->updateUser(['userId' => currentSession()['id']], $userData);
+			return redirect($cne);
 		}
 
 	}
@@ -68,7 +71,8 @@ class Etudiant extends MY_Controller {
 		$config['upload_path'] = FCPATH.'uploads/photos/';
 		$config['file_name'] = $etudiant->cne;
 		$config['max_size'] = 1024;
-		$config['allowed_types'] = 'jpg';
+		$config['allowed_types'] = 'jpg|png';
+		$config['overwrite'] = true;
 		$this->load->library('upload', $config);
 		// If upload failed display error
 		if ($this->upload->do_upload('photo')) {

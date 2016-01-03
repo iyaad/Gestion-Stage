@@ -43,48 +43,48 @@
 				<div class="form-group <?= form_error('adresse') ? 'has-error' : '' ?>">
 					<label class="col-sm-4 control-label">Adresse</label>
 					<div class="col-md-8">
-						<?= form_error('adresse') ?>
                         <input type="text" class="form-control" name="adresse" value="<?= $etudiant->adresse ?>">
+						<?= form_error('adresse') ?>
                     </div>
 				</div>
 				<div class="form-group <?= form_error('ville') ? 'has-error' : '' ?>">
-					<label class="col-sm-4 control-label">Adresse</label>
+					<label class="col-sm-4 control-label">Ville</label>
 					<div class="col-md-8">
-						<?= form_error('ville') ?>
                         <input type="text" class="form-control" name="ville" value="<?= $etudiant->ville ?>">
+						<?= form_error('ville') ?>
                     </div>
 				</div>
 				<div class="form-group <?= form_error('pays') ? 'has-error' : '' ?>">
-					<label class="col-sm-4 control-label">Adresse</label>
+					<label class="col-sm-4 control-label">Pays</label>
 					<div class="col-md-8">
-						<?= form_error('pays') ?>
                         <input type="text" class="form-control" name="pays" value="<?= $etudiant->pays ?>">
+						<?= form_error('pays') ?>
                     </div>
 				</div>
 				<div class="form-group <?= form_error('new_password') ? 'has-error' : '' ?>">
 					<label class="col-sm-4 control-label">Nouveau mot de passe (facultatif)</label>
 					<div class="col-md-8">
-						<?= form_error('new_password') ?>
                         <input type="password" class="form-control"  name="new_password">
+						<?= form_error('new_password') ?>
                     </div>
 				</div>
 				<div class="form-group <?= form_error('photo') ? 'has-error' : '' ?>">
 					<label class="col-sm-4 control-label">Votre photo <br><span class="text-muted">(format .jpg max: 1 Mo)</span></label>
 					<div class="col-md-8">
-						<?= form_error('photo') ?>
                         <input type="file" class="form-control" name="photo">
+						<?= form_error('photo') ?>
                     </div>
 				</div>
 				<div class="form-group <?= form_error('password') ? 'has-error' : '' ?>">
 					<label class="col-sm-4 control-label">Mot de passe actuel</label>
 					<div class="col-md-8">
-						<?= form_error('password') ?>
                         <input type="password" class="form-control"  name="password">
+						<?= form_error('password') ?>
                     </div>
 				</div>
 
 				<div class="form-group text-center m-t-40">
-					<button type="submit" class="btn btn-purple waves-effect waves-light">Mettre a jour</button>
+					<button type="submit" class="btn btn-purple waves-effect waves-light">Mettre à jour</button>
 				</div>
 			</form>
 		</div>

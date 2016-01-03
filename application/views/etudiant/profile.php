@@ -62,13 +62,25 @@
 				</div>
 				<div class="col-md-8">
 					<div class="card-box m-t-20">
-						<object data="<?= base_url('uploads/CV/'.$etudiant->cne.'.pdf') ?>" type="application/pdf" width="100%" height="483">
- 
-							<p>It appears you don't have a PDF plugin for this browser.
-							No biggie... you can <a href="pdf/aRios.pdf">click here to
-							download the PDF file.</a></p>
-						  
-						</object>
+						<?php if (file_exists("./uploads/cv/$etudiant->cne.pdf")): ?>
+						<div class="panel-heading">
+							<h4>Curriculum Vitae</h4>
+						</div>
+						<div class="panel-body">
+							<object data="<?= base_url('uploads/CV/'.$etudiant->cne.'.pdf') ?>" type="application/pdf" width="100%" height="483">
+								<p>It appears you don't have a PDF plugin for this browser.
+								No biggie... you can <a href="pdf/aRios.pdf">click here to
+								download the PDF file.</a></p>
+							</object>
+						</div>
+						<?php else: ?>
+						<div class="panel-heading">
+							<h4>Uploader votre CV</h4>
+						</div>
+						<div class="panel-body">
+							Form
+						</div>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>	

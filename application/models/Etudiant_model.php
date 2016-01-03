@@ -12,7 +12,7 @@ class Etudiant_model extends CI_Model {
 			'role' => 'etudiant',
 			'email' => $Data['email'],
 			'numTel' => $Data['numTel'],
-			'adresse' => "tanger",
+			'adresse' => $Data['adresse'],
 			'createdAt' => gmdate('Y-m-d H:i:s'),
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
@@ -21,12 +21,14 @@ class Etudiant_model extends CI_Model {
 
 		$data = array(
 			'etudiantId' => $userId,
+			'cne' =>  $Data['cne'],
 			'nom' => $Data['nom'],
 			'prenom' => $Data['prenom'],
 			'filiere' => $Data['filiere'],
 			'niveau' =>  $Data['niveau'],
-			'cne' =>  $Data['cne'],
 			'dateNaissance' => Carbon::createFromFormat('d-m-Y', $Data['dateNaissance']),
+			'ville' => $Data['ville'],
+			'pays' => $Data['pays'],
 			'createdAt' => gmdate('Y-m-d H:i:s'),
 			'updatedAt' => gmdate('Y-m-d H:i:s'),
 		);
@@ -62,9 +64,11 @@ class Etudiant_model extends CI_Model {
 		return $this->getEtudiants($criteria)[0];
 	}
 
-	public function updateEtudiant($id, $data)
+	public function updateEtudiant($criteria, $data)
 	{
-		$this->db->where('userId', $id);
-		$this->db->update('User', $data);
+		foreach ($criteria as $key => $value) {
+			$this->db->where($key, $value);
+		}
+		$this->db->update('Etudiant', $data);
 	}
 }

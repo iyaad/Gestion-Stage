@@ -139,11 +139,11 @@ class Entreprise extends MY_Controller {
 		if (empty($_FILES['logo']['name']))
 			return true;
 		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => currentSession()['id']]);
+		$config['allowed_types'] = 'jpg|png';
 		$config['upload_path'] = FCPATH.'uploads/logos/';
 		$config['file_name'] = $entreprise->email;
 		$config['max_size'] = 1024;
 		$config['overwrite'] = true;
-		$config['allowed_types'] = 'jpg|png';
 		$this->load->library('upload', $config);
 		// If upload failed display error
 		if ($this->upload->do_upload('logo')) {
