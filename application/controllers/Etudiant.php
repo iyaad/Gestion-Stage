@@ -9,8 +9,25 @@ class Etudiant extends MY_Controller {
 		$this->load->library('hash');
 		$this->load->model('etudiant_model');
 		$this->load->model('user_model');
+		$this->load->model('sujet_model');
 	}
+	public function index(){
 
+		$etudiant = $this->etudiant_model->getEtudiant(array('userId' => currentSession()['id'] ));
+		$criteria = array(
+			'niveau' => $etudiant->niveau,
+			'filiere' => $etudiant->filiere,
+			);
+		$data['sujets'] = $this->sujet_model->infoSujets($criteria);	
+		$data['title'] = 'Accueil etudiant';
+		$this->render('etudiant/acceuil',$data);
+	}
+	public function voirSujet($numeroSujet)
+	{
+		$data['sujet'] = $this->sujet_model->infoSujet(array('sujetId'=>$numeroSujet))	;
+		$data['title'] = 'Infos sujets';
+		$this->render('etudiant/sujet',$data);
+	}
 	public function edit_profile($cne)
 	{
 		$etudiant = $this->etudiant_model->getEtudiant(['cne' => $cne]);
