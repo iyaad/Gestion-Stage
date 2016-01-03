@@ -32,6 +32,7 @@ class Users extends MY_Controller {
 			$user = $this->user_model->getUserByUsername($this->input->post('username'));
 			$sess_array = array(
 				'id' => $user->userId,
+				'username' => $user->username,
 				'role' => $user->role,
 			);
 			$this->session->set_userdata('login', $sess_array);

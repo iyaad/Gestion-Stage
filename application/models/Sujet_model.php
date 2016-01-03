@@ -17,8 +17,8 @@ class Sujet_model extends CI_Model {
 	public function infoSujets($criteria = [])
 	{
 		$this->db->select('s.* , e.nom , e.description desc , e.pays , e.ville');
-		$this->db->from('sujet s');
-		$this->db->join('entreprise e','e.entrepriseId = s.entrepriseId');
+		$this->db->from('Sujet s');
+		$this->db->join('Entreprise e','e.entrepriseId = s.entrepriseId');
 		foreach ($criteria as $key => $value) {
 			$this->db->where($key, $value);
 		}

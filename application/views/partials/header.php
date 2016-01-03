@@ -30,10 +30,10 @@
 				<div class="container">
 					<ul class="nav navbar-nav navbar-right pull-right">
 						<?php if (loggedIn()): ?>
-							<li><?= anchor('logout', '<i class="fa fa-power-off m-r-10"></i> Déconnexion') ?></li>
+						<li><?= anchor('logout', '<i class="fa fa-power-off m-r-10"></i> Déconnexion') ?></li>
 						<?php else: ?>
-							<li><?= anchor('login', 'Se connecter') ?></li>
-							<li><?= anchor('signup', 'Inscription Entreprises') ?></li>
+						<li><?= anchor('login', 'Se connecter') ?></li>
+						<li><?= anchor('signup', 'Inscription Entreprises') ?></li>
 						<?php endif ?>
 					</ul>
 				</div>
@@ -48,7 +48,11 @@
 					<!--- Divider -->
 					<div id="sidebar-menu">
 						<ul>
-							<?php if (isEntreprise()): ?>
+							<li class="text-muted menu-title">Navigation</li>
+							<?php if (isEtudiant()): ?>
+							<li><?= anchor('etudiant', '<i class="fa fa-home"></i> Accueil') ?></li>
+							<li><?= anchor(currentSession()['username'], '<i class="fa-user fa"></i> Profil de l\'Etudiant') ?></li>
+							<?php elseif (isEntreprise()): ?>
 							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise') ?></li>
 							<li><?= anchor('entreprise', '<i class="fa-file-text-o fa"></i> Sujets de Stage') ?></li>
 							<?php endif ?>
