@@ -50,11 +50,11 @@
 						<ul>
 							<li class="text-muted menu-title">Navigation</li>
 							<?php if (isEtudiant()): ?>
-							<li><?= anchor('etudiant', '<i class="fa fa-home"></i> Accueil') ?></li>
-							<li><?= anchor(currentSession()['username'], '<i class="fa-user fa"></i> Profil de l\'Etudiant') ?></li>
+							<li><?= anchor(currentSession()['username'], '<i class="fa-user fa"></i> Profil de l\'Etudiant', navIsActive('etudiant', 'profile')) ?></li>
+							<li><?= anchor('etudiant', '<i class="fa fa-home"></i> Accueil', navIsActive('etudiant', 'index')) ?></li>
 							<?php elseif (isEntreprise()): ?>
-							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise') ?></li>
-							<li><?= anchor('entreprise', '<i class="fa-file-text-o fa"></i> Sujets de Stage') ?></li>
+							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise', navIsActive('entreprise', 'profile')) ?></li>
+							<li><?= anchor('entreprise', '<i class="fa-file-text-o fa"></i> Sujets de Stage', navIsActive('entreprise', 'index')) ?></li>
 							<?php endif ?>
 						</ul>
 						<div class="clearfix"></div>

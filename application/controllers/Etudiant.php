@@ -23,7 +23,7 @@ class Etudiant extends MY_Controller {
 			'filiere' => $etudiant->filiere,
 		);
 		$data['sujets'] = $this->sujet_model->infoSujets($criteria);	
-		$data['title'] = 'Accueil etudiant';
+		$data['title'] = 'Accueil';
 		$this->render('etudiant/acceuil',$data);
 	}
 
