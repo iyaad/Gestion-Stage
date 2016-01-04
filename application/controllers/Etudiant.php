@@ -117,4 +117,16 @@ class Etudiant extends MY_Controller {
 			return false;
 		}
 	}
+
+	public function postuler($sujet){
+
+		$data = array(
+			'sujetId' => $sujet,
+			'etudiantId' => currentSession()['id'],
+			'etat' => 'W',
+			);
+		$this->db->insert('Postulat',$data);
+		redirect('etudiant/stages_courants');
+
+	}
 }

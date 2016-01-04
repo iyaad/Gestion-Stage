@@ -35,4 +35,15 @@ class Sujet_model extends CI_Model {
 	{
 		return $this->infoSujets($criteria)[0];
 	}
+
+	public function aPostule($sujet,$etudiant){
+
+		$data = array(
+			'sujetId' => $sujet,
+			'etudiantId' => $etudiant
+			);
+		$this->db->where($data);
+		$res = $this->db->get('Postulat')->result();
+		return count($res) > 0 ;
+	}
 }
