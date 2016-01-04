@@ -71,6 +71,25 @@ class Etudiant extends MY_Controller {
 		$this->render('etudiant/profile', $data);
 	}
 
+	public function uploadCV($cne)
+	{
+		if (!isEtudiant())
+			return show_404();
+		// If the form was submitted
+		if (!empty($_FILES['cv']['name'])) {
+			$config['upload_path'] = FCPATH.'uploads/cv/';
+			$config['file_name'] = $cne;
+			$config['allowed_types'] = 'pdf';
+			$config['max_size'] = 1024;
+			$config['overwrite'] = true;
+			$this->load->library('upload', $config);
+			// If upload failed display error
+			$this->upload->do_upload('cv');
+		}
+		return redirect($cne);
+	}
+
+	// Form validation callbacks
 	public function check_password($password)
 	{
 		$user = $this->user_model->getUser(['userId' => currentSession()['id']]);

@@ -29,7 +29,7 @@
 							</div>
 							<a href="<?= base_url().'sujet/'.$sujet->sujetId ?>">
 								<button type="button" class="btn btn-info btn-rounded waves-effect waves-light">
-                                	<span class="btn-label"><i class="fa fa-exclamation"></i></span>Info
+                                	<span class="btn-label"><i class="fa fa-exclamation"></i></span>Plus d'Infos
                             	</button>
 							</a>	
 						</div>

@@ -18,10 +18,11 @@ class Tuteur extends MY_Controller {
 	public function importer()
 	{
 		// If the form was submitted
-		if (isset($_FILES['liste'])) {
+		if (!empty($_FILES['liste']['name'])) {
 			$config['upload_path'] = FCPATH.'uploads/';
 			$config['file_name'] = 'liste';
 			$config['allowed_types'] = 'csv';
+			$config['overwrite'] = true;
 			$this->load->library('upload', $config);
 			// If upload failed display error
 			if ($this->upload->do_upload('liste')) {
@@ -50,7 +51,7 @@ class Tuteur extends MY_Controller {
 		}
 		$id = currentSession()['id'];
 		$data['chef'] = $this->tuteur_model->getChefFiliere(['tuteurId'=>$id])[0];
-		$filiere = $data['chef']->filiere ;
+		$filiere = $data['chef']->filiere;
 		$data['etudiants'] = $this->filiere_model->getEtudiants($filiere);
 		$data['title'] = 'Accueil Chef de filiere';
 		$this->render('chefFiliere/accueil',$data);

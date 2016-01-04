@@ -26,15 +26,10 @@
 								<br>
 								<p class="text-muted"><?= $etudiant->cne?></p>
 							</div>
-							<div class="about-info-p">
-								<strong>Filiere</strong>
-								<br>
-								<p class="text-muted"><?= $etudiant->filiere?></p>
-							</div>
 							<div class="about-info-p m-b-0">
 								<strong>Niveau</strong>
 								<br>
-								<p class="text-muted"><?= $etudiant->niveau?></p>
+								<p class="text-muted"><?= "$etudiant->filiere $etudiant->niveau" ?></p>
 							</div>
 							<div class="about-info-p m-b-0">
 								<strong>Date de Naissance</strong>
@@ -61,14 +56,22 @@
 							<h4>Curriculum Vitae</h4>
 						</div>
 						<div class="panel-body">
-							<object data="<?= base_url('uploads/CV/'.$etudiant->cne.'.pdf') ?>" type="application/pdf" width="100%" height="504"></object>
+							<object data="<?= base_url("uploads/cv/$etudiant->cne.pdf") ?>" type="application/pdf" width="100%" height="504"></object>
 						</div>
 						<?php else: ?>
 						<div class="panel-heading">
 							<h4>Uploader votre CV</h4>
 						</div>
 						<div class="panel-body">
-							Form
+							<?= form_open_multipart("etudiant/uploadCV/$etudiant->cne") ?>
+								<div class="form-group ">
+									<label for="cv">Fichier .pdf à importer</label>
+									<input type="file" name="cv">
+								</div>
+								<div class="form-group text-center m-t-40 col-sm-4">
+									<button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">Upload</button>
+								</div>
+							</form>
 						</div>
 						<?php endif ?>
 					</div>
