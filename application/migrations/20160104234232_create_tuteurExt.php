@@ -27,11 +27,11 @@ class Migration_create_tuteurExt extends CI_Migration {
 			),			
 		));
 		$this->dbforge->add_key('tuteurId', TRUE);
-		$this->dbforge->create_table('tuteurext');
+		$this->dbforge->create_table('TuteurExt');
 	}
 
 	public function down() {
-		$this->dbforge->drop_table('create_tuteurext');
+		$this->dbforge->drop_table('TuteurExt');
 	}
 
 }
