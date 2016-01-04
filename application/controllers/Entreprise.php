@@ -63,7 +63,8 @@ class Entreprise extends MY_Controller {
 		if (!isEntreprise())
 			return show_404();
 		$this->form_validation->set_rules('titre', 'Titre', 'required|trim|is_unique[Sujet.titre]');
-		$this->form_validation->set_rules('description', 'Description', 'required|trim');
+		$this->form_validation->set_rules('description', 'Description', 'required|trim|max_length[255]');
+		$this->form_validation->set_rules('prerequis', 'Description', 'required|trim|max_length[500]');
 		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
 		$this->form_validation->set_rules('niveau', 'niveau', 'required|trim');
 		
@@ -73,6 +74,7 @@ class Entreprise extends MY_Controller {
 			$data = array(
 				'titre' => $this->input->post('titre'),
 				'description' =>$this->input->post('description'),
+				'prerequis' =>$this->input->post('prerequis'),
 				'filiere' =>$this->input->post('filiere'),
 				'niveau' => $this->input->post('niveau'),
 				'entrepriseId' => currentsession()['id']

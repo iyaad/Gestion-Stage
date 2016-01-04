@@ -35,5 +35,12 @@ class User_model extends CI_Model {
 		return $this->updateUser(['userId' => $id], ['password' => $password]);
 	}
 
+	// Form validation callbacks
+	public function check_password($password)
+	{
+		$user = $this->user_model->getUser(['userId' => currentSession()['id']]);
+		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
+		return $this->hash->check_password($password, $user->password);
+	}
 }
 

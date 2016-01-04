@@ -35,4 +35,11 @@ class Sujet_model extends CI_Model {
 	{
 		return $this->infoSujets($criteria)[0];
 	}
+
+	public function updateSujet($criteria, $data) {
+		foreach ($criteria as $key => $value) {
+			$this->db->where($key, $value);
+		}
+		return $this->db->update('Sujet', $data);
+	}
 }
