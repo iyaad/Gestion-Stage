@@ -101,16 +101,20 @@ class Entreprise extends MY_Controller {
 			$data['entreprise'] = $entreprise;
 			$this->render('entreprise/edit_infos', $data);
 		} else {
+			// Update entreprise
 			$data = array(
 				'numTel' => $this->input->post('numTel'),
 				'adresse' => $this->input->post('adresse'),
 				'ville' => $this->input->post('ville'),
 				'pays' => $this->input->post('pays'),
 			);
-			$new_pwd = $this->input->post('new_password');
-			if (!empty($new_pwd))
-				$data['password'] = $this->hash->password($new_pwd);
 			$this->entreprise_model->updateEntreprise(currentSession()['id'], $data);
+			// Update user
+			$new_pwd = $this->input->post('new_password');
+			if (!empty($new_pwd)) {
+				$userData['password'] = $this->hash->password($new_pwd);
+				$this->user_model->updateUser(['userId' => currentSession()['id']], $userData);
+			}
 			return redirect("entreprise/$id");
 			// If the form was submitted
 		}

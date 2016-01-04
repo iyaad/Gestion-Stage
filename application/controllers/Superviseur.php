@@ -70,7 +70,7 @@ class Superviseur extends MY_Controller{
 
 	public function valider_entreprise($id)
 	{
-		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id])[0];
+		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
 		$rand = $this->random->generateString(10);
 		$data = array(
 			'username' => $e->email,

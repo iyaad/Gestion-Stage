@@ -17,7 +17,7 @@ class Entreprise_model extends CI_Model {
 			return base_url("uploads/logos/$id.png");
 		}
 		$size = isset($options['size']) ? $options['size'] : 100;
-		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&d=identicon';
+		return 'http://www.gravatar.com/avatar/'.md5($entreprise->email).'?s='.$size.'&d=identicon';
 	}
 
 	public function getEntreprise($criteria)

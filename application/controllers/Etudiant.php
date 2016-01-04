@@ -27,13 +27,6 @@ class Etudiant extends MY_Controller {
 		$this->render('etudiant/acceuil',$data);
 	}
 
-	public function voirSujet($numeroSujet)
-	{
-		$data['sujet'] = $this->sujet_model->infoSujet(array('sujetId'=>$numeroSujet))	;
-		$data['title'] = 'Infos sujets';
-		$this->render('etudiant/sujet',$data);
-	}
-
 	public function edit_profile($cne)
 	{
 		$etudiant = $this->etudiant_model->getEtudiant(['cne' => $cne]);

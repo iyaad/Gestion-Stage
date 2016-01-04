@@ -13,7 +13,7 @@
 					<div class="panel panel-border panel-custom">
 						<div class="panel-heading">
 							<div class="picture text-center container-fluid m-b-10">
-								<div class="picture-overlay col-sm-4 col-sm-offset-4">
+								<div class="picture-overlay col-sm-offset-3 col-sm-6">
 									<img src="<?= $this->entreprise_model->getAvatarUrl($sujet->entrepriseId) ?>" class="img-responsive" alt="profile-image" width="100" >
 									<div class="profile-info-name">
 										<h4 class="m-b-5"><b><?= "$sujet->nom" ?></b></h4>
