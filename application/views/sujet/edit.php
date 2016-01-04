@@ -24,7 +24,7 @@
 						<div class="form-group <?= form_error('prerequis') ? 'has-error' : '' ?>">
 							<label class="col-sm-4 control-label">Prérequis</label>
 							<div class="col-md-8">
-								<textarea class="form-control" name="prerequis"><?= $sujet->prerequis ?></textarea>
+								<textarea id="prerequis" class="form-control" name="prerequis"><?= $sujet->prerequis ?></textarea>
 								<?= form_error('prerequis') ?>
 							</div>
 						</div>
@@ -37,7 +37,8 @@
 						</div>
 
 						<div class="form-group text-center m-t-40">
-							<button type="submit" class="btn btn-purple waves-effect waves-light">Mettre a jour</button>
+							<?= anchor("sujet/$sujet->sujetId", 'Annuler', 'class="btn btn-white waves-effect"') ?>
+							<button type="submit" class="btn btn-primary waves-effect waves-light">Mettre a jour</button>
 						</div>
 					</form>
 				</div>
