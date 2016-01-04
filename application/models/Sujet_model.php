@@ -35,4 +35,14 @@ class Sujet_model extends CI_Model {
 	{
 		return $this->infoSujets($criteria)[0];
 	}
+	public function nbreSujets($id)
+	{
+		$this->load->model('etudiant_model');
+		$etudiant = $this->etudiant_model->getEtudiant(array('etudiantId'=>$id));
+		$this->db->select('e.*');
+		$this->db->from('etudiant e');
+		$this->db->where('niveau',$etudiant->filiere);
+		$this->db->where('filiere',$etudiant->niveau);
+		return $this->db->count_all_results();
+	}
 }
