@@ -16,7 +16,7 @@
 								<th>Description</th>
 								<th>Action</th>
 							</tr>
-							<?php foreach ($ent_non_verif as $e ): ?>
+							<?php foreach ($ent_non_verif as $e): ?>
 							<tr>
 								<td><?= $e->nom ?></td>
 								<td><?= "$e->adresse<br>$e->ville, $e->pays" ?></td>
