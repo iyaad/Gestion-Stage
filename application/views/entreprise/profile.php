@@ -1,20 +1,18 @@
 <div class="content-page">
 	<div class="content">
 		<div class="wraper container-fluid">
-			<div class="col-sm-12" >
-				<div class="bg-picture text-center container-fluid">
-					<div class="bg-picture-overlay">
-						<img src="<?= $this->entreprise_model->getAvatarUrl($entreprise->entrepriseId) ?>" class="img-thumbnail img-responsive" width="120" alt="profile-image">
-					</div>
-					<div class="profile-info-name">
-						<h4 class="m-b-5"><b><?= "$entreprise->nom" ?></b></h4>
-						<p class="text-muted"><i class="fa fa-map-marker"></i> <?= "$entreprise->ville, $entreprise->pays" ?></p>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-md-4">
 					<div class="card-box m-t-20">
+						<div class="picture text-center container-fluid m-b-20">
+							<div class="bg-picture-overlay">
+								<img src="<?= $this->entreprise_model->getAvatarUrl($entreprise->entrepriseId) ?>" class="img-thumbnail img-responsive" width="120" alt="profile-image">
+							</div>
+							<div class="profile-info-name">
+								<h4 class="m-b-5"><b><?= "$entreprise->nom" ?></b></h4>
+								<p class="text-muted"><i class="fa fa-map-marker"></i> <?= "$entreprise->ville, $entreprise->pays" ?></p>
+							</div>
+						</div>
 						<h4 class="m-t-0 header-title">
 							<b>Coordonnées</b>
 							<?php if (currentSession()['id'] == $entreprise->entrepriseId): ?>
@@ -34,7 +32,7 @@
 							</div>
 							<?php if (!empty($entreprise->fax)): ?>
 							<div class="about-info-p m-b-0">
-								<strong>Niveau</strong>
+								<strong>Fax</strong>
 								<br>
 								<p class="text-muted"><?= $entreprise->fax?></p>
 							</div>
