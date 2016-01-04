@@ -11,10 +11,19 @@ class Tuteur_model extends CI_Model {
 	}
 
 	public function getChefFiliere($criteria){
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
-		return $this->db->get('Tuteur')->result();
+		$this->db->where($criteria);
+		return $this->db->get('Tuteur')->row();
+	}
 
+	public function getTuteursExt($criteria)
+	{
+		$this->db->where($criteria);
+		$this->db->get('TuteurExt')->result();
+	}
+
+	public function getTuteurExt($criteria)
+	{
+		$this->db->where($criteria);
+		$this->db->get('TuteurExt')->row();
 	}
 }

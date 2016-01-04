@@ -3,16 +3,15 @@
 class User_model extends CI_Model {
 
 	public function getUsers($criteria) {
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		$query = $this->db->get('User');
 		return $query->result();
 	}
 
 	public function getUser($criteria)
 	{
-		return $this->getUsers($criteria)[0];
+		$this->db->where($criteria);
+		return $this->db->get('User')->row();
 	}
 
 	public function getUserByUsername($username) {

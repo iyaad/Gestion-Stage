@@ -9,15 +9,14 @@ class Sujet_model extends CI_Model {
 	}
 
 	public function getSujets($criteria = []){
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		return $this->db->get('Sujet')->result();
 	}
 
 	public function getSujet($criteria = [])
 	{
-		return $this->getSujets($criteria)[0];
+		$this->db->where($criteria);
+		return $this->db->get('Sujet')->row();
 	}
 
 	public function infoSujets($criteria = [])
@@ -25,21 +24,21 @@ class Sujet_model extends CI_Model {
 		$this->db->select('s.*, e.entrepriseId, e.nom');
 		$this->db->from('Sujet s');
 		$this->db->join('Entreprise e','e.entrepriseId = s.entrepriseId');
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		return $this->db->get()->result();
 	}
 
 	public function infoSujet($criteria = [])
 	{
-		return $this->infoSujets($criteria)[0];
+		$this->db->select('s.*, e.entrepriseId, e.nom');
+		$this->db->from('Sujet s');
+		$this->db->join('Entreprise e','e.entrepriseId = s.entrepriseId');
+		$this->db->where($criteria);
+		return $this->db->get()->row();
 	}
 
 	public function updateSujet($criteria, $data) {
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		return $this->db->update('Sujet', $data);
 	}
 }

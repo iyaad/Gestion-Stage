@@ -22,14 +22,13 @@ class Entreprise_model extends CI_Model {
 
 	public function getEntreprise($criteria)
 	{
-		return $this->getEntreprises($criteria)[0];
+		$this->db->where($criteria);
+		return $this->db->get('Entreprise')->row();
 	}
 
 	public function getEntreprises($criteria)
 	{
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		return $this->db->get('Entreprise')->result();
 	}
 
