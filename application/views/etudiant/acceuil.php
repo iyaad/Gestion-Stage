@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center m-b-30">
-					<h4 class="page-title">Sujets Disponibles</h4>
+					<h4 class="page-title">Sujets Disponibles (<?= count($sujets) ?>)</h4>
 				</div>	
 			</div>
 			<?php foreach (array_chunk($sujets, 3) as $row): ?>
