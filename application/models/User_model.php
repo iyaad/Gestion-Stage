@@ -3,16 +3,15 @@
 class User_model extends CI_Model {
 
 	public function getUsers($criteria) {
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		$query = $this->db->get('User');
 		return $query->result();
 	}
 
 	public function getUser($criteria)
 	{
-		return $this->getUsers($criteria)[0];
+		$this->db->where($criteria);
+		return $this->db->get('User')->row();
 	}
 
 	public function getUserByUsername($username) {
@@ -35,5 +34,12 @@ class User_model extends CI_Model {
 		return $this->updateUser(['userId' => $id], ['password' => $password]);
 	}
 
+	// Form validation callbacks
+	public function check_password($password)
+	{
+		$user = $this->user_model->getUser(['userId' => currentSession()['id']]);
+		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
+		return $this->hash->check_password($password, $user->password);
+	}
 }
 

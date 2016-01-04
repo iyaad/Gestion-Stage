@@ -4,7 +4,12 @@
 			
 				<div class="col-md-6 col-sm-offset-3 ">
 					<div class="card-box m-t-20">
-						<h2 class="text-center  m-b-10 ">Informations sur le sujet</h2>
+						<h2 class="text-center  m-b-10 ">
+							Informations sur le sujet
+							<?php if (currentSession()['id'] == $sujet->entrepriseId): ?>
+							<a href="<?= base_url("sujet/edit/$sujet->sujetId") ?>" class="m-l-10"><i class="fa fa-pencil"></i></a>
+							<?php endif ?>
+						</h2>
 						<div class="p-20">
 							<div class="picture text-center container-fluid m-b-10">
 								<div class="picture-overlay col-sm-offset-4 col-sm-4">
@@ -29,8 +34,18 @@
 								<br>
 								<p class="text-muted"><?= $sujet->filiere.''.$sujet->niveau ?></p>
 							</div>
+<<<<<<< HEAD
 							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId,currentSession()['id'])): ?>
 								<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">
+=======
+							<div class="about-info-p">
+								<strong>Prérequis</strong>
+								<br>
+								<p class="text-muted"><?= $sujet->prerequis ?></p>
+							</div>
+							<?php if(isEtudiant()): ?>
+								<a href="" class="btn btn-success waves-effect waves-light pull-right">
+>>>>>>> bd31f1ae789fbc452171a6c2d25d7e2f25fb9028
 									<span class="btn-label"><i class="fa fa-check"></i></span> Postuler
 								</a>
 								<div class="clearfix"></div>

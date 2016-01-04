@@ -20,7 +20,7 @@
 			<div class="topbar-left">
 				<div class="text-center">
 					<a href="<?= base_url() ?>" class="logo">
-						Plateforme
+					ENSAT Stages
 					</a>
 				</div>
 			</div>

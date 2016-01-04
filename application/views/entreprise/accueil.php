@@ -29,7 +29,7 @@
 								</tr>
 								<?php foreach ($sujets as $s): ?>
 								<tr>
-									<td><?= $s->titre ?></td>
+									<td><?= anchor("sujet/$s->sujetId", $s->titre) ?></td>
 									<td><?= $s->description ?></td>
 									<td><?= $s->filiere ?></td>
 									<td><?= $s->niveau ?></td> 

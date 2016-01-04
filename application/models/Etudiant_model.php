@@ -53,22 +53,22 @@ class Etudiant_model extends CI_Model {
 		$this->db->select('e.*, u.email, u.numTel, u.adresse , u.role');
 		$this->db->from('Etudiant e');
 		$this->db->join('User u', 'u.userId = e.etudiantId');
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		return $this->db->get()->result();
 	}
 
 	public function getEtudiant($criteria)
 	{
-		return $this->getEtudiants($criteria)[0];
+		$this->db->select('e.*, u.email, u.numTel, u.adresse , u.role');
+		$this->db->from('Etudiant e');
+		$this->db->join('User u', 'u.userId = e.etudiantId');
+		$this->db->where($criteria);
+		return $this->db->get()->row();
 	}
 
 	public function updateEtudiant($criteria, $data)
 	{
-		foreach ($criteria as $key => $value) {
-			$this->db->where($key, $value);
-		}
+		$this->db->where($criteria);
 		$this->db->update('Etudiant', $data);
 	}
 }
