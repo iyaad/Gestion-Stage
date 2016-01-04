@@ -34,7 +34,7 @@ class Entreprise_model extends CI_Model {
 	}
 
 	public function getTempEntreprise(){
-		return $this->getEntreprise(['verifie' => false]);
+		return $this->getEntreprises(['verifie' => false]);
 	}
 
 	public function updateEntreprise($id, $data)
