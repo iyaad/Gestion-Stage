@@ -27,6 +27,9 @@
 									<a href="<?= base_url('superviseur/valider_entreprise/'.$e->entrepriseId) ?>" class="btn btn-success waves-effect waves-light">
 										<span class="btn-label"><i class="fa fa-check"></i></span> Valider
 									</a>
+									<a href="<?= base_url('superviseur/delete/'.$e->entrepriseId) ?>" class="btn btn-icon btn-danger waves-effect waves-light">
+										<i class="fa fa-remove"></i>
+									</a>
 								</td>
 							</tr>
 							<?php  endforeach; ?>

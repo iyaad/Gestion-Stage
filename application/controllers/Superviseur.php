@@ -91,4 +91,10 @@ class Superviseur extends MY_Controller{
 			echo 'error';
 		}
 	}
+		public function delete($id)
+	{
+		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
+		$this->db->delete('entreprise',['entrepriseId' => $id]);
+		return redirect('superviseur');
+	}
 }

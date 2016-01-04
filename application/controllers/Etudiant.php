@@ -22,7 +22,8 @@ class Etudiant extends MY_Controller {
 			'niveau' => $etudiant->niveau,
 			'filiere' => $etudiant->filiere,
 		);
-		$data['sujets'] = $this->sujet_model->infoSujets($criteria);	
+		$data['sujets'] = $this->sujet_model->infoSujets($criteria);
+		$data['nbreSujets']=$this->sujet_model->nbreSujets(currentSession()['id']);	
 		$data['title'] = 'Accueil';
 		$this->render('etudiant/acceuil',$data);
 	}
