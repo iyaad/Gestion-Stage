@@ -34,21 +34,14 @@
 								<br>
 								<p class="text-muted"><?= $sujet->filiere.''.$sujet->niveau ?></p>
 							</div>
-<<<<<<< HEAD
-							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId,currentSession()['id'])): ?>
-								<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">
-=======
 							<div class="about-info-p">
 								<strong>Prérequis</strong>
 								<br>
-								<p class="text-muted"><?= $sujet->prerequis ?></p>
+								<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
 							</div>
-							<?php if(isEtudiant()): ?>
-								<a href="" class="btn btn-success waves-effect waves-light pull-right">
->>>>>>> bd31f1ae789fbc452171a6c2d25d7e2f25fb9028
-									<span class="btn-label"><i class="fa fa-check"></i></span> Postuler
-								</a>
-								<div class="clearfix"></div>
+							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId,currentSession()['id'])): ?>
+							<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right"></a>
+							<div class="clearfix"></div>
 							<?php endif ?>
 							
 						</div>
