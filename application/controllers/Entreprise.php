@@ -159,4 +159,17 @@ class Entreprise extends MY_Controller {
 			return false;
 		}
 	}
+	public function tuteur(){
+		if(currentSession()['role'] != 'entreprise'){
+			return redirect('home');
+		}
+
+		$data['tuteurs'] = $this->tuteur_model->getTuteurExt(['entrepriseId' => currentSession()['id']])
+		$data['title'] = 'Tuteurs';
+		$this->render('entreprise/tuteurs', $data);
+
+	}
+	public function ajouter_tuteur(){
+
+	}
 }
