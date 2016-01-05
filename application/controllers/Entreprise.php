@@ -8,12 +8,15 @@ class Entreprise extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->library('hash');
+		$this->load->library('random');
 		$this->load->model('entreprise_model');
 		$this->load->model('sujet_model');
 		$this->load->model('etudiant_model');
 		$this->load->model('filiere_model');
 		$this->load->model('user_model');
 		$this->load->model('tuteur_model');
+		$this->load->model('email_model');
+
 	}
 
 	public function signup()
@@ -165,7 +168,7 @@ class Entreprise extends MY_Controller {
 			return redirect('home');
 		}
 
-		$data['tuteurs'] = $this->tuteur_model->getTuteurExt(['entrepriseId' => currentSession()['id']]);
+		$data['tuteurs'] = $this->tuteur_model->getTuteursExt(['entrepriseId' => currentSession()['id']]);
 		$data['title'] = 'Tuteurs';
 		$this->render('entreprise/tuteurs', $data);
 
@@ -173,21 +176,39 @@ class Entreprise extends MY_Controller {
 	public function ajouter_tuteur(){
 		if (!isEntreprise())
 			return show_404();
-		$this->form_validation->set_rules('nom', 'Titre', 'required|trim|is_unique[Sujet.titre]');
-		$this->form_validation->set_rules('prenom', 'Description', 'required|trim|max_length[255]');
-		$this->form_validation->set_rules('email', 'Description', 'required|trim|max_length[500]');
+		$this->form_validation->set_rules('nom', 'nom', 'required|trim');
+		$this->form_validation->set_rules('prenom', 'prenom', 'required|trim');
+		$this->form_validation->set_rules('numtel', 'telephone', 'required|trim');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email');
+		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
+		$this->form_validation->set_message('valid_email', 'Email invalide');
 		
 		if (!$this->form_validation->run()) {
-			$this->index();
+			$this->tuteur();
 		} else {
+			$rand = $this->random->generateString(10);
+			
 			$data = array(
 				'nom' => $this->input->post('nom'),
 				'prenom' =>$this->input->post('prenom'),
 				'email' =>$this->input->post('email'),
 				'entrepriseId' => currentSession()['id'],
 			);
-			$this->tuteur_model->createTuteur($data);
-			redirect('entreprise');
+
+			$userData = array(
+				'username' => $data['email'],
+				'password' => $this->hash->password($rand),
+				'email' => $data['email'], 
+				'numTel' => $this->input->post('numtel'),
+				'role' => 'Tuteur Ext',
+				'adresse' => '',
+				'createdAt' => gmdate('Y-m-d H:i:s'),
+				'updatedAt' => gmdate('Y-m-d H:i:s'),
+			);
+
+			$this->tuteur_model->createTuteurExt($userData,$data);
+				$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
+			redirect('entreprise/tuteur');
 		}
 	}
 }

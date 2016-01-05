@@ -18,6 +18,16 @@ class Email_model extends CI_Model {
 		$this->email->message($this->load->view('email/new_account', $data, true));
 		return (bool) $this->email->send();
 	}
+		public function emailTuteurExt($email,$password)
+	{
+		$data['username'] = $email;
+		$data['password'] = $password;
+		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
+		$this->email->to($email);
+		$this->email->subject('Compte pour la plateforme gestion-stages');
+		$this->email->message($this->load->view('email/new_account', $data, true));
+		return (bool) $this->email->send();
+	}
 
 	public function emailEntreprise($username, $password)
 	{
