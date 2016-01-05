@@ -47,6 +47,39 @@
 							
 						</div>
 					</div>
+					<?php if(isEntreprise() && $sujet->entrepriseId==currentSession()['id'] )  : ?>
+					<div class="card-box m-t-20">
+											<div class="panel-body">
+						<table class="table m-0" >
+							<tr>
+								<th data-toggle="true" class="footable-visible footable-first-column footable-sortable">
+									Nom postulant
+									<span class="footable-sort-indicator"></span>
+								</th>
+								<th data-toggle="true" class="footable-visible footable-first-column footable-sortable">
+									etat
+									<span class="footable-sort-indicator"></span>
+								</th>
+							</tr>
+							<?php foreach ($postulats as $e): ?>
+							<tr>
+								<td><a href="base_url('$e->cne)"><?= "$e->nom $e->prenom" ?></a></td>
+								<td>
+									<a href="<?= base_url('#') ?>" class="btn btn-success waves-effect waves-light pull">
+										<span class="btn-label"><i class="fa fa-check"></i></span> Accepter
+									</a>
+									<a href="<?= base_url('#') ?>" class="btn btn-icon btn-danger waves-effect waves-light">
+										<i class="fa fa-remove"></i>
+
+								</td>								
+							</tr>
+							<?php  endforeach; ?>
+						</table>
+					</div>
+					</div>
+					<?php endif ?>
+
+
 				</div>				
 			
 		</div>

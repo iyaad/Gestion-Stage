@@ -51,4 +51,13 @@ class Sujet_model extends CI_Model {
 		$this->db->where($criteria);
 		return $this->db->update('Sujet', $data);
 	}
+	public function postulats($criteria=[])
+	{
+		$this->db->select('p.sujetid , p.etat, e.*');
+		$this->db->from('Postulat p');
+		$this->db->join('etudiant e','e.etudiantId = p.etudiantId');
+		$this->db->where($criteria);
+		return $this->db->get('postulat')->result();
+
+	}
 }

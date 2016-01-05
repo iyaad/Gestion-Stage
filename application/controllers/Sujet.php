@@ -16,7 +16,12 @@ class Sujet extends MY_Controller {
 
 	public function index($id)
 	{
+		$criteria =  array(
+			'p.sujetId' => $id,
+			'p.etat'=>'W',
+			 );
 		$data['sujet'] = $this->sujet_model->infoSujet(['sujetId' => $id]);
+		$data['postulats']=$this->sujet_model->postulats($criteria);
 		$data['title'] = $data['sujet']->titre;
 		$this->render('sujet/infos', $data);
 	}
