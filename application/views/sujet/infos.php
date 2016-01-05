@@ -34,17 +34,15 @@
 								<br>
 								<p class="text-muted"><?= $sujet->filiere.''.$sujet->niveau ?></p>
 							</div>
-													
-							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId,currentSession()['id'])): ?>
-								<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">
-									<span class="btn-label"><i class="fa fa-check"></i></span> Postuler
-								</a>
-								<div class="clearfix"></div>
+							<div class="about-info-p">
+								<strong>Prérequis</strong>
+								<br>
+								<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
+							</div>
+							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
+							<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right"></a>
+							<div class="clearfix"></div>
 							<?php endif ?>
-							<?php if($this->sujet_model->aPostule($sujet->sujetId,currentSession()['id'])): ?>
-								<i class="ion-checkmark pull-right"></i>
-							<?php endif ?>
-							
 						</div>
 					</div>
 					<?php if(isEntreprise() && $sujet->entrepriseId==currentSession()['id'] )  : ?>
