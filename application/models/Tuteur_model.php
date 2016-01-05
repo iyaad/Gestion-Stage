@@ -18,12 +18,22 @@ class Tuteur_model extends CI_Model {
 	public function getTuteursExt($criteria)
 	{
 		$this->db->where($criteria);
-		$this->db->get('TuteurExt')->result();
+		return $this->db->get('TuteurExt')->result();
 	}
 
 	public function getTuteurExt($criteria)
-	{
+	{	
 		$this->db->where($criteria);
-		$this->db->get('TuteurExt')->row();
+		return $this->db->get('TuteurExt')->row();
+	}
+	public function createTuteur($data)
+	{
+		$user = array(
+			'nom' => $Data['nom'],
+			'prenom' => $Data['prenom'],
+			'entrepriseId' => $Data['entrepriseId'],
+			'email' => $Data['email'],
+		);
+		$this->db->insert('TuteurExt',$user);
 	}
 }

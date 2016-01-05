@@ -26,7 +26,7 @@
 									<th>prenom</th>
 									<th>Email</th>
 								</tr>
-								<?php foreach ($tuteurs as $tuteur): ?>
+								<?php  foreach ($tuteurs as $tuteur): ?>
 								<tr>
 									<td><?= $tuteur->nom ?></td>
 									<td><?= $tuteur->prenom ?></td>
@@ -37,7 +37,7 @@
 							</table>
 						</div>
 						<div class="tab-pane" id="profile">
-							
+							<?php $this->load->view('entreprise/ajouter_tuteur') ?>
 						</div>
 					</div>
 				</div>

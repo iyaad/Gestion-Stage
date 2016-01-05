@@ -13,6 +13,7 @@ class Entreprise extends MY_Controller {
 		$this->load->model('etudiant_model');
 		$this->load->model('filiere_model');
 		$this->load->model('user_model');
+		$this->load->model('tuteur_model');
 	}
 
 	public function signup()
@@ -164,12 +165,29 @@ class Entreprise extends MY_Controller {
 			return redirect('home');
 		}
 
-		$data['tuteurs'] = $this->tuteur_model->getTuteurExt(['entrepriseId' => currentSession()['id']])
+		$data['tuteurs'] = $this->tuteur_model->getTuteurExt(['entrepriseId' => currentSession()['id']]);
 		$data['title'] = 'Tuteurs';
 		$this->render('entreprise/tuteurs', $data);
 
 	}
 	public function ajouter_tuteur(){
-
+		if (!isEntreprise())
+			return show_404();
+		$this->form_validation->set_rules('nom', 'Titre', 'required|trim|is_unique[Sujet.titre]');
+		$this->form_validation->set_rules('prenom', 'Description', 'required|trim|max_length[255]');
+		$this->form_validation->set_rules('email', 'Description', 'required|trim|max_length[500]');
+		
+		if (!$this->form_validation->run()) {
+			$this->index();
+		} else {
+			$data = array(
+				'nom' => $this->input->post('nom'),
+				'prenom' =>$this->input->post('prenom'),
+				'email' =>$this->input->post('email'),
+				'entrepriseId' => currentSession()['id'],
+			);
+			$this->tuteur_model->createTuteur($data);
+			redirect('entreprise');
+		}
 	}
 }
