@@ -39,11 +39,10 @@
 								<br>
 								<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
 							</div>
-							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId,currentSession()['id'])): ?>
+							<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
 							<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right"></a>
 							<div class="clearfix"></div>
 							<?php endif ?>
-							
 						</div>
 					</div>
 				</div>				
