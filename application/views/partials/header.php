@@ -55,6 +55,7 @@
 							<?php elseif (isEntreprise()): ?>
 							<li><?= anchor('entreprise', '<i class="fa-file-text-o fa"></i> Sujets de Stage', navIsActive('entreprise', 'index')) ?></li>
 							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise', navIsActive('entreprise', 'profile')) ?></li>
+							<li><?= anchor('entreprise/tuteur', '<i class="fa-file-text-o fa"></i> Tuteurs', navIsActive('entreprise', 'tuteur')) ?></li>
 							<?php endif ?>
 						</ul>
 						<div class="clearfix"></div>
