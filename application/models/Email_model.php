@@ -86,7 +86,7 @@ class Email_model extends CI_Model {
 		return (bool) $this->email->send();
 	}
 
-	public function emailConfirm($s,$entreprise,$etudiant){
+	public function emailConfirm($s,$entreprise,$etudiant,$email){
 
 		$data['sujetId'] = $s;
 		$data['entreprise'] = $entreprise;

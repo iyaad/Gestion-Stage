@@ -103,6 +103,8 @@ class Sujet extends MY_Controller {
 
 		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $e]);
 		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $ent]);
+		$chef = $this->tuteur_model->getChefFiliere(['filiere' => $etudiant->filiere , 'chefId' => null]);
+		$email = $this->user_model->getUser(['userId' => $chef->tuteurId])->email ;
 		$criteria = array(
 			'sujetId' =>  $s,
 			'etudiantId' => $e,
@@ -112,7 +114,7 @@ class Sujet extends MY_Controller {
 			'etudiantId' => $e,
 			'etat' => 'B',
 			);
-		$this->email_model->emailConfirm($s,$entreprise,$etudiant);
+		$this->email_model->emailConfirm($s,$entreprise,$etudiant,$email);
 		$this->sujet_model->updatePostulat($criteria,$data);
 		return redirect('etudiant');
 	}
