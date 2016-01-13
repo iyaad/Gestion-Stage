@@ -12,6 +12,7 @@ class Sujet extends MY_Controller {
 		$this->load->model('etudiant_model');
 		$this->load->model('email_model');
 		$this->load->model('entreprise_model');
+		$this->load->model('tuteur_model');
 		$this->load->model('filiere_model');
 		$this->load->model('sujet_model');
 		$this->load->model('user_model');

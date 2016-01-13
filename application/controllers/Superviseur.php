@@ -18,6 +18,7 @@ class Superviseur extends MY_Controller{
 	}
 
 	public function index(){
+		$data['NOSIDEBAR'] = true;
 		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
 		$data['title'] = 'Accueil Superviseur';
@@ -59,7 +60,7 @@ class Superviseur extends MY_Controller{
 				'chefId' => NULL,
 			);
 			$this->tuteur_model->createChefFiliere($userData, $data);
-			if ($this->email_model->emailChefFiliere($email, $username, $rand)) {
+			if ($this->email_model->emailChefFiliere($userData['email'], $username, $rand)) {
 				// Alert success
 				return redirect('superviseur');
 			} else {

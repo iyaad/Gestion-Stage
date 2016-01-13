@@ -87,14 +87,13 @@ class Email_model extends CI_Model {
 	}
 
 	public function emailConfirm($s,$entreprise,$etudiant,$email){
-
 		$data['sujetId'] = $s;
 		$data['entreprise'] = $entreprise;
 		$data['etudiant'] = $etudiant;
 		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
 		$this->email->to($etudiant->email);
-		$this->email->subject('');
-		$this->email->message($this->load->view('email/poustulat_confirmer', $data, true));
+		$this->email->subject('Finaliser la demande de stage');
+		$this->email->message($this->load->view('email/postulat_confirmer', $data, true));
 		return (bool) $this->email->send();
 	}
 
