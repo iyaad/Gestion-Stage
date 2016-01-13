@@ -8,6 +8,9 @@ class Sujet extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->library('hash');
+		$this->load->library('email');
+		$this->load->model('etudiant_model');
+		$this->load->model('email_model');
 		$this->load->model('entreprise_model');
 		$this->load->model('filiere_model');
 		$this->load->model('sujet_model');
@@ -52,6 +55,16 @@ class Sujet extends MY_Controller {
 			$this->sujet_model->updateSujet(['sujetId' => $id], $data);
 			return redirect("sujet/$id");
 		}
+	}
+
+	public function postuler($sujet){
+		$data = array(
+			'sujetId' => $sujet,
+			'etudiantId' => currentSession()['id'],
+			'etat' => 'W',
+			);
+		$this->db->insert('Postulat',$data);
+		return redirect('sujet/'.$sujet);
 	}
 
 	public function refusePostulat($Sid,$Eid){

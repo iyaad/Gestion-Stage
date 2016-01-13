@@ -39,7 +39,7 @@
 							<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
 						</div>
 						<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
-						<a href="<?= base_url('etudiant/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right"></a>
+						<a href="<?= base_url('sujet/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">Postuler</a>
 						<div class="clearfix"></div>
 						<?php endif ?>
 						<?php if(isEtudiant() && $this->sujet_model->estAccepte($sujet->sujetId, currentSession()['id'])): ?>

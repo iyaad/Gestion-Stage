@@ -118,18 +118,6 @@ class Etudiant extends MY_Controller {
 		}
 	}
 
-	public function postuler($sujet){
-
-		$data = array(
-			'sujetId' => $sujet,
-			'etudiantId' => currentSession()['id'],
-			'etat' => 'W',
-			);
-		$this->db->insert('Postulat',$data);
-		redirect('etudiant/stages_courants');
-
-	}
-
 	public function workspace(){
 		$data['title'] = 'Espace de Travail';
 		$this->render('etudiant/workspace',$data);

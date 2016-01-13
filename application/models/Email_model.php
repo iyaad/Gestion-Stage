@@ -81,8 +81,8 @@ class Email_model extends CI_Model {
 		$data['entreprise'] = $entreprise;
 		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
 		$this->email->to($email);
-		$this->email->subject('demande de confirmation de postulat');
-		$this->email->message($this->load->view('email/poustulat_accepte', $data, true));
+		$this->email->subject('Confimer votre demande de stage');
+		$this->email->message($this->load->view('email/postulat_accepte', $data, true));
 		return (bool) $this->email->send();
 	}
 
@@ -93,7 +93,7 @@ class Email_model extends CI_Model {
 		$data['etudiant'] = $etudiant;
 		$this->email->from('stages@ensat.ac.ma', 'Superviseur');
 		$this->email->to($etudiant->email);
-		$this->email->subject('demande de confirmation de postulat');
+		$this->email->subject('');
 		$this->email->message($this->load->view('email/poustulat_confirmer', $data, true));
 		return (bool) $this->email->send();
 	}
