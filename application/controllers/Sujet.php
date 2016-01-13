@@ -53,4 +53,69 @@ class Sujet extends MY_Controller {
 			return redirect("sujet/$id");
 		}
 	}
+
+	public function refusePostulat($Sid,$Eid){
+		$criteria = array(
+			'sujetId' =>  $Sid,
+			'etudiantId' => $Eid,
+			);
+		$data = array(
+			'sujetId' => $Sid,
+			'etudiantId' => $Eid,
+			'etat' => 'R',
+			);
+		$this->sujet_model->updatePostulat($criteria,$data);
+		return redirect('sujet/index/'.$Sid);
+	}
+
+	public function acceptePostulat($s,$e,$ent){
+
+		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $ent]);
+		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $e]);
+		$criteria = array(
+			'sujetId' =>  $s,
+			'etudiantId' => $e,
+			);
+		$data = array(
+			'sujetId' => $s,
+			'etudiantId' => $e,
+			'etat' => 'C',
+			);
+		$this->email_model->emailAcc($s,$entreprise,$etudiant->email);
+		$this->sujet_model->updatePostulat($criteria,$data);
+		return redirect('sujet/index/'.$s);
+	}
+
+	public function confirmePostulat($s,$e,$ent){
+
+		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $e]);
+		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $ent]);
+		$criteria = array(
+			'sujetId' =>  $s,
+			'etudiantId' => $e,
+			);
+		$data = array(
+			'sujetId' => $s,
+			'etudiantId' => $e,
+			'etat' => 'B',
+			);
+		$this->email_model->emailConfirm($s,$entreprise,$etudiant);
+		$this->sujet_model->updatePostulat($criteria,$data);
+		return redirect('etudiant');
+	}
+
+	public function finalisePostulat($s,$e){
+		$criteria = array(
+			'sujetId' =>  $s,
+			'etudiantId' => $e,
+			);
+		$data = array(
+			'sujetId' => $s,
+			'etudiantId' => $e,
+			'etat' => 'A',
+			);
+		$this->sujet_model->updatePostulat($criteria,$data);
+		return redirect('tuteur');
+	}
+
 }

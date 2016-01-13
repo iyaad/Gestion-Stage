@@ -129,4 +129,10 @@ class Etudiant extends MY_Controller {
 		redirect('etudiant/stages_courants');
 
 	}
+
+	public function workspace(){
+		$data['title'] = 'Espace de Travail';
+		$this->render('etudiant/workspace',$data);
+
+	}
 }

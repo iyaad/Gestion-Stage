@@ -47,6 +47,29 @@ class Sujet_model extends CI_Model {
 		return count($res) > 0;
 	}
 
+	public function estAccepte($s,$e){
+		$data = array(
+			'sujetId' => $s,
+			'etudiantId' => $e,
+			'etat' => 'C'
+		);
+		$this->db->where($data);
+		$res = $this->db->get('Postulat')->result();
+		return count($res) > 0;
+	}
+
+	public function estConfirme($s,$e){
+		$data = array(
+			'sujetId' => $s,
+			'etudiantId' => $e,
+			'etat' => 'B'
+		);
+		$this->db->where($data);
+		$res = $this->db->get('Postulat')->result();
+		return count($res) > 0;
+
+	}
+
 	public function updateSujet($criteria, $data) {
 		$this->db->where($criteria);
 		return $this->db->update('Sujet', $data);
@@ -57,7 +80,14 @@ class Sujet_model extends CI_Model {
 		$this->db->from('Postulat p');
 		$this->db->join('etudiant e','e.etudiantId = p.etudiantId');
 		$this->db->where($criteria);
-		return $this->db->get('postulat')->result();
+		return $this->db->get()->result();
 
 	}
+
+	public function updatePostulat($criteria,$data){
+		$this->db->where($criteria);
+		return $this->db->update('Postulat',$data);
+	}
+
+	
 }
