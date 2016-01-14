@@ -18,11 +18,11 @@ class Migration_create_message_table extends CI_Migration {
 				'type' => 'VARCHAR',
 				'constraint' => 2000,
 			),
-			'from' => array(
+			'expediteur' => array(
 				'type' => 'INT',
 				'constraint' => 11,
 			),
-			'to' => array(
+			'destinataire' => array(
 				'type' => 'INT',
 				'constraint' => 11,
 			),
