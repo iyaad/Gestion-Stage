@@ -118,9 +118,5 @@ class Etudiant extends MY_Controller {
 		}
 	}
 
-	public function workspace(){
-		$data['title'] = 'Espace de Travail';
-		$this->render('etudiant/workspace',$data);
-
-	}
+	
 }
