@@ -14,9 +14,11 @@ class Workspace extends MY_Controller {
 		$this->load->model('entreprise_model');
 		$this->load->model('user_model');
 		$this->load->model('tuteur_model');
+		$this->load->model('message_model');
 		$this->load->model('filiere_model');
 		$this->load->library('random');
 		$this->load->library('hash');
+
 	}
 
 	public function accueil(){
@@ -33,14 +35,19 @@ class Workspace extends MY_Controller {
 		$this->form_validation->set_rules('tuteur', "Tuteur",'required|trim');
 		$this->form_validation->set_rules('message',"Message",'required');
 
-		/* if ($this->form_validation->run() == false){
-			$data['title'] = 'Envoyer un message';
-			$data['tuteurs'] = $this->sujet_model->getStage(['s.etudiantId'=>currentSession()['id']]);
-			$this->render('workspace/envoyerMessage', $data);
-		}*/
-
 		if($this->form_validation->run() == false)
-			return redirect('accueil');
+			$this->accueil();
+
+		$message = array(
+				'StageId'=>$this->sujet_model->getStage(['s.etudiantId'=>currentSession()['id']])->stageId,
+				'message'=>$this->input->post('message'),
+				'expediteur'=>currentSession()['id'],
+				'destinataire'=>$this->input->post('tuteur'),
+				'date' =>gmdate('Y-m-d H:i:s'),
+
+			);
+		$this->message_model->envoyerMessage($message);
+		return redirect('workspace/accueil');
 
 
 
