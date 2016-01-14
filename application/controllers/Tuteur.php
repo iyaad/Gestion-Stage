@@ -128,7 +128,7 @@ class Tuteur extends MY_Controller {
 
 		$data['title'] = 'Finaliser les demandes de stages';
 		$filiere =  $this->tuteur_model->getChefFiliere(['tuteurId' => currentSession()['id']])->filiere;
-		$data['postulats'] = $this->sujet_model->postulats(['e.filiere' => $filiere , 'etat' => 'A' ]);
+		$data['postulats'] = $this->sujet_model->postulats(['e.filiere' => $filiere , 'etat' => 'B' ]);
 		$this->render('chefFiliere/finaliser',$data);
 	}
 
@@ -142,21 +142,27 @@ class Tuteur extends MY_Controller {
 			$data['title'] = 'Finaliser';
 			$data['e'] = $e;
 			$data['s'] = $s;
-			$this->render('chefFIliere/finaliser_stage', $data);
+			$this->render('chefFiliere/finaliser_stage', $data);
 		} else {
 			$data = array(
 				'etudiantId' => $e,
 				'sujetId' => $s,
 				'tuteurId' => $this->input->post('tuteur') ,
-				'tuteurExtId' => $sujet->tuteur,
+				'tuteurExtId' => $sujet->tuteurId,
 				'dateDebut' => $sujet->dateDebut,
 				'periode' => $sujet->periode,
 			);
-
-
-
-		$this->sujet_model->createStage($data);
-		return redirect('tuteur/finaliser');
+			$this->sujet_model->createStage($data);
+			$data = array(
+				'sujetId' => $s,
+				'etudiantId' => $e,
+				'etat' => 'A',
+			);
+			$this->sujet_model->updatePostulat(array(
+				'sujetId' =>  $s,
+				'etudiantId' => $e,
+				), $data);
+			return redirect('tuteur/finaliser');
 		}
 
 	}

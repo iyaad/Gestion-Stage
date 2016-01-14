@@ -8,6 +8,7 @@ class Entreprise extends MY_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->library('hash');
+		$this->load->library('email');
 		$this->load->library('random');
 		$this->load->model('entreprise_model');
 		$this->load->model('sujet_model');
@@ -207,7 +208,7 @@ class Entreprise extends MY_Controller {
 			);
 
 			$this->tuteur_model->createTuteurExt($userData,$data);
-				$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
+			$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
 			redirect('entreprise/tuteur');
 		}
 	}

@@ -90,9 +90,7 @@ class Sujet_model extends CI_Model {
 	}
 
 	public function createStage($data){
-
 		return $this->db->insert('Stage', $data);
-
 	}
 
 	public function getStage($criteria=[]){

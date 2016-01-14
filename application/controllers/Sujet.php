@@ -123,18 +123,4 @@ class Sujet extends MY_Controller {
 		return redirect('etudiant');
 	}
 
-	public function finalisePostulat($s,$e){
-		$criteria = array(
-			'sujetId' =>  $s,
-			'etudiantId' => $e,
-			);
-		$data = array(
-			'sujetId' => $s,
-			'etudiantId' => $e,
-			'etat' => 'A',
-			);
-		$this->sujet_model->updatePostulat($criteria,$data);
-		return redirect('tuteur');
-	}
-
 }
