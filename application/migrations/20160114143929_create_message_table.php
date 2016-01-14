@@ -7,11 +7,12 @@ class Migration_create_message_table extends CI_Migration {
 			'StageId' => array(
 				'type' => 'INT',
 				'constraint' => 11,
-				'auto_increment' => TRUE
+				
 			),
 			'messageId' => array(
 				'type' => 'INT',
 				'constraint' => 11,
+				'auto_increment' => TRUE
 			),
 			'message' => array(
 				'type' => 'VARCHAR',
