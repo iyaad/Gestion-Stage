@@ -57,8 +57,9 @@
 							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise', navIsActive('entreprise', 'profile')) ?></li>
 							<li><?= anchor('entreprise/tuteur', '<i class="fa-file-text-o fa"></i> Tuteurs', navIsActive('entreprise', 'tuteur')) ?></li>
 							<?php elseif (isChefFiliere()): ?>
-							<li><?= anchor('tuteur', '<i class="fa-file-text-o fa"></i> Acceuil', navIsActive('tuteur', 'index')) ?></li>
+							<li><?= anchor('tuteur', '<i class="fa-home fa"></i> Acceuil', navIsActive('tuteur', 'index')) ?></li>
 							<li><?= anchor('tuteur/tuteurs', '<i class="fa-users fa"></i> Tuteurs', navIsActive('tuteur', 'tuteurs')) ?></li>
+							<li><?= anchor('tuteur/finaliser', '<i class="fa-file-text-o fa"></i> Stage à finaliser', navIsActive('tuteur', 'finaliser')) ?></li>
 							
 							<?php endif ?>
 
