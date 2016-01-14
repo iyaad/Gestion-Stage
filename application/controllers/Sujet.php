@@ -79,6 +79,9 @@ class Sujet extends MY_Controller {
 			'etat' => 'R',
 			);
 		$this->sujet_model->updatePostulat($criteria,$data);
+		if(isChefFiliere()){
+			return redirect('tuteur/finaliser');
+		}
 		return redirect('sujet/index/'.$Sid);
 	}
 

@@ -89,5 +89,11 @@ class Sujet_model extends CI_Model {
 		return $this->db->update('Postulat',$data);
 	}
 
+	public function createStage($data){
+
+		return $this->db->insert('Stage', $data);
+
+	}
+
 	
 }

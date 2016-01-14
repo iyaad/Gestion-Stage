@@ -10,6 +10,8 @@ class Tuteur extends MY_Controller {
 		$this->load->library('email');
 		$this->load->model('etudiant_model');
 		$this->load->model('email_model');
+		$this->load->model('sujet_model');
+		$this->load->model('entreprise_model');
 		$this->load->model('user_model');
 		$this->load->model('tuteur_model');
 		$this->load->model('filiere_model');
@@ -117,8 +119,65 @@ class Tuteur extends MY_Controller {
 			);
 
 			$this->tuteur_model->createTuteur($userData,$data);
-				//$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
+				$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
 			redirect('tuteur/tuteurs');
+		}
+	}
+
+	public function finaliser(){
+
+		$data['title'] = 'Finaliser les demandes de stages';
+		$filiere =  $this->tuteur_model->getChefFiliere(['tuteurId' => currentSession()['id']])->filiere;
+		$data['postulats'] = $this->sujet_model->postulats(['e.filiere' => $filiere , 'etat' => 'A' ]);
+		$this->render('chefFiliere/finaliser',$data);
+	}
+
+	public function finaliserStage($e,$s){
+		$sujet = $this->sujet_model->getSujet(['sujetId' => $s]) ;
+		$this->form_validation->set_rules('tuteur', "Tuteur",'required|trim');
+		$this->form_validation->set_rules('lettre', "Lettre d'apreciation" , 'callback_check_lettre');
+
+		if ($this->form_validation->run() == false) {
+			$data['tuteurs'] = $this->tuteur_model->getTuteurs(['chefId' => currentSession()['id']]);
+			$data['title'] = 'Finaliser';
+			$data['e'] = $e;
+			$data['s'] = $s;
+			$this->render('chefFIliere/finaliser_stage', $data);
+		} else {
+			$data = array(
+				'etudiantId' => $e,
+				'sujetId' => $s,
+				'tuteurId' => $this->input->post('tuteur') ,
+				'tuteurExtId' => $sujet->tuteur,
+				'dateDebut' => $sujet->dateDebut,
+				'periode' => $sujet->periode,
+			);
+
+
+
+		$this->sujet_model->createStage($data);
+		return redirect('tuteur/finaliser');
+		}
+
+	}
+
+	public function check_lettre()
+	{
+		
+		
+		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $this->input->post('etudiantId')]);
+		$config['upload_path'] = FCPATH.'uploads/lettres';
+		$config['file_name'] = $etudiant->cne;
+		$config['max_size'] = 1024;
+		$config['allowed_types'] = 'docx|pdf';
+		$config['overwrite'] = true;
+		$this->load->library('upload', $config);
+		// If upload failed display error
+		if ($this->upload->do_upload('lettre')) {
+			return true;
+		} else {
+			$this->form_validation->set_message('check_lettre', strip_tags($this->upload->display_errors()));
+			return false;
 		}
 	}
 
