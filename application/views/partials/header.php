@@ -52,6 +52,10 @@
 							<?php if (isEtudiant()): ?>
 							<li><?= anchor('etudiant', '<i class="fa fa-home"></i> Accueil', navIsActive('etudiant', 'index')) ?></li>
 							<li><?= anchor(currentSession()['username'], '<i class="fa-user fa"></i> Profil de l\'Etudiant', navIsActive('etudiant', 'profile')) ?></li>
+							<?php if(isEtudiantEnStage()): ?>
+							<li><?= anchor('Workspace/accueil', '<i class="fa fa-home"></i> Workspace', navIsActive('Workspace', 'accueil')) ?></li>
+							<?php endif ?>
+
 							<?php elseif (isEntreprise()): ?>
 							<li><?= anchor('entreprise', '<i class="fa-file-text-o fa"></i> Sujets de Stage', navIsActive('entreprise', 'index')) ?></li>
 							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise', navIsActive('entreprise', 'profile')) ?></li>

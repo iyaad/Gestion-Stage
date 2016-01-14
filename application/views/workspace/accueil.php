@@ -13,7 +13,7 @@
 						<li class=""> 
 							<a href="#profile" data-toggle="tab" aria-expanded="true">
 								<span class="visible-xs"><i class="fa fa-user"></i></span>
-								<span class="hidden-xs">Documents</span>
+								<span class="hidden-xs">Envoyer un message</span>
 							</a>
 						</li>
 						<li class=""> 
@@ -29,6 +29,7 @@
 						</div>
 						<div class="tab-pane" id="profile">
 							
+							<?php $this->load->view('workspace/envoyerMessage'); ?>
 						</div>
 					</div>
 				</div>
