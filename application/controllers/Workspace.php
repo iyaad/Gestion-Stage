@@ -21,35 +21,48 @@ class Workspace extends MY_Controller {
 
 	}
 
-	public function accueil(){
-		if( !isEtudiantEnStage()){
+	public function accueil($id){
+		if( !isEtudiantEnStage() && !isTuteurExtEnStage() && !isTuteurEnStage()){
 			return redirect('home');
 		}
 		$data['title'] = 'Espace de Travail';
-		$data['tuteurs'] = $this->sujet_model->getStage(['s.etudiantId'=>currentSession()['id']]);
+		$data['messages'] = $this->message_model->getMessages(['destinataire' =>currentSession()['id']]);
+		$data['destinataire'] = $this->sujet_model->getStage(['s.etudiantId'=>$id]);
 		$this->render('workspace/accueil',$data);
+		
 
 	}
+
 	public function envoyerMessage()
 	{
-		$this->form_validation->set_rules('tuteur', "Tuteur",'required|trim');
+		$this->form_validation->set_rules('destinataire', "Destinataire",'required|trim');
 		$this->form_validation->set_rules('message',"Message",'required');
 
-		if($this->form_validation->run() == false)
+		if($this->form_validation->run() == false){
 			$this->accueil();
-
-		$message = array(
+		}
+		else{
+			$message = array(
 				'StageId'=>$this->sujet_model->getStage(['s.etudiantId'=>currentSession()['id']])->stageId,
 				'message'=>$this->input->post('message'),
 				'expediteur'=>currentSession()['id'],
-				'destinataire'=>$this->input->post('tuteur'),
+				'destinataire'=>$this->input->post('destinataire'),
 				'date' =>gmdate('Y-m-d H:i:s'),
+				);
+			$this->message_model->envoyerMessage($message);
+			return redirect('workspace/accueil');
 
-			);
-		$this->message_model->envoyerMessage($message);
-		return redirect('workspace/accueil');
+		}		
+	}
 
-
+	public function tuteur(){
+		$data['title'] = 'Etudiant en stage ';
+		if(isTuteur())
+			$data['etudiants'] = $this->sujet_model->getStages(['s.tuteurId'=>currentSession()['id']]);
+		if(isTuteurExt()){
+			$data['etudiants'] = $this->sujet_model->getStages(['s.tuteurExtId'=>currentSession()['id']]);
+		}
+		$this->render('workspace/tuteur',$data);
 
 	}
 	

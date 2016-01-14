@@ -41,5 +41,31 @@ class User_model extends CI_Model {
 		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
 		return $this->hash->check_password($password, $user->password);
 	}
+
+	public function resolveName($id){
+
+		$role = $this->getUser(['userId' => $id])->role;
+		$name = '';
+		switch ($role) {
+			case 'etudiant':
+				$name = $this->etudiant_model->getEtudiant(['etudiantId' => $id]);
+				$name = $name->nom.' '.$name->prenom;
+				break;
+			
+			case 'tuteur':
+				$name = $this->tuteur_model->getTuteur(['tuteurId' => $id]);
+				$name = $name->nom.' '.$name->prenom;
+				break;
+			case 'tuteur ext':
+				$name = $this->tuteur_model->getTuteurExt(['tuteurId' => $id]);
+				$name = $name->nom.' '.$name->prenom;
+				break;
+
+			default:
+				# code...
+				break;
+		}
+		return $name;
+	}
 }
 

@@ -200,7 +200,7 @@ class Entreprise extends MY_Controller {
 				'password' => $this->hash->password($rand),
 				'email' => $data['email'], 
 				'numTel' => $this->input->post('numtel'),
-				'role' => 'Tuteur Ext',
+				'role' => 'tuteur ext',
 				'adresse' => '',
 				'createdAt' => gmdate('Y-m-d H:i:s'),
 				'updatedAt' => gmdate('Y-m-d H:i:s'),

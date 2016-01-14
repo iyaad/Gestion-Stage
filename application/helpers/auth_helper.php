@@ -46,10 +46,10 @@ if (!function_exists('isChefFiliere')) {
 	}
 }
 
-if (!function_exists('isTuteurEnt')) {
-	function isTuteurEnt() {
+if (!function_exists('isTuteurExt')) {
+	function isTuteurExt() {
 		$CI =& get_instance();
-		return loggedIn() && $CI->session->userdata('login')['role'] == 'tuteur';
+		return loggedIn() && $CI->session->userdata('login')['role'] == 'tuteur ext';
 	}
 }
 
@@ -79,7 +79,7 @@ if (!function_exists('isTuteurEnStage')) {
 
 
 if (!function_exists('isTuteurExtEnStage')) {
-	function isTuteutExtEnStage() {
+	function isTuteurExtEnStage() {
 		$CI =& get_instance();
 		$CI->load->model('sujet_model');
 		return loggedIn() && $CI->sujet_model->enStage(['s.tuteurExtId' => currentSession()['id']]);
