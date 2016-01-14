@@ -19,7 +19,7 @@
 				</div>
 			</div>
 				<div class="form-group <?= form_error('lettre') ? 'has-error' : '' ?>">
-					<label class="col-sm-4 control-label">Lettre d'appréciation <br><span class="text-muted">(format .docx ou .pdf )</span></label>
+					<label class="col-sm-4 control-label">Convention de stage <br><span class="text-muted">(format .docx ou .pdf )</span></label>
 					<div class="col-md-8">
                         <input type="file" class="form-control" name="lettre">
 						<?= form_error('lettre') ?>
