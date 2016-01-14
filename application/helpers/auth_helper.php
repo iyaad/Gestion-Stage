@@ -60,3 +60,35 @@ if (!function_exists('isTuteur')) {
 	}
 }
 
+if (!function_exists('isEtudiantEnStage')) {
+	function isEtudiantEnStage() {
+		$CI =& get_instance();
+		$CI->load->model('sujet_model');
+		return loggedIn() && $CI->sujet_model->enStage(['s.etudiantId' => currentSession()['id']]);
+	}
+}
+
+
+if (!function_exists('isTuteurEnStage')) {
+	function isTuteurEnStage() {
+		$CI =& get_instance();
+		$CI->load->model('sujet_model');
+		return loggedIn() && $CI->sujet_model->enStage(['s.tuteurId' => currentSession()['id']]);
+	}
+}
+
+
+if (!function_exists('isTuteurExtEnStage')) {
+	function isTuteutExtEnStage() {
+		$CI =& get_instance();
+		$CI->load->model('sujet_model');
+		return loggedIn() && $CI->sujet_model->enStage(['s.tuteurExtId' => currentSession()['id']]);
+	}
+}
+
+
+
+
+
+
+
