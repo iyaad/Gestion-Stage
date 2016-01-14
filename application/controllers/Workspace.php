@@ -20,7 +20,7 @@ class Workspace extends MY_Controller {
 	}
 
 	public function acceuil(){
-		if( !$this->sujet_model->enStage(['s.etudiantId' => currentSession()['id']])){
+		if( !isEnStage()){
 			return redirect('home');
 		}
 		$data['title'] = 'Espace de Travail';

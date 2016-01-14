@@ -7,7 +7,7 @@
 						<li class="active"> 
 							<a href="#home" data-toggle="tab" aria-expanded="false"> 
 								<span class="visible-xs"><i class="fa fa-home"></i></span> 
-								<span class="hidden-xs">Notification</span> 
+								<span class="hidden-xs">Message</span> 
 							</a> 
 						</li> 
 						<li class=""> 

@@ -60,3 +60,13 @@ if (!function_exists('isTuteur')) {
 	}
 }
 
+if (!function_exists('isEnStage')) {
+	function isEnStage() {
+		$CI =& get_instance();
+		$CI->load->model('sujet_model');
+		return loggedIn() && $CI->sujet_model->enStage(['s.etudiantId' => currentSession()['id']]);
+	}
+}
+
+
+
