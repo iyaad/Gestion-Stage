@@ -21,6 +21,8 @@ class Tuteur extends MY_Controller {
 
 	public function importer()
 	{
+		if (!isChefFiliere())
+			show_404();
 		// If the form was submitted
 		if (!empty($_FILES['liste']['name'])) {
 			$config['upload_path'] = FCPATH.'uploads/';

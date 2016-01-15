@@ -4,7 +4,7 @@
 	</div>
 	<div class="panel-body">
 
-<?= form_open('workspace/envoyerMessage/'.$id, 'class="form-horizontal "') ?>
+<?= form_open_multipart('workspace/envoyerMessage/'.$id, 'class="form-horizontal "') ?>
 	<div class="form-group <?= form_error('destinataire') ? 'has-error' : '' ?>">
 		<div class="col-md-9">
 			<select name="destinataire" class="form-control">
@@ -29,6 +29,15 @@
 	<div class="form-group <?= form_error('message') ? 'has-error' : '' ?>">
 		<?= form_error('message') ?>
 		<textarea  placeholder="Message" name="message" class="form-control"></textarea>
+	</div>
+
+	<div class="form-group <?= form_error('fichier') ? 'has-error' : '' ?>">
+		<input type="file" class="filestyle" data-size="sm" name="fichier" id="filestyle-5" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
+		<div class="bootstrap-filestyle input-group">
+			<input type="text" class="form-control input-sm" placeholder="Pièce jointe (max: 5 Mo)" disabled="">
+			<span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-5" class="btn btn-default btn-sm"><span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> <span class="buttonText">Choisir fichier</span></label></span>
+		</div>
+		<?= form_error('fichier') ?>
 	</div>
 	
 	<button class="btn btn-primary m-t-10" type="submit">Envoyer message</button>

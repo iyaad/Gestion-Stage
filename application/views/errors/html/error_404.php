@@ -1,64 +1,72 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>404 Page Not Found</title>
-<style type="text/css">
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
 
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
+        <link rel="shortcut icon" href="assets/images/favicon_1.ico">
 
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
+        <title>Ubold - Responsive Admin Dashboard Template</title>
 
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
+        <link rel="stylesheet" href="<?= asset_url('css/bootstrap.min.css') ?>">
+		<link rel="stylesheet" href="<?= asset_url('css/core.css') ?>">
+		<link rel="stylesheet" href="<?= asset_url('css/components.css') ?>">
+		<link rel="stylesheet" href="<?= asset_url('css/icons.css') ?>">
+		<link rel="stylesheet" href="<?= asset_url('css/pages.css') ?>">
+		<link rel="stylesheet" href="<?= asset_url('css/responsive.css') ?>">
+		<link rel="stylesheet" href="<?= asset_url('plugins/morris/morris.css') ?>">
 
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
 
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
+        <script src="assets/js/modernizr.min.js"></script>
+        
+    </head>
+    <body>
+    	
+    	<div class="account-pages"></div>
+		<div class="clearfix"></div>
+		
+        <div class="wrapper-page">
+            <div class="ex-page-content text-center">
+                <div class="text-error"><span class="text-primary">4</span><i class="ti-face-sad text-pink"></i><span class="text-info">4</span></div>
+                <h2>Who0ps! Page introuvable.</h2><br>
+                <p class="text-muted">Cette page est introuvable ou vous n'avez pas l'accès.</p>
+                <p class="text-muted">Utilisez ce bouton pour naviguer en arrière.</p>
+                <br>
+                <a class="btn btn-default waves-effect waves-light" href="javascript:history.go(-1)">Retourner</a>
+            </div>
+        </div>
 
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
+        
+    	<script>
+            var resizefunc = [];
+        </script>
 
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
-</head>
-<body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
-</body>
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/detect.js"></script>
+        <script src="assets/js/fastclick.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/jquery.blockUI.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/jquery.nicescroll.js"></script>
+        <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+	
+	</body>
 </html>

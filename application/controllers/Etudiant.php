@@ -117,6 +117,5 @@ class Etudiant extends MY_Controller {
 			return false;
 		}
 	}
-
 	
 }
