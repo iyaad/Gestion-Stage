@@ -5,7 +5,8 @@
 				<div class="card-box m-t-20">
 					<h2 class="text-center  m-b-10 ">
 						Informations sur le sujet
-						<?php if (currentSession()['id'] == $sujet->entrepriseId): ?>
+						<?php dd($sujet);
+							if (currentSession()['id'] == $sujet->entrepriseId): ?>
 						<a href="<?= base_url("sujet/edit/$sujet->sujetId") ?>" class="m-l-10"><i class="fa fa-pencil"></i></a>
 						<?php endif ?>
 					</h2>
@@ -32,6 +33,16 @@
 							<strong>Niveau</strong>
 							<br>
 							<p class="text-muted"><?= $sujet->filiere.''.$sujet->niveau ?></p>
+						</div>
+						<div class="about-info-p">
+							<strong>Date de début</strong>
+							<br>
+							<p class="text-muted"><?= nl2br($sujet->dateDebut) ?></p>
+						</div>
+						<div class="about-info-p">
+							<strong>Période</strong>
+							<br>
+							<p class="text-muted"><?= nl2br($sujet->periode).' semaines' ?></p>
 						</div>
 						<div class="about-info-p">
 							<strong>Prérequis</strong>
