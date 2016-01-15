@@ -58,7 +58,7 @@ class Workspace extends MY_Controller {
 	}
 
 	public function tuteur(){
-		if (!isTuteur() || isTuteurExt())
+		if (!isTuteur() && !isTuteurExt())
 			return show_404();
 		$data['title'] = 'Etudiants en stage';
 		if (isTuteur())

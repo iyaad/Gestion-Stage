@@ -52,9 +52,10 @@ class Tuteur extends MY_Controller {
 	}
 
 	public function index(){
-		if(isChefFiliere()){
-			$this->accueilChefFiliere();
-		}		
+		if(!isChefFiliere()){
+			return show_404();
+		}	
+		$this->accueilChefFiliere();
 	}
 
 	public function accueilChefFiliere(){

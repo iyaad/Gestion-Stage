@@ -35,7 +35,7 @@
 	</div>
 	<div class="form-group <?= form_error('periode') ? 'has-error' : '' ?>">
 		<?= form_error('periode') ?>
-		<input class="form-control" type="text" placeholder="Période(en nombre de semaine)" name="periode" value="<?= set_value('Periode') ?>" >
+		<input class="form-control" type="text" placeholder="Période (en nombre de semaine)" name="periode" value="<?= set_value('Periode') ?>" >
 	</div>
 	<div class="form-group <?= form_error('description') ? 'has-error' : '' ?>">
 		<?= form_error('description') ?>

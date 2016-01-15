@@ -19,7 +19,7 @@ class Home extends MY_Controller {
 		} else if (isSuperviseur()) {
 			return redirect('superviseur');
 		} else if (isChefFiliere()) {
-			return redirect('tuteur');
+			return redirect('tuteur/index');
 		} else if (isTuteur() || isTuteurExt()) {
 			return redirect('workspace/tuteur');
 		}
