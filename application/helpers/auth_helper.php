@@ -79,7 +79,7 @@ if (!function_exists('isTuteurEnStage')) {
 
 
 if (!function_exists('isTuteurExtEnStage')) {
-	function isTuteutExtEnStage() {
+	function isTuteurExtEnStage() {
 		$CI =& get_instance();
 		$CI->load->model('sujet_model');
 		return loggedIn() && $CI->sujet_model->enStage(['s.tuteurExtId' => currentSession()['id']]);
