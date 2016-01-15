@@ -23,7 +23,7 @@ class Workspace extends MY_Controller {
 	}
 
 	public function accueil($id) {
-		if( !isEtudiantEnStage() && !isTuteurExtEnStage() && !isTuteurEnStage()){
+		if (!isEtudiantEnStage() && !isTuteurExtEnStage() && !isTuteurEnStage()){
 			return redirect('home');
 		}
 		$data['title'] = 'Espace de Travail';
@@ -42,17 +42,17 @@ class Workspace extends MY_Controller {
 		$this->form_validation->set_message('required', 'Le champs %s est requis');
 
 		if ($this->form_validation->run() == false) {
-			$this->accueil();
+			$this->accueil($id);
 		} else {
 			$message = array(
-				'stageId'=>$this->sujet_model->getStage(['s.etudiantId'=>currentId()])->stageId,
-				'message'=>$this->input->post('message'),
-				'expediteur'=>currentSession()['id'],
-				'destinataire'=>$this->input->post('destinataire'),
+				'stageId'=> $this->input->post('stageId'),
+				'message'=> $this->input->post('message'),
+				'titre' => $this->input->post('titre'),
+				'expediteur'=> currentSession()['id'],
+				'destinataire'=> $this->input->post('destinataire'),
 				'date' => gmdate('Y-m-d H:i:s'),
 			);
 			$mId = $this->message_model->envoyerMessage($message);
-			$this->check_attachment($mId);
 			return redirect('workspace/accueil/'.$id);
 		}		
 	}
@@ -68,14 +68,14 @@ class Workspace extends MY_Controller {
 		$this->render('workspace/tuteur', $data);
 	}
 
-	public function check_attachment($mId)
+	public function check_attachment()
 	{
 		// If no photo was chosen, then don't bother trying to do any validation
 		if (empty($_FILES['fichier']['name']))
 			return true;
-		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => currentSession()['id']]);
+		$id = $this->input->post('stageId');
 		$config['upload_path'] = FCPATH.'uploads/workspace/';
-		$config['file_name'] = $mId;
+		$config['file_name'] = $id.'_'.url_title($this->input->post('titre'), '-', true);
 		$config['max_size'] = 5120;
 		$config['allowed_types'] = 'docx|doc|pdf|ppt|pptx|xls|xlsx|jpg|zip|rar';
 		$this->load->library('upload', $config);
@@ -86,6 +86,19 @@ class Workspace extends MY_Controller {
 			$this->form_validation->set_message('check_attachment', strip_tags($this->upload->display_errors()));
 			return false;
 		}
+	}
+
+	public function download_file($file) {
+		$file = FCPATH.'uploads/workspace/'.$file;
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="'.basename($file).'"');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($file));
+		readfile($file);
+		exit;
 	}
 	
 }

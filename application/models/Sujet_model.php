@@ -97,10 +97,10 @@ class Sujet_model extends CI_Model {
 
 	public function getStage($criteria=[]){
 		$this->db->select('s.* , e.nom as nomEtudiant , e.prenom as prenomEtudiant , e.cne , t.nom as nomTuteur ,
-							t.prenom as prenomTuteur ,t1.nom as nomTuteurExt ,t1.prenom as prenomTuteurExt,su.*');
+							t.prenom as prenomTuteur ,t1.nom as nomTuteurExt ,t1.prenom as prenomTuteurExt,su.titre');
 		$this->db->from('Stage s');
 		$this->db->join('Etudiant e','e.etudiantId = s.etudiantId');
-		$this->db->join('Tuteur t','t.TuteurId = s.TuteurId');
+		$this->db->join('Tuteur t','t.tuteurId = s.tuteurId');
 		$this->db->join('TuteurExt t1','t1.tuteurId = s.tuteurExtId');
 		$this->db->join('Sujet su','su.sujetId = s.sujetId');
 
@@ -112,7 +112,7 @@ class Sujet_model extends CI_Model {
 							t.prenom as prenomTuteur ,t1.nom as nomTuteurExt ,t1.prenom as prenomTuteurExt,su.titre');
 		$this->db->from('Stage s');
 		$this->db->join('Etudiant e','e.etudiantId = s.etudiantId');
-		$this->db->join('Tuteur t','t.TuteurId = s.TuteurId');
+		$this->db->join('Tuteur t','t.tuteurId = s.tuteurId');
 		$this->db->join('TuteurExt t1','t1.tuteurId = s.tuteurExtId');
 		$this->db->join('Sujet su','su.sujetId = s.sujetId');
 
