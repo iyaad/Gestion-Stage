@@ -60,6 +60,11 @@ class User_model extends CI_Model {
 				$name = $this->tuteur_model->getTuteurExt(['tuteurId' => $id]);
 				$name = $name->nom.' '.$name->prenom;
 				break;
+			case 'entreprise':
+				$name = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
+				$name = $name->nom;
+				break;
+
 
 			default:
 				# code...

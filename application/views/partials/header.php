@@ -61,10 +61,21 @@
 							<li><?= anchor('entreprise/'.currentSession()['id'], '<i class="fa-users fa"></i> Profil de l\'Entreprise', navIsActive('entreprise', 'profile')) ?></li>
 							<li><?= anchor('entreprise/tuteur', '<i class="fa-file-text-o fa"></i> Tuteurs', navIsActive('entreprise', 'tuteur')) ?></li>
 							<?php elseif (isChefFiliere()): ?>
+							<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
 							<li><?= anchor('tuteur', '<i class="fa-home fa"></i> Acceuil', navIsActive('tuteur', 'index')) ?></li>
 							<li><?= anchor('tuteur/tuteurs', '<i class="fa-users fa"></i> Tuteurs', navIsActive('tuteur', 'tuteurs')) ?></li>
 							<li><?= anchor('tuteur/finaliser', '<i class="fa-file-text-o fa"></i> Stage à finaliser', navIsActive('tuteur', 'finaliser')) ?></li>
-							
+							<?php elseif (isTuteur()): ?>
+							<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
+								<?php if(isTuteurEnStage()): ?>
+							<li><?= anchor('workspace/tuteur', '<i class="fa fa-home"></i> Workspace', navIsActive('workspace', 'tuteur')) ?></li>
+								<?php endif ?>
+							<?php elseif (isTuteurExt()): ?>
+							<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
+								<?php if(isTuteurEnExtStage()): ?>
+							<li><?= anchor('workspace/tuteur', '<i class="fa fa-home"></i> Workspace', navIsActive('workspace', 'tuteur')) ?></li>
+								<?php endif ?>		
+												
 							<?php endif ?>
 
 
