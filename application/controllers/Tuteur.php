@@ -50,13 +50,9 @@ class Tuteur extends MY_Controller {
 	}
 
 	public function index(){
-		if(currentSession()['role'] == 'chef filiere'){
+		if(isChefFiliere()){
 			$this->accueilChefFiliere();
-		}
-		else if(currentSession()['role'] == 'chef filiere'){
-
-		}
-		
+		}		
 	}
 
 	public function accueilChefFiliere(){
@@ -69,7 +65,7 @@ class Tuteur extends MY_Controller {
 	}
 
 	public function tuteurs(){
-		if(currentSession()['role'] != 'chef filiere'){
+		if(!isChefFiliere()){
 			return redirect('home');
 		}
 

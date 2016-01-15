@@ -30,6 +30,7 @@ class Workspace extends MY_Controller {
 		$this->render('workspace/accueil',$data);
 
 	}
+	
 	public function envoyerMessage()
 	{
 		$this->form_validation->set_rules('tuteur', "Tuteur",'required|trim');
@@ -48,9 +49,6 @@ class Workspace extends MY_Controller {
 			);
 		$this->message_model->envoyerMessage($message);
 		return redirect('workspace/accueil');
-
-
-
 	}
 	
 }

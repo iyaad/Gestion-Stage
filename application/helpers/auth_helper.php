@@ -46,10 +46,10 @@ if (!function_exists('isChefFiliere')) {
 	}
 }
 
-if (!function_exists('isTuteurEnt')) {
-	function isTuteurEnt() {
+if (!function_exists('isTuteurExt')) {
+	function isTuteurExt() {
 		$CI =& get_instance();
-		return loggedIn() && $CI->session->userdata('login')['role'] == 'tuteur';
+		return loggedIn() && $CI->session->userdata('login')['role'] == 'tuteur ext';
 	}
 }
 
