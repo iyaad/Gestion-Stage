@@ -23,6 +23,9 @@ class Home extends MY_Controller {
 		} else if (isTuteur() || isTuteurExt()) {
 			return redirect('workspace/tuteur');
 		}
+		$data['title'] = 'Plateforme de stage - ENSAT';
+		$data['NOSIDEBAR'] = true;
+		$this->render('home',$data);
 	}
 
 }
