@@ -4,6 +4,24 @@ Author: CoderThemes
 Email: coderthemes@gmail.com
 File: Components
 */
+.jumbotron {
+  background: url('../images/jumbotron.jpg') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 0;
+  height: 450px;
+}
+
+.jumbotron p.title {
+  font-weight: bold;
+  font-size: 4em;
+  font-family: "Verdana", "Arial", "Trebuchet Ms", sans-serif;
+  margin-top: 150px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
 /* =============
    Buttons
 ============= */
