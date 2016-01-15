@@ -21,6 +21,22 @@
 			<option value="3">3ème Année</option>
 		</select>
 	</div>
+	<div class="form-group">
+		<select name="tuteur" class="form-control">
+			<option value="">Choisissez un tuteur</option>
+			<?php foreach ($tuteurs as $t): ?>
+			<option value="<?= $t->tuteurId ?>"><?= $t->nom.' '.$t->prenom ?></option>
+			<?php endforeach ?>
+		</select>
+	</div>
+	<div class="form-group <?= form_error('date') ? 'has-error' : '' ?>">
+		<?= form_error('date') ?>
+		<input class="form-control" type="text" placeholder="Date de début (jj/mm/yyyy)" name="date" value="<?= set_value('ate de debut') ?>" >
+	</div>
+	<div class="form-group <?= form_error('periode') ? 'has-error' : '' ?>">
+		<?= form_error('periode') ?>
+		<input class="form-control" type="text" placeholder="Période(en nombre de semaine)" name="periode" value="<?= set_value('Periode') ?>" >
+	</div>
 	<div class="form-group <?= form_error('description') ? 'has-error' : '' ?>">
 		<?= form_error('description') ?>
 		<textarea  placeholder="Description" name="description" class="form-control"></textarea>

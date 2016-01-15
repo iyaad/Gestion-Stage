@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon ;
 
 class Entreprise extends MY_Controller {
 
@@ -60,6 +61,7 @@ class Entreprise extends MY_Controller {
 		}
 		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['sujets'] = $this->sujet_model->getSujets(['entrepriseId' => currentSession()['id']]);
+		$data['tuteurs'] = $this->tuteur_model->getTuteursExt(['entrepriseId' => currentId()]);
 		$data['title'] = 'Accueil Entreprise';
 		$this->render('entreprise/accueil', $data);
 	}
@@ -72,6 +74,9 @@ class Entreprise extends MY_Controller {
 		$this->form_validation->set_rules('description', 'Description', 'required|trim|max_length[255]');
 		$this->form_validation->set_rules('prerequis', 'Description', 'required|trim|max_length[500]');
 		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
+		$this->form_validation->set_rules('tuteur', 'Tuteur', 'required|trim');
+		$this->form_validation->set_rules('date', 'Date', 'required|trim');
+		$this->form_validation->set_rules('periode', 'Periode', 'required|trim');
 		$this->form_validation->set_rules('niveau', 'niveau', 'required|trim');
 		
 		if (!$this->form_validation->run()) {
@@ -82,6 +87,9 @@ class Entreprise extends MY_Controller {
 				'description' =>$this->input->post('description'),
 				'prerequis' =>$this->input->post('prerequis'),
 				'filiere' =>$this->input->post('filiere'),
+				'tuteurId' => $this->input->post('tuteur'),
+				'dateDebut' => Carbon::createFromFormat('d/m/Y',$this->input->post('date'))->toDateString(),
+				'periode' => $this->input->post('periode'),
 				'niveau' => $this->input->post('niveau'),
 				'entrepriseId' => currentsession()['id']
 			);

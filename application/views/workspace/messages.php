@@ -6,7 +6,7 @@
 			<div class="portlet-heading bg-success">
 				<h3 class="portlet-title">
 
-					De : <?= $this->user_model->resolveName($m->expediteur) ?>
+					<?= $V ?> : <?= $this->user_model->resolveName($m->expediteur) ?>
 				</h3>
 				<div class="portlet-widgets">
 					<a data-toggle="collapse" data-parent="#accordion1" href="#bg-success" class="" aria-expanded="true"><i class="ion-minus-round"></i></a>

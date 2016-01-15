@@ -18,10 +18,10 @@
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="received">
-					<?php $this->load->view('workspace/messages', ['messages' => $messages_recus]); ?>
+					<?php $this->load->view('workspace/messages', ['messages' => $messages_recus , 'V' => 'DE']); ?>
 				</div>
 				<div class="tab-pane" id="sent">
-					<?php $this->load->view('workspace/messages', ['messages' => $messages_envoyes]); ?>
+					<?php $this->load->view('workspace/messages', ['messages' => $messages_envoyes , 'V' => 'A']); ?>
 				</div>
 			</div>
 					
