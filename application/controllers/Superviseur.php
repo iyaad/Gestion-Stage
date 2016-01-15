@@ -18,7 +18,6 @@ class Superviseur extends MY_Controller{
 	}
 
 	public function index(){
-		$data['NOSIDEBAR'] = true;
 		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
 		$data['title'] = 'Accueil Superviseur';

@@ -46,7 +46,7 @@ class Tuteur extends MY_Controller {
 			}
 		}
 		$data['title'] = 'Importer depuis CSV';
-		$this->render('tuteur/importer', $data);
+		$this->accueilChefFiliere();
 	}
 
 	public function index(){

@@ -41,10 +41,13 @@
 						<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
 						<a href="<?= base_url('sujet/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">Postuler</a>
 						<div class="clearfix"></div>
-						<?php endif ?>
-						<?php if(isEtudiant() && $this->sujet_model->estAccepte($sujet->sujetId, currentSession()['id'])): ?>
-						<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentSession()['id']).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">confirmer</a>
+						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'W')): ?>
+						<div class="alert alert-warning"><strong>État:</strong> En attente de la confirmation de l'entreprise</div>
+						<?php elseif(isEtudiant() && $this->sujet_model->estAccepte($sujet->sujetId, currentId())): ?>
+						<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentId()).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">Confirmer</a>
 						<div class="clearfix"></div>
+						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'B')): ?>
+						<div class="alert alert-warning"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
 						<?php endif ?>
 					</div>
 				</div>
@@ -58,14 +61,11 @@
 									<span class="footable-sort-indicator"></span>
 								</th>
 								<th data-toggle="true" class="footable-visible footable-first-column footable-sortable">
-									etat
+									État
 									<span class="footable-sort-indicator"></span>
 								</th>
 							</tr>
 							<?php foreach ($postulats as $e): ?>
-							
-						
-
 							<tr>
 								<td><a href="base_url('$e->cne)"><?= "$e->nom $e->prenom" ?></a></td>
 								<td>
@@ -74,7 +74,6 @@
 									</a>
 									<a href="<?= base_url('sujet/refusePostulat/'.$e->sujetid.'/'.$e->etudiantId) ?>" class="btn btn-icon btn-danger waves-effect waves-light">
 										<i class="fa fa-remove"></i>
-
 								</td>								
 							</tr>
 							<?php  endforeach; ?>

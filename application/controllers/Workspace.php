@@ -21,19 +21,19 @@ class Workspace extends MY_Controller {
 
 	}
 
-	public function accueil($id){
+	public function accueil($id) {
 		if( !isEtudiantEnStage() && !isTuteurExtEnStage() && !isTuteurEnStage()){
 			return redirect('home');
 		}
 		$data['title'] = 'Espace de Travail';
-		$data['messages'] = $this->message_model->getMessages(['destinataire' =>currentSession()['id']]);
+		$data['messages_recus'] = $this->message_model->getMessages(['destinataire' =>currentSession()['id']]);
+		$data['messages_envoyes'] = $this->message_model->getMessages(['expediteur' =>currentSession()['id']]);
 		$data['destinataire'] = $this->sujet_model->getStage(['s.etudiantId'=>$id]);
-		$this->render('workspace/accueil',$data);
-		
-
+		$data['id'] = $id;
+		$this->render('workspace/accueil', $data);
 	}
 
-	public function envoyerMessage()
+	public function envoyerMessage($id)
 	{
 		$this->form_validation->set_rules('destinataire', "Destinataire",'required|trim');
 		$this->form_validation->set_rules('message',"Message",'required');
@@ -50,19 +50,18 @@ class Workspace extends MY_Controller {
 				'date' =>gmdate('Y-m-d H:i:s'),
 				);
 			$this->message_model->envoyerMessage($message);
-			return redirect('workspace/accueil');
+			return redirect('workspace/accueil/'.$id);
 
 		}		
 	}
 
 	public function tuteur(){
-		$data['title'] = 'Etudiant en stage ';
+		$data['title'] = 'Etudiants en stage';
 		if(isTuteur())
 			$data['etudiants'] = $this->sujet_model->getStages(['s.tuteurId'=>currentSession()['id']]);
-		if(isTuteurExt()){
+		else if(isTuteurExt())
 			$data['etudiants'] = $this->sujet_model->getStages(['s.tuteurExtId'=>currentSession()['id']]);
-		}
-		$this->render('workspace/tuteur',$data);
+		$this->render('workspace/tuteur', $data);
 
 	}
 	

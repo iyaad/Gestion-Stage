@@ -69,11 +69,13 @@
                     </div>
 				</div>
 				<div class="form-group <?= form_error('photo') ? 'has-error' : '' ?>">
-					<label class="col-sm-4 control-label">Votre photo <br><span class="text-muted">(format .jpg max: 1 Mo)</span></label>
-					<div class="col-md-8">
-                        <input type="file" class="form-control" name="photo">
-						<?= form_error('photo') ?>
+					<label class="col-sm-4">Votre photo <br><span class="text-muted">(format .jpg max: 1 Mo)</span></label>
+					<input type="file" class="filestyle" data-size="sm" name="photo" id="filestyle-5" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
+					<div class="bootstrap-filestyle input-group">
+						<input type="text" class="form-control input-sm" placeholder="" disabled="">
+                    	<span class="group-span-filestyle input-group-btn" tabindex="0"><label for="filestyle-5" class="btn btn-default btn-sm"><span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> <span class="buttonText">Choisir fichier</span></label></span>
                     </div>
+					<?= form_error('photo') ?>
 				</div>
 				<div class="form-group <?= form_error('password') ? 'has-error' : '' ?>">
 					<label class="col-sm-4 control-label">Mot de passe actuel</label>
@@ -84,7 +86,7 @@
 				</div>
 
 				<div class="form-group text-center m-t-40">
-					<button type="submit" class="btn btn-purple waves-effect waves-light">Mettre à jour</button>
+					<button type="submit" class="btn btn-primary waves-effect waves-light">Mettre à jour</button>
 				</div>
 			</form>
 		</div>

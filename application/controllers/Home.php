@@ -14,12 +14,14 @@ class Home extends MY_Controller {
 		if (isEtudiant()) {
 			$cne = $this->etudiant_model->getEtudiant(['etudiantId' => currentSession()['id']])->cne;
 			return redirect($cne);
-		}
-		if (isEntreprise()) {
+		} else if (isEntreprise()) {
 			return redirect('entreprise');
-		}
-		if (isSuperviseur()) {
+		} else if (isSuperviseur()) {
 			return redirect('superviseur');
+		} else if (isChefFiliere()) {
+			return redirect('tuteur');
+		} else if (isTuteur() || isTuteurExt()) {
+			return redirect('workspace/tuteur');
 		}
 	}
 

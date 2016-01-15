@@ -7,6 +7,13 @@ if (!function_exists('currentSession')) {
 	}
 }
 
+if (!function_exists('currentId')) {
+	function currentId() {
+		if (loggedIn()) return currentSession()['id'];
+		else return null;
+	}
+}
+
 if (!function_exists('loggedIn')) {
 	function loggedIn() {
 		/** 

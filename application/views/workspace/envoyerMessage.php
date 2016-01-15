@@ -4,7 +4,7 @@
 	</div>
 	<div class="panel-body">
 
-<?= form_open('Workspace/envoyerMessage', 'class="form-horizontal "') ?>
+<?= form_open('workspace/envoyerMessage/'.$id, 'class="form-horizontal "') ?>
 	<div class="form-group <?= form_error('destinataire') ? 'has-error' : '' ?>">
 		<div class="col-md-9">
 			<select name="destinataire" class="form-control">

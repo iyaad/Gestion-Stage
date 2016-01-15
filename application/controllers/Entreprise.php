@@ -48,7 +48,8 @@ class Entreprise extends MY_Controller {
 				'description'=>$this->input->post('description'),
 			);
 			$this->entreprise_model->createEntreprise($data);
-			echo 'Validé';
+			// Alert success
+			return redirect('home');
 		}
 	}
 

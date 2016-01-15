@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="card-box col-sm-12">	
 					<div class="panel-heading"> 
-						<h3 class="text-center"> Entreprises non vérifiées </h3>
+						<h3 class="text-center">Stagières sous votre responsabilité</h3>
 					</div>
 					<div class="panel-body">
 						<table class="table m-0" >
@@ -27,7 +27,7 @@
 									<a href="<?= base_url('workspace/accueil/'.$e->etudiantId) ?>"> 
 										<button class="btn btn-default waves-effect waves-light" type="button">
 											Espace de travail
-											<span class="btn-label btn-label-right"></span>
+											<span class="btn-label btn-label-right"><i class="fa fa-file-text-o"></i></span>
 										</button>
 									</a>
 								</td>

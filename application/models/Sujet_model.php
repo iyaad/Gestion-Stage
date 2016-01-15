@@ -37,11 +37,13 @@ class Sujet_model extends CI_Model {
 		return $this->db->get()->row();
 	}
 
-	public function aPostule($sujet,$etudiant){
+	public function aPostule($sujet,$etudiant,$etat=null){
 		$data = array(
 			'sujetId' => $sujet,
-			'etudiantId' => $etudiant
+			'etudiantId' => $etudiant,
 		);
+		if ($etat != null) 
+			$data['etat'] = $etat;
 		$this->db->where($data);
 		$res = $this->db->get('Postulat')->result();
 		return count($res) > 0;
@@ -96,11 +98,11 @@ class Sujet_model extends CI_Model {
 	public function getStage($criteria=[]){
 		$this->db->select('s.* , e.nom as nomEtudiant , e.prenom as prenomEtudiant , e.cne , t.nom as nomTuteur ,
 							t.prenom as prenomTuteur ,t1.nom as nomTuteurExt ,t1.prenom as prenomTuteurExt,su.*');
-		$this->db->from('stage s');
+		$this->db->from('Stage s');
 		$this->db->join('Etudiant e','e.etudiantId = s.etudiantId');
 		$this->db->join('Tuteur t','t.TuteurId = s.TuteurId');
 		$this->db->join('TuteurExt t1','t1.tuteurId = s.tuteurExtId');
-		$this->db->join('sujet su','su.sujetId = s.sujetId');
+		$this->db->join('Sujet su','su.sujetId = s.sujetId');
 
 		$this->db->where($criteria);
 		return $this->db->get()->row();
