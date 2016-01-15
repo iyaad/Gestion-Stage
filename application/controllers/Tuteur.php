@@ -187,17 +187,18 @@ class Tuteur extends MY_Controller {
 	}
 
 	public function profile($id){
-
-		$data['title'] = ' Profile ';
-		if(isTuteur() || isChefFiliere()){
+		$name = $this->user_model->resolveName($id);
+		$data['title'] = 'Profil de '.$name;
+		$role = $this->user_model->getUser(['userId' => $id])->role;
+		if($role == 'tuteur' || $role == 'chef filiere'){
 			$data['tuteur'] = $this->tuteur_model->getTuteur(['tuteurId' => $id]);
 			$this->render('tuteur/profile', $data);
-		}
-
-		if(isTuteurExt()){
+		} else if ($role == 'tuteur ext') {
 			$data['tuteur'] = $this->tuteur_model->getTuteurExt(['tuteurId' => $id]);
 			$data['user'] = $this->user_model->getUser(['userId'=>$id ]);
  			$this->render('tuteur/profileExt', $data);
+		} else {
+			return redirect('home');
 		}
 	}
 		

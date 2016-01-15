@@ -73,7 +73,7 @@
 								<?php endif ?>
 							<?php elseif (isTuteurExt()): ?>
 								<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
-								<?php if(isTuteurEnExtStage()): ?>
+								<?php if(isTuteurExtEnStage()): ?>
 								<li><?= anchor('workspace/tuteur', '<i class="fa fa-home"></i> Workspace', navIsActive('workspace', 'tuteur')) ?></li>
 								<?php endif ?>		
 							<?php endif ?>
