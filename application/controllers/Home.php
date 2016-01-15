@@ -20,8 +20,10 @@ class Home extends MY_Controller {
 			return redirect('superviseur');
 		} else if (isChefFiliere()) {
 			return redirect('tuteur/index');
-		} else if (isTuteur() || isTuteurExt()) {
-			return redirect('workspace/tuteur');
+		} else if (isTuteur()) {
+			return redirect('tuteur/profile/'.currentId());
+		} else if (isTuteurExt()){
+			return redirect('tuteur/profile/'.currentId());
 		}
 		$data['title'] = 'Plateforme de stage - ENSAT';
 		$data['NOSIDEBAR'] = true;

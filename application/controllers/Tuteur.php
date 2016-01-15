@@ -186,4 +186,20 @@ class Tuteur extends MY_Controller {
 		}
 	}
 
+	public function profile($id){
+
+		$data['title'] = ' Profile ';
+		if(isTuteur() || isChefFiliere()){
+			$data['tuteur'] = $this->tuteur_model->getTuteur(['tuteurId' => $id]);
+			$this->render('tuteur/profile', $data);
+		}
+
+		if(isTuteurExt()){
+			$data['tuteur'] = $this->tuteur_model->getTuteurExt(['tuteurId' => $id]);
+			$data['user'] = $this->user_model->getUser(['userId'=>$id ]);
+ 			$this->render('tuteur/profileExt', $data);
+		}
+	}
+		
+
 }
