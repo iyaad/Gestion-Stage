@@ -2,7 +2,7 @@
 	<div class="content">
 		<div class="wraper container-fluid">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4 <?php if(!isEtudiant()) echo'col-sm-offset-3'; ?>">
 					<div class="card-box m-t-20">
 						<div class="picture text-center container-fluid m-b-20">
 							<div class="bg-picture-overlay">
@@ -49,6 +49,7 @@
 						</div>
 					</div>
 				</div>
+				<?php if(isEtudiant()) :?>
 				<div class="col-md-8">
 					<div class="card-box m-t-20">
 						<?php if (file_exists("./uploads/cv/$etudiant->cne.pdf")): ?>
@@ -76,6 +77,7 @@
 						<?php endif ?>
 					</div>
 				</div>
+				<?php endif ?>
 			</div>	
 		</div>
 	</div>

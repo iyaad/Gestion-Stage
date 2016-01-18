@@ -2,7 +2,7 @@
 	<div class="content">
 		<div class="wraper container-fluid">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4 col-sm-offset-3">
 					<div class="card-box m-t-20">
 						<div class="picture text-center container-fluid m-b-20">
 							<div class="bg-picture-overlay">
