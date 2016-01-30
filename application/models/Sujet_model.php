@@ -60,6 +60,18 @@ class Sujet_model extends CI_Model {
 		return count($res) > 0;
 	}
 
+	public function EstB($e,$s){
+		$data = array(
+			'etudiantId' => $e,
+			'sujetId !=' => $s,
+			'etat' => 'B'
+		);
+		$this->db->where($data);
+		$res = $this->db->get('Postulat')->result();
+		return count($res) > 0;
+
+	}
+
 	public function estConfirme($s,$e){
 		$data = array(
 			'sujetId' => $s,

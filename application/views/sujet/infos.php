@@ -48,7 +48,9 @@
 							<br>
 							<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
 						</div>
-						<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
+						<?php if (isEtudiant() && $this->sujet_model->EstB(currentId(),$sujet->sujetId)): ?>
+						<div class="alert alert-warning"><strong>État:</strong> Vous etes En attente de la finalisation d'un autre ,Alors vous pouriez plus postuler pour d'autres </div>
+						<?php elseif(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
 						<a href="<?= base_url('sujet/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">Postuler</a>
 						<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'W')): ?>
