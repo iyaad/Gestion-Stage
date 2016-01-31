@@ -20,6 +20,7 @@ class Superviseur extends MY_Controller{
 	public function index(){
 		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
+		$data['tuteurs'] = $this->tuteur_model->getTuteurs([]);
 		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);
 	}
@@ -147,6 +148,27 @@ class Superviseur extends MY_Controller{
 			$this->tuteur_model->createTuteur($userData,$data);
 				$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
 			redirect('Superviseur/tuteurs');
+		}
+	}
+
+	public function ajouter_jury(){
+
+		$this->form_validation->set_rules('tuteur1', "1er Jury",'required|trim');
+		$this->form_validation->set_rules('tuteur2', "2eme Jury",'required|trim');
+		$this->form_validation->set_rules('tuteur3', "3eme Jury",'required|trim');
+
+		if (!$this->form_validation->run()) {
+			$this->index();
+		}
+		else{
+			$data = array(
+				'tuteur1Id' => $this->input->post('tuteur1'),
+				'tuteur2Id' => $this->input->post('tuteur2'),
+				'tuteur3Id' => $this->input->post('tuteur3'),
+			);
+
+			$this->tuteur_model->createJury($data);
+			return redirect('superviseur');
 		}
 	}
 }
