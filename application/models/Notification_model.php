@@ -15,21 +15,22 @@ class Notification_model extends CI_Model {
 
 	public function dailyNotifs()
 	{
+		$notifs = [];
 		if (isEtudiant()) {
 			$id = currentId();
 			if ($this->etudiant_model->preSoutenance($id)) {
-				return [$this->notification(
+				 $notifs[] = $this->notification(
 					'Date de soutenance!',
 					'Cliquez pour choisir la date',
 					'exclamation-triangle',
 					base_url('etudiant/finaliserSoutenance')
-				)];
+				);
 			} else if (isEtudiantEnStage()) {
+				$messages = $this->message_model->getMessages(['destinataire' => currentId(), 'date' => 'CURDATE()']);
 
 			}
 			return [];
-		} else {
-			return [];
 		}
+		return $notifs;
 	}
 }
