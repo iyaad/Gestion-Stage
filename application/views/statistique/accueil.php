@@ -20,6 +20,11 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
+						<div class="text-right">
+							<h3 class="text-dark"><b class="counter"><?= $this->statistique_model->Etudiant()?></b>%</h3>
+							<p class="text-muted">Etudiant inscrits</p>
+						</div>
+						<div class="clearfix"></div>
 					</div>
 				<?php endif ?>
 			</div>

@@ -16,26 +16,19 @@ class Statistique_model extends CI_Model {
 
 	}
 
-	public function EtudiantEnStage(){
-		$etudiants = count($this->db->get('Etudiant')->result());
-		$query = $this->db->query("SELECT DISTINCT etudiantId FROM Stage;");
-		$EtudiantEnStage = $query->result();
-		return count($EtudiantEnStage)/($etudiants);
+
+
+	public function Etudiant(){
+		return count($this->db->get('Etudiant')->result());
 	}
 
-	public function EtudiantEnRechercheStage(){
-		$etudiants = count($this->db->get('Etudiant')->result());
-		$query = $this->db->query("SELECT DISTINCT etudiantId FROM Postulat WHERE etat = 'W';");
-		$EtudiantEnRechercheStage = $query->result();
-		return count($EtudiantEnRechercheStage)/($etudiants);
+	public function Tuteur(){
+		return count($this->db->get('Tuteur')->result());
 	}
 
-	public function EtudiantEnSoutenance(){
-		$etudiants = count($this->db->get('Etudiant')->result());
-		$query = $this->db->query("SELECT stageId FROM Soutenance;");
-		$EtudiantEnSoutenance = $query->result();
-		return count($EtudiantEnSoutenance)/($etudiants);
-	}
+
+	
+
 
 	public function nbEntreprises()
 	{
@@ -43,5 +36,6 @@ class Statistique_model extends CI_Model {
 		$this->db->where('role', 'entreprise');
 		return $this->db->count_all_results();
 	}
+
 
 }
