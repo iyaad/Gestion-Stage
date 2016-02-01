@@ -41,5 +41,6 @@
 			</div>
 			
 			<button class="btn btn-primary pull-right m-t-10" type="submit">Ajouter</button>
+			<div class="clearfix"></div>
 		</form>
 	

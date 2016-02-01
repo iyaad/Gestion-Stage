@@ -34,15 +34,13 @@
 							<h3 class="text-center">Tuteurs</h3>
 							<table class="table " >
 								<tr>
-									<th>Nom</th>
-									<th>Prénom</th>
+									<th>Nom complet</th>
 									<th>Département</th>
 									<th>Email</th>
 								</tr>
 								<?php  foreach ($tuteurs as $tuteur): ?>
 								<tr>
-									<td><?= $tuteur->nom ?></td>
-									<td><?= $tuteur->prenom ?></td>
+									<td><?= anchor("tuteur/profile/".$tuteur->tuteurId,$tuteur->nom.' '.$tuteur->prenom) ?></td>
 									<td><?= $tuteur->departement ?></td>
 									<td><?= $this->user_model->getUser(['userId' => $tuteur->tuteurId])->email ?></td>
 									
@@ -54,16 +52,14 @@
 							<h3 class="text-center">Chefs de filière</h3>
 							<table class="table " >
 								<tr>
-									<th>Nom</th>
-									<th>Prénom</th>
+									<th>Nom complet</th>
 									<th>Filière</th>
 									<th>Département</th>
 									<th>Email</th>
 								</tr>
 								<?php  foreach ($chefs as $chef): ?>
 								<tr>
-									<td><?= $chef->nom ?></td>
-									<td><?= $chef->prenom ?></td>
+									<td><?= anchor("tuteur/profile/".$chef->tuteurId,$chef->nom.' '.$chef->prenom) ?></td>									
 									<td><?= $this->filiere_model->getFiliere(['filiereId' => $chef->chefId])->code ?></td>
 									<td><?= $chef->departement ?></td>
 									<td><?= $this->user_model->getUser(['userId' => $chef->tuteurId])->email ?></td>

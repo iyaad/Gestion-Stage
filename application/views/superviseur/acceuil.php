@@ -37,9 +37,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<?php $this->load->view('superviseur/ajouter_jury') ?>
-			</div>
 		</div>
 	</div>
 </div>
