@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="<?= asset_url('plugins/morris/morris.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/bootstrap.min.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/core.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/components.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/icons.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/pages.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('css/responsive.css') ?>">
-	<link rel="stylesheet" href="<?= asset_url('plugins/morris/morris.css') ?>">
-
+	<script type="text/javascript" src="<?= asset_url('js/modernizr.min.js') ?>"></script>
 	<title><?= $title ?> | ENSAT Stages</title>
 </head>
 <body class="fixed-left p-30 p-l-0 p-r-0">
@@ -30,6 +30,16 @@
 				<div class="container">
 					<ul class="nav navbar-nav navbar-right pull-right">
 						<?php if (loggedIn()): ?>
+							<?php if (isEtudiant()): ?>
+							<li class="dropdown hidden-xs">
+								<a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">
+									<i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3 </span><!-- count($this->notification_model->dailyNotifs()) -->
+								</a>
+								<ul class="dropdown-menu dropdown-menu-lg">
+									<li class="notifi-title">Notifications</li>
+								</ul>
+							</li>
+							<?php endif ?>
 						<li><?= anchor('logout', '<i class="fa fa-power-off m-r-10"></i> Déconnexion') ?></li>
 						<?php else: ?>
 						<li><?= anchor('login', 'Se connecter') ?></li>
