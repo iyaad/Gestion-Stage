@@ -30,7 +30,7 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<input type="text" class="form-control" name="nbPlaces" placeholder="Nombre de places disponibles">
+		<input type="number" min="1" class="form-control" name="nbPlaces" placeholder="Nombre de places disponibles">
 	</div>
 	<div class="form-group <?= form_error('date') ? 'has-error' : '' ?>">
 		<?= form_error('date') ?>

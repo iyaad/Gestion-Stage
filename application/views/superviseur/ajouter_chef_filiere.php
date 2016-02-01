@@ -1,4 +1,4 @@
-<div class="card-box col-sm-5">
+<div class="card-box col-sm-6">
 	<div class="panel-heading"> 
 		<h3 class="text-center">Ajouter un Chef de Filiere</h3>
 	</div>

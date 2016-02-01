@@ -20,13 +20,11 @@ class Statistique extends MY_Controller {
 
 	}
 
-	public function index(){
+	public function index() {
 		$data['title'] = 'Statistiques' ;
 		$data['etudiantsEnStage'] = $this->statistique_model->EtudiantEnStage();
 		$data['etudiantsEnRechercheStage'] = $this->statistique_model->EtudiantEnRechercheStage();
 		$data['etudiantsEnSoutenance'] = $this->statistique_model->EtudiantEnSoutenance();
-
-
 		return $this->render('statistique/accueil',$data);
 	}
 }

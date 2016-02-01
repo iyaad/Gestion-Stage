@@ -32,7 +32,7 @@ class Statistique_model extends CI_Model {
 
 	public function EtudiantEnSoutenance(){
 		$etudiants = count($this->db->get('Etudiant')->result());
-		$query = $this->db->query("SELECT stageId FROM soutenance;");
+		$query = $this->db->query("SELECT stageId FROM Soutenance;");
 		$EtudiantEnSoutenance = $query->result();
 		return count($EtudiantEnSoutenance)/($etudiants);
 	}

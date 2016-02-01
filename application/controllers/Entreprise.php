@@ -76,6 +76,7 @@ class Entreprise extends MY_Controller {
 		$this->form_validation->set_rules('filiere', 'Filiere', 'required|trim');
 		$this->form_validation->set_rules('tuteur', 'Tuteur', 'required|trim');
 		$this->form_validation->set_rules('date', 'Date', 'required|trim');
+		$this->form_validation->set_rules('nbPlaces', 'Places disponibles', 'required|trim');
 		$this->form_validation->set_rules('periode', 'Periode', 'required|trim');
 		$this->form_validation->set_rules('niveau', 'niveau', 'required|trim');
 		
@@ -91,7 +92,8 @@ class Entreprise extends MY_Controller {
 				'dateDebut' => Carbon::createFromFormat('d/m/Y',$this->input->post('date'))->toDateString(),
 				'periode' => $this->input->post('periode'),
 				'niveau' => $this->input->post('niveau'),
-				'entrepriseId' => currentsession()['id']
+				'entrepriseId' => currentsession()['id'],
+				'nbPlaces' => $this->input->post('nbPlaces'),
 			);
 			$this->sujet_model->createSujet($data);
 			redirect('entreprise');
