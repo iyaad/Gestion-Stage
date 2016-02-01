@@ -25,18 +25,19 @@ class Notification_model extends CI_Model {
 					'exclamation-triangle',
 					'#'
 				);
-			} else if (isEtudiantEnStage()) {
+			} else if (isEtudiantEnStage() || tuteurEnStage() || tuteurExtEnStage()) {
 				$messages = $this->message_model->getMessages(['destinataire' => currentId()]);
 				$todays = [];
 				foreach($messages as $m) {
+					if (Carbon::parse($m->date)->isToday()) $todays[] = $m;
 				}
-				if (count($messages) > 0) {
-					$suffix = count($messages) == 1 ? 'nouveau message' : 'nouveaux messages';
+				if (count($todays) > 0) {
+					$suffix = count($todays) == 1 ? 'nouveau message' : 'nouveaux messages';
 					$notifs[] = $this->notification(
 						'Nouveau Message!',
-						'Vous avez ' .count($messages).' '. $suffix,
+						'Vous avez ' .count($todays).' '. $suffix,
 						'envelope',
-						base_url('worskpace/accueil/'.$id)
+						base_url('workspace/accueil/'.$id)
 					);
 				}
 			}

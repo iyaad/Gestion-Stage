@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="<?= asset_url('js/modernizr.min.js') ?>"></script>
+        <script src="/gestion-stage/public/js/modernizr.min.js"></script>
         
     </head>
     <body>

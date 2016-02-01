@@ -127,11 +127,12 @@
 		        <h4 class="modal-title">Choisissez une date pour votre soutenance</h4>
 		      </div>
 		      <div class="modal-body">
-		        <?= form_open('Etudiant/finaliserSoutenance', 'class="form-horizontal" id="dateSoutenance"') ?>
-		        <div class="form-group <?= form_error('date') ? 'has-error' : '' ?>">
-					<?= form_error('date') ?>
-					<input class="form-control" type="text" placeholder="Date de Soutenance (jj/mm/yyyy)" name="date" value="<?= set_value('ate de debut') ?>" >
-				</div>
+		        <?= form_open('etudiant/finaliserSoutenance', 'class="form-horizontal" id="dateSoutenance"') ?>
+			        <div class="form-group <?= form_error('date') ? 'has-error' : '' ?>">
+						<?= form_error('date') ?>
+						<input class="form-control" type="text" placeholder="Date de Soutenance (jj/mm/yyyy)" name="date" value="<?= set_value('ate de debut') ?>" >
+					</div>
+				</form>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
