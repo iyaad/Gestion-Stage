@@ -18,12 +18,27 @@ class Statistique_model extends CI_Model {
 
 
 
-	public function Etudiant(){
+	public function nbEtudiant(){
 		return count($this->db->get('Etudiant')->result());
 	}
 
-	public function Tuteur(){
+	public function nbTuteur(){
 		return count($this->db->get('Tuteur')->result());
+	}
+
+	public function nbTuteurExt(){
+		return count($this->db->get('TuteurExt')->result());
+	}
+	public function chefFiliere(){
+		$id=currentId();
+		$filiereId = $this->tuteur_model->getTuteur(['tuteurId' => $id])->chefId;
+		$filiere = $this->filiere_model->getFiliere(['filiereId' => $filiereId ])->code ;
+
+		$etudiant = $this->etudiant_model->getEtudiants(['filiere' =>$filiere]);
+
+		$etudiantEnRecherche = $this->sujet_model->postulats(['p.etat' => 'W' , 'e.filiere'=>$filiere]);
+		$etudiantEnRecherche =count($etudiant);
+		return [$etudiantEnRecherche];
 	}
 
 
