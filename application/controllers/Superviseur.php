@@ -58,7 +58,7 @@ class Superviseur extends MY_Controller{
 			$this->tuteur_model->createChefFiliere($userData, $data);
 			if ($this->email_model->emailChefFiliere($userData['email'], $username, $rand)) {
 				// Alert success
-				return redirect('superviseur');
+				return redirect('superviseur/tuteurs');
 			} else {
 				$this->index();
 			}
@@ -88,7 +88,8 @@ class Superviseur extends MY_Controller{
 			echo 'error';
 		}
 	}
-		public function delete($id)
+	
+	public function delete($id)
 	{
 		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
 		$this->db->delete('entreprise',['entrepriseId' => $id]);
@@ -96,10 +97,10 @@ class Superviseur extends MY_Controller{
 	}
 
 	public function tuteurs(){
-		if(!isSuperviseur()){
+		if(!isSuperviseur()) {
 			return redirect('home');
 		}
-
+		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['tuteurs'] = $this->tuteur_model->getTuteurs(['chefId' =>null]);
 		$data['chefs'] = $this->tuteur_model->getTuteurs(['chefId !=' =>null]);
 		$data['title'] = 'Tuteurs';

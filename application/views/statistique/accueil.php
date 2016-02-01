@@ -8,10 +8,17 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="widget-bg-color-icon card-box">
-						<div class="bg-icon bg-icon-purple pull-left">
-							<i class="md md-equalizer text-purple"></i>
+				<?php if (isSuperviseur()): ?>
+					<div class="col-sm-3">
+						<div class="widget-bg-color-icon card-box">
+							<div class="bg-icon bg-icon-purple pull-left">
+								<i class="md md-equalizer text-purple"></i>
+							</div>
+							<div class="text-right">
+								<h3 class="text-dark"><b class="counter"><?= $ent_insc ?></b></h3>
+								<p class="text-muted">Entreprises Inscrites</p>
+							</div>
+							<div class="clearfix"></div>
 						</div>
 						<div class="text-right">
 							<h3 class="text-dark"><b class="counter"><?= $this->statistique_model->Etudiant()?></b>%</h3>
@@ -19,7 +26,7 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-				</div>
+				<?php endif ?>
 			</div>
 			<div class="row">
 				

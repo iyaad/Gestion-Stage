@@ -26,8 +26,17 @@ class Statistique_model extends CI_Model {
 		return count($this->db->get('Tuteur')->result());
 	}
 
+
 	public function Entreprise(){
 		return count($this->db->get('Entreprise')->result());
+	}
+
+
+	public function nbEntreprises()
+	{
+		$this->db->from('User');
+		$this->db->where('role', 'entreprise');
+		return $this->db->count_all_results();
 	}
 
 

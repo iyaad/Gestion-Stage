@@ -69,13 +69,12 @@ class Tuteur extends MY_Controller {
 
 	
 
-	public function finaliser(){
-
+	public function finaliser() {
 		$data['title'] = 'Finaliser les demandes de stages';
-		$id = currentSession()['id'];
+		$id = currentId();
 		$data['chef'] = $this->tuteur_model->getChefFiliere(['tuteurId'=>$id]);
 		$filiere= $this->filiere_model->getFiliere(['filiereId' => $data['chef']->chefId])->code ;
-		$data['postulats'] = $this->sujet_model->postulats(['e.filiere' => $filiere , 'etat' => 'B' ]);
+		$data['postulats'] = $this->sujet_model->postulats(['e.filiere' => $filiere , 'etat' => 'B']);
 		$this->render('chefFiliere/finaliser',$data);
 	}
 
@@ -85,7 +84,7 @@ class Tuteur extends MY_Controller {
 		$this->form_validation->set_rules('lettre', "Lettre d'apreciation" , 'callback_check_lettre');
 
 		if ($this->form_validation->run() == false) {
-			$data['tuteurs'] = $this->tuteur_model->getTuteurs(['chefId' => currentSession()['id']]);
+			$data['tuteurs'] = $this->tuteur_model->getTuteurs();
 			$data['title'] = 'Finaliser';
 			$data['e'] = $e;
 			$data['s'] = $s;
@@ -122,7 +121,7 @@ class Tuteur extends MY_Controller {
 		$config['upload_path'] = FCPATH.'uploads/lettres';
 		$config['file_name'] = $etudiant->cne;
 		$config['max_size'] = 1024;
-		$config['allowed_types'] = 'docx|pdf';
+		$config['allowed_types'] = 'docx|doc|pdf';
 		$config['overwrite'] = true;
 		$this->load->library('upload', $config);
 		// If upload failed display error

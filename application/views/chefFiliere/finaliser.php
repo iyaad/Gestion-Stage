@@ -17,20 +17,20 @@
 								<th>Finaliser</th>
 							</tr>
 							<?php foreach ($postulats as $e):
-								$sujet = $this->sujet_model->getSujet(['sujetId' => $e->sujetid]) ;
+								$sujet = $this->sujet_model->getSujet(['sujetId' => $e->sujetId]) ;
 								$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $sujet->entrepriseId]); 
 								?>
 							<tr>
 								<td><a href="<?= base_url($e->cne) ?>"><?= $e->cne ?></a> </td>
 								<td><?= $e->nom ?></td>
 								<td><?= $e->prenom ?></td>
-								<td><a href="<?= base_url('sujet/'.$e->sujetid) ?>"><?= $sujet->titre ?></a> </td> 
+								<td><a href="<?= base_url('sujet/'.$e->sujetId) ?>"><?= $sujet->titre ?></a> </td> 
 								<td><a href="<?= base_url('entreprise/'.$sujet->entrepriseId) ?>"><?= $entreprise->nom ?></td>
 								<td>
-									<a href="<?= base_url('tuteur/finaliserStage/'.$e->etudiantId.'/'.$e->sujetid) ?>" class="btn btn-success waves-effect waves-light">
+									<a href="<?= base_url('tuteur/finaliserStage/'.$e->etudiantId.'/'.$e->sujetId) ?>" class="btn btn-success waves-effect waves-light">
 										<span class="btn-label"><i class="fa fa-check"></i></span> Finaliser
 									</a>
-									<a href="<?= base_url('sujet/refusePostulat/'.$e->sujetid.'/'.$e->etudiantId) ?>" class="btn btn-icon btn-danger waves-effect waves-light">
+									<a href="<?= base_url('sujet/refusePostulat/'.$e->sujetId.'/'.$e->etudiantId) ?>" class="btn btn-icon btn-danger waves-effect waves-light">
 										<i class="fa fa-remove"></i>
 									</a>
 								</td>

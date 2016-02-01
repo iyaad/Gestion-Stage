@@ -102,14 +102,13 @@ class Sujet extends MY_Controller {
 		return redirect('sujet/index/'.$s);
 	}
 
-	public function confirmePostulat($s,$e,$ent){
-
+	public function confirmePostulat($s, $e, $ent) {
 		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $e]);
 		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $ent]);
 		$chef = $this->tuteur_model->getChefFiliere(['chefId' => $this->filiere_model->getFiliere(['code'=>$etudiant->filiere])->filiereId]);
 		$email = $this->user_model->getUser(['userId' => $chef->tuteurId])->email ;
-		$postulats = $this->sujet_model->postulats(['e.etudiantId' => $e]);
-
+		// Annuler les autres demandes de stage
+		$postulats = $this->sujet_model->postulats(['e.etudiantId' => $e, 'sujetId !=' => $s]);
 		foreach ($postulats as $postulat) {
 			$criteria = array(
 				'sujetId' =>  $postulat->sujetid,
