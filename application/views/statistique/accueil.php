@@ -27,7 +27,7 @@
 	                                        <i class="md md-equalizer text-purple"></i>
 	                                    </div>
 	                                    <div class="text-right">
-	                                        <h3 class="text-dark"><b class="counter"><?= $etudiantsEnStage*100 ?></b>%</h3>
+	                                        <h3 class="text-dark"><b class="counter"><?= number_format($etudiantsEnStage*100,2);  ?></b>%</h3>
 	                                        <p class="text-muted">Etudiant en Stage </p>
 	                                    </div>
 	                                    <div class="clearfix"></div>
@@ -39,7 +39,7 @@
 	                                        <i class="md md-equalizer text-purple"></i>
 	                                    </div>
 	                                    <div class="text-right">
-	                                        <h3 class="text-dark"><b class="counter"><?= $etudiantsEnRechercheStage*100 ?></b>%</h3>
+	                                        <h3 class="text-dark"><b class="counter"><?= number_format($etudiantsEnRechercheStage*100,2); ?></b>%</h3>
 	                                        <p class="text-muted">Etudiant en Recherche de Stage </p>
 	                                    </div>
 	                                    <div class="clearfix"></div>
