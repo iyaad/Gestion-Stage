@@ -25,23 +25,31 @@ class Notification_model extends CI_Model {
 					'exclamation-triangle',
 					'#'
 				);
-			} else if (isEtudiantEnStage() || tuteurEnStage() || tuteurExtEnStage()) {
-				$messages = $this->message_model->getMessages(['destinataire' => currentId()]);
-				$todays = [];
-				foreach($messages as $m) {
-					if (Carbon::parse($m->date)->isToday()) $todays[] = $m;
-				}
-				if (count($todays) > 0) {
-					$suffix = count($todays) == 1 ? 'nouveau message' : 'nouveaux messages';
-					$notifs[] = $this->notification(
-						'Nouveau Message!',
-						'Vous avez ' .count($todays).' '. $suffix,
-						'envelope',
-						base_url('workspace/accueil/'.$id)
-					);
-				}
+			} else if (isEtudiantEnStage()) {
+				$this->countMessages($notifs);
 			}
+		} else if (isTuteurEnStage() || isTuteurExtEnStage()) {
+			$this->countMessages($notifs);
 		}
 		return $notifs;
+	}
+
+	public function countMessages(&$notifs)
+	{
+		$id = currentId();
+		$messages = $this->message_model->getMessages(['destinataire' => currentId()]);
+		$todays = [];
+		foreach($messages as $m) {
+			if (Carbon::parse($m->date)->isToday()) $todays[] = $m;
+		}
+		if (count($todays) > 0) {
+			$suffix = count($todays) == 1 ? 'nouveau message' : 'nouveaux messages';
+			$notifs[] = $this->notification(
+				'Nouveau Message!',
+				'Vous avez ' .count($todays).' '. $suffix,
+				'envelope',
+				base_url('workspace/accueil/'.$id)
+			);
+		}
 	}
 }

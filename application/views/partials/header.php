@@ -30,12 +30,11 @@
 				<div class="container">
 					<ul class="nav navbar-nav navbar-right pull-right">
 						<?php if (loggedIn()): ?>
-							<?php if (isEtudiant()): ?>
 							<li class="dropdown hidden-xs">
 								<a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">
-									<i class="icon-bell"></i> <span class="badge badge-xs badge-danger"><?= count($this->notification_model->dailyNotifs()) ?></span><!-- count($this->notification_model->dailyNotifs()) -->
+									<i class="icon-bell"></i> <span class="badge badge-xs badge-danger"><?= count($this->notification_model->dailyNotifs()) ?></span>
 								</a>
-								<ul class="dropdown-menu dropdown-menu-lg">
+								<ul class="dropdown-menu dropdown-menu-lg">	
 									<li class="notifi-title">Notifications</li>
 									<li class="list-group nicescroll notification-list" tabindex="5000" style="overflow: hidden; outline: none;">
 										<!-- list item-->
@@ -57,7 +56,6 @@
 									</li>
 								</ul>
 							</li>
-							<?php endif ?>
 						<li><?= anchor('logout', '<i class="fa fa-power-off m-r-10"></i> Déconnexion') ?></li>
 						<?php else: ?>
 						<li><?= anchor('login', 'Se connecter') ?></li>
