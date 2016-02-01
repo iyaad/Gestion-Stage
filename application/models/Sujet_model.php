@@ -37,6 +37,10 @@ class Sujet_model extends CI_Model {
 		return $this->db->get()->row();
 	}
 
+	public function sujetEstSature($sid) {
+		$
+	}
+
 	public function aPostule($sujet,$etudiant,$etat=null){
 		$data = array(
 			'sujetId' => $sujet,

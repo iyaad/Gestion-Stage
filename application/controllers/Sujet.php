@@ -86,13 +86,12 @@ class Sujet extends MY_Controller {
 	}
 
 	public function acceptePostulat($s,$e,$ent){
-
 		$entreprise = $this->entreprise_model->getEntreprise(['entrepriseId' => $ent]);
 		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $e]);
 		$criteria = array(
 			'sujetId' =>  $s,
 			'etudiantId' => $e,
-			);
+		);
 		$data = array(
 			'sujetId' => $s,
 			'etudiantId' => $e,

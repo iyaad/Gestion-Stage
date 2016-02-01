@@ -50,8 +50,8 @@
 						<ul>
 							<li class="text-muted menu-title">Navigation</li>
 							<?php if (isEtudiant()): ?>
-								<li><?= anchor('etudiant', '<i class="fa fa-home"></i> Accueil', navIsActive('etudiant', 'index')) ?></li>
 								<li><?= anchor(currentSession()['username'], '<i class="fa-user fa"></i> Profil de l\'Etudiant', navIsActive('etudiant', 'profile')) ?></li>
+								<li><?= anchor('etudiant', '<i class="fa fa-file-text-o"></i> Sujets Disponibles', navIsActive('etudiant', 'index')) ?></li>
 								<?php if(isEtudiantEnStage()): ?>
 								<li><?= anchor('workspace/accueil/'.currentId(), '<i class="fa fa-home"></i> Workspace', navIsActive('workspace', 'accueil')) ?></li>
 								<?php endif ?>
