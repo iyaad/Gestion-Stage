@@ -33,10 +33,28 @@
 							<?php if (isEtudiant()): ?>
 							<li class="dropdown hidden-xs">
 								<a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">
-									<i class="icon-bell"></i> <span class="badge badge-xs badge-danger">3 </span><!-- count($this->notification_model->dailyNotifs()) -->
+									<i class="icon-bell"></i> <span class="badge badge-xs badge-danger"><?= count($this->notification_model->dailyNotifs()) ?></span><!-- count($this->notification_model->dailyNotifs()) -->
 								</a>
 								<ul class="dropdown-menu dropdown-menu-lg">
 									<li class="notifi-title">Notifications</li>
+									<li class="list-group nicescroll notification-list" tabindex="5000" style="overflow: hidden; outline: none;">
+										<!-- list item-->
+										<?php foreach ($this->notification_model->dailyNotifs() as $n): ?>
+										<a href="<?= $n->url ?>" class="list-group-item">
+										  <div class="media">
+											 <div class="pull-left p-r-10">
+												<em class="fa fa-<?= $n->icon ?> fa-2x text-primary"></em>
+											 </div>
+											 <div class="media-body">
+												<h5 class="media-heading"><?= $n->title ?></h5>
+												<p class="m-0">
+													<small><?= $n->desc ?></small>
+												</p>
+											 </div>
+										  </div>
+										</a>
+										<?php endforeach ?>
+									</li>
 								</ul>
 							</li>
 							<?php endif ?>
