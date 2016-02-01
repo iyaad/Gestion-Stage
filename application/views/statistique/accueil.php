@@ -14,8 +14,8 @@
 							<i class="md md-equalizer text-purple"></i>
 						</div>
 						<div class="text-right">
-							<h3 class="text-dark"><b class="counter">0.16</b>%</h3>
-							<p class="text-muted">Conversion</p>
+							<h3 class="text-dark"><b class="counter"><?= $this->statistique_model->Etudiant()?></b>%</h3>
+							<p class="text-muted">Etudiant inscrits</p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
