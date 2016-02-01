@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="<?= asset_url('css/responsive.css') ?>">
 	<link rel="stylesheet" href="<?= asset_url('plugins/morris/morris.css') ?>">
 
-	<title><?= $title ?></title>
+	<title><?= $title ?> | ENSAT Stages</title>
 </head>
 <body class="fixed-left p-30 p-l-0 p-r-0">
 	<div class="wraper">

@@ -24,10 +24,10 @@
 								<td><?= $e->numTel ?></td> 
 								<td><?= $e->description ?></td>
 								<td>
-									<a href="<?= base_url('superviseur/valider_entreprise/'.$e->entrepriseId) ?>" class="btn btn-success waves-effect waves-light">
-										<span class="btn-label"><i class="fa fa-check"></i></span> Valider
+									<a href="<?= base_url('superviseur/valider_entreprise/'.$e->entrepriseId) ?>" class="btn btn-success btn-icon waves-effect waves-light col-sm-6 btn-xs">
+										<i class="fa fa-check"></i>
 									</a>
-									<a href="<?= base_url('superviseur/delete/'.$e->entrepriseId) ?>" class="btn btn-icon btn-danger waves-effect waves-light">
+									<a href="<?= base_url('superviseur/delete/'.$e->entrepriseId) ?>" class="btn btn-icon btn-danger waves-effect waves-light col-sm-6 btn-xs">
 										<i class="fa fa-remove"></i>
 									</a>
 								</td>
