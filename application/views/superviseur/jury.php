@@ -34,9 +34,9 @@
 								<?php foreach ($jurys as $jury): ?> 
 								<tr>
 									<td class="col-sm-2"><?= $jury->juryId ?></td>
-									<td class="col-sm-3"><?= $this->user_model->resolveName($jury->tuteur1Id) ?></td>
-									<td class="col-sm-3"><?= $this->user_model->resolveName($jury->tuteur2Id) ?></td>
-									<td class="col-sm-3"><?= $this->user_model->resolveName($jury->tuteur3Id) ?></td>
+									<td class="col-sm-3"><?= anchor("tuteur/profile/".$jury->tuteur1Id,$this->user_model->resolveName($jury->tuteur1Id)) ?></td>
+									<td class="col-sm-3"><?= anchor("tuteur/profile/".$jury->tuteur2Id,$this->user_model->resolveName($jury->tuteur2Id)) ?></td>
+									<td class="col-sm-3"><?= anchor("tuteur/profile/".$jury->tuteur3Id,$this->user_model->resolveName($jury->tuteur3Id)) ?></td>
 								</tr>	
 								<?php endforeach ; ?>
 							</table>
