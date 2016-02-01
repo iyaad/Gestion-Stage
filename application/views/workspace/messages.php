@@ -18,6 +18,7 @@
 					<a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
 				</div>
 				<div class="clearfix"></div>
+				<span>Le <?= date('d/m/Y \à H:i', strtotime($m->date)) ?></span>
 			</div>
 			<div id="bg-success" class="panel-collapse collapse in" aria-expanded="true">
 				<div class="portlet-body">

@@ -40,7 +40,7 @@
 									<li class="list-group nicescroll notification-list" tabindex="5000" style="overflow: hidden; outline: none;">
 										<!-- list item-->
 										<?php foreach ($this->notification_model->dailyNotifs() as $n): ?>
-										<a href="#" data-toggle="modal" data-target="#soutenance" class="list-group-item">
+										<a href="<?= $n->url ?>" <?php if ($n->title == 'Date de soutenance!') echo 'data-toggle="modal" data-target="#soutenance"' ?> class="list-group-item">
 										  <div class="media">
 											 <div class="pull-left p-r-10">
 												<em class="fa fa-<?= $n->icon ?> fa-2x text-primary"></em>

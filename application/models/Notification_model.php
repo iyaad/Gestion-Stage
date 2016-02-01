@@ -1,5 +1,5 @@
 <?php
-
+use Carbon\Carbon;
 class Notification_model extends CI_Model {
 
 
@@ -19,17 +19,27 @@ class Notification_model extends CI_Model {
 		if (isEtudiant()) {
 			$id = currentId();
 			if ($this->etudiant_model->preSoutenance($id)) {
-				 $notifs[] = $this->notification(
+				$notifs[] = $this->notification(
 					'Date de soutenance!',
 					'Cliquez pour choisir la date',
 					'exclamation-triangle',
-					base_url('etudiant/finaliserSoutenance')
+					'#'
 				);
 			} else if (isEtudiantEnStage()) {
-				$messages = $this->message_model->getMessages(['destinataire' => currentId(), 'date' => 'CURDATE()']);
-
+				$messages = $this->message_model->getMessages(['destinataire' => currentId()]);
+				$todays = [];
+				foreach($messages as $m) {
+				}
+				if (count($messages) > 0) {
+					$suffix = count($messages) == 1 ? 'nouveau message' : 'nouveaux messages';
+					$notifs[] = $this->notification(
+						'Nouveau Message!',
+						'Vous avez ' .count($messages).' '. $suffix,
+						'envelope',
+						base_url('worskpace/accueil/'.$id)
+					);
+				}
 			}
-			return [];
 		}
 		return $notifs;
 	}
