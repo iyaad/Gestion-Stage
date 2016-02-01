@@ -19,6 +19,7 @@ class Superviseur extends MY_Controller{
 
 	public function index(){
 		$data['filieres'] = $this->filiere_model->getFilieres();
+		$data['chefs'] = $this->tuteur_model->getTuteurs(['chefId' => null]);
 		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
 		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);

@@ -49,15 +49,15 @@
 							<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
 						</div>
 						<?php if(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
-						<a href="<?= base_url('sujet/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">Postuler</a>
-						<div class="clearfix"></div>
+							<a href="<?= base_url('sujet/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">Postuler</a>
+							<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'W')): ?>
-						<div class="alert alert-warning"><strong>État:</strong> En attente de la confirmation de l'entreprise</div>
-						<?php elseif(isEtudiant() && $this->sujet_model->estAccepte($sujet->sujetId, currentId())): ?>
-						<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentId()).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">Confirmer</a>
-						<div class="clearfix"></div>
+							<div class="alert alert-warning"><strong>État:</strong> En attente de la confirmation de l'entreprise</div>
+						<?php elseif(isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'C')): ?>
+							<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentId()).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">Confirmer</a>
+							<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'B')): ?>
-						<div class="alert alert-warning"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
+							<div class="alert alert-warning"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
 						<?php endif ?>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 							</tr>
 							<?php foreach ($postulats as $e): ?>
 							<tr>
-								<td><a href="base_url('$e->cne)"><?= "$e->nom $e->prenom" ?></a></td>
+								<td><a href="<?= base_url($e->cne) ?>"><?= "$e->nom $e->prenom" ?></a></td>
 								<td>
 									<a href="<?= base_url('sujet/acceptePostulat/'.$e->sujetid.'/'.$e->etudiantId.'/'.currentSession()['id']) ?>" class="btn btn-success waves-effect waves-light pull">
 										<span class="btn-label"><i class="fa fa-check"></i></span> Accepter

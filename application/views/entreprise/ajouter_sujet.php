@@ -29,6 +29,9 @@
 			<?php endforeach ?>
 		</select>
 	</div>
+	<div class="form-group">
+		<input type="text" class="form-control" name="nbPlaces" placeholder="Nombre de places disponibles">
+	</div>
 	<div class="form-group <?= form_error('date') ? 'has-error' : '' ?>">
 		<?= form_error('date') ?>
 		<input class="form-control" type="text" placeholder="Date de début (jj/mm/yyyy)" name="date" value="<?= set_value('ate de debut') ?>" >

@@ -1,7 +1,7 @@
 <div class="wraper">
 	<div class="row">
 		<div class="jumbotron container-fluid">
-			<p class="title">Bienvenue sur notre <br>Plateform de stages</p>
+			<p class="title">Bienvenue sur notre <br>Plateforme de stages</p>
 			<p class="text-right">Pour inscrire votre entreprise et lancer une recherche de stage <br>
 				Suivez le lien en haut de la page</p>
 		</div>

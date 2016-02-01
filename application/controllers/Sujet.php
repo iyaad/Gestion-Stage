@@ -114,12 +114,11 @@ class Sujet extends MY_Controller {
 			'etudiantId' => $e,
 			);
 		$data = array(
-			'sujetId' => $s,
-			'etudiantId' => $e,
 			'etat' => 'B',
-			);
+		);
 		$this->email_model->emailConfirm($s,$entreprise,$etudiant,$email);
 		$this->sujet_model->updatePostulat($criteria,$data);
+		$this->sujet_model->updatePostulat(['etudiantId' => $e, 'sujetId !=' => $s], ['etat' => 'R']);
 		return redirect('etudiant');
 	}
 
