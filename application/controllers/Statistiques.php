@@ -9,22 +9,12 @@ class Statistiques extends MY_Controller {
 		$this->load->library('hash');
 		$this->load->library('email');
 		$this->load->library('random');
-		$this->load->model('entreprise_model');
-		$this->load->model('sujet_model');
-		$this->load->model('etudiant_model');
-		$this->load->model('filiere_model');
-		$this->load->model('user_model');
-		$this->load->model('tuteur_model');
-		$this->load->model('email_model');
-		$this->load->model('statistique_model');
-
+		if (!loggedIn()) return redirect('home');
 	}
 
 	public function index() {
-		$data['title'] = 'Statistiques' ;
-		$data['etudiantsEnStage'] = $this->statistique_model->EtudiantEnStage();
-		$data['etudiantsEnRechercheStage'] = $this->statistique_model->EtudiantEnRechercheStage();
-		$data['etudiantsEnSoutenance'] = $this->statistique_model->EtudiantEnSoutenance();
+		$data['title'] = 'Statistiques';
+		$data['ent_insc'] = $this->statistique_model->nbEntreprises();
 		return $this->render('statistique/accueil',$data);
 	}
 }

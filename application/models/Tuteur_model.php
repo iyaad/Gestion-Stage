@@ -10,17 +10,17 @@ class Tuteur_model extends CI_Model {
 		return $this->db->insert('Tuteur', $data);
 	}
 
-	public function getChefFiliere($criteria){
+	public function getChefFiliere($criteria = []){
 		$this->db->where($criteria);
 		return $this->db->get('Tuteur')->row();
 	}
-	public function getTuteurs($criteria)
+	public function getTuteurs($criteria = [])
 	{
 		$this->db->where($criteria);
 		return $this->db->get('Tuteur')->result();
 	}
 
-	public function getTuteur($criteria)
+	public function getTuteur($criteria = [])
 	{	
 		$this->db->where($criteria);
 		return $this->db->get('Tuteur')->row();

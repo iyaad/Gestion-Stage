@@ -37,6 +37,11 @@ class Statistique_model extends CI_Model {
 		return count($EtudiantEnSoutenance)/($etudiants);
 	}
 
-
+	public function nbEntreprises()
+	{
+		$this->db->from('User');
+		$this->db->where('role', 'entreprise');
+		return $this->db->count_all_results();
+	}
 
 }

@@ -56,11 +56,10 @@
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'W')): ?>
 							<div class="alert alert-success"><strong>État:</strong> En attente de la confirmation de l'entreprise</div>
 						<?php elseif(isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'C')): ?>
-							<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentId()).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">Confirmer</a>
+							<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentId()).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">Confirmer votre demande</a>
 							<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'B')): ?>
 							<div class="alert alert-success"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
-						
 						<?php endif ?>
 					</div>
 				</div>
