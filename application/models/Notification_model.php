@@ -15,14 +15,19 @@ class Notification_model extends CI_Model {
 
 	public function dailyNotifs()
 	{
-		if (isEtudiantEnStage()) {
+		if (isEtudiant()) {
 			$id = currentId();
-			return [$this->notification(
-				'Test',
-				'Ceci est un test',
-				'home',
-				base_url()
-			)];
+			if ($this->etudiant_model->preSoutenance($id)) {
+				return [$this->notification(
+					'Date de soutenance!',
+					'Cliquez pour choisir la date',
+					'exclamation-triangle',
+					base_url('etudiant/finaliserSoutenance')
+				)];
+			} else if (isEtudiantEnStage()) {
+
+			}
+			return [];
 		} else {
 			return [];
 		}
