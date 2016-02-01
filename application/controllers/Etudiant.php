@@ -1,4 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+use Carbon\Carbon ;
 
 class Etudiant extends MY_Controller {
 
@@ -116,6 +117,26 @@ class Etudiant extends MY_Controller {
 			$this->form_validation->set_message('check_photo', strip_tags($this->upload->display_errors()));
 			return false;
 		}
+	}
+
+	public function finaliserSoutenance(){
+		if(!isEtudiant())
+			return redirect('home');
+		$this->form_validation->set_rules('date', 'Date', 'trim|required');
+
+		if($this->form_validation->run() == false){
+			redirect('home');
+		}
+		else{
+			$stage = $this->sujet_model->getStage(['e.etudiantId' => currentId()])->stageId;
+			$data = array(
+				'stageId' => $stage,
+				'dateSoutenance' => Carbon::createFromFormat('d/m/Y',$this->input->post('date'))->toDateString(),
+				);
+			$this->db->insert('Soutenance',$data);
+			return redirect('home');
+		}
+
 	}
 	
 }

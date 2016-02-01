@@ -27,9 +27,7 @@ class Statistique_model extends CI_Model {
 	}
 
 
-	public function Entreprise(){
-		return count($this->db->get('Entreprise')->result());
-	}
+	
 
 
 	public function nbEntreprises()

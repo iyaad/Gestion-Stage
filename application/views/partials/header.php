@@ -40,7 +40,7 @@
 									<li class="list-group nicescroll notification-list" tabindex="5000" style="overflow: hidden; outline: none;">
 										<!-- list item-->
 										<?php foreach ($this->notification_model->dailyNotifs() as $n): ?>
-										<a href="<?= $n->url ?>" class="list-group-item">
+										<a href="#" data-toggle="modal" data-target="#soutenance" class="list-group-item">
 										  <div class="media">
 											 <div class="pull-left p-r-10">
 												<em class="fa fa-<?= $n->icon ?> fa-2x text-primary"></em>
@@ -117,3 +117,26 @@
 			</div>
 		</div><!-- /.side-menu -->
 		<?php endif ?>
+
+
+		<div id="soutenance" class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Choisissez une date pour votre soutenance</h4>
+		      </div>
+		      <div class="modal-body">
+		        <?= form_open('Etudiant/finaliserSoutenance', 'class="form-horizontal" id="dateSoutenance"') ?>
+		        <div class="form-group <?= form_error('date') ? 'has-error' : '' ?>">
+					<?= form_error('date') ?>
+					<input class="form-control" type="text" placeholder="Date de Soutenance (jj/mm/yyyy)" name="date" value="<?= set_value('ate de debut') ?>" >
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		        <button form="dateSoutenance" type="submit" class="btn btn-primary">Valider</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
