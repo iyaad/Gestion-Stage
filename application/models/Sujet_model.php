@@ -38,7 +38,9 @@ class Sujet_model extends CI_Model {
 	}
 
 	public function sujetEstSature($sid) {
-		$
+		$nbPlaces = $this->db->query('select nbPlaces from Sujet where sujetId = ?', array($sid))->row()->nbPlaces;
+		$nbPostulants = $this->db->query("select count(*) as nb from Postulat where sujetId = ? and etat = 'C'", array($sid))->row()->nb;
+		return $nbPostulants >= $nbPlaces;
 	}
 
 	public function aPostule($sujet,$etudiant,$etat=null){
