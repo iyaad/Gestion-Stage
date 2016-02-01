@@ -13,11 +13,6 @@
 							<p class="text-muted"><?= $tuteur->nom . ' ' . $tuteur->prenom ?></p>
 						</div>
 						<div class="about-info-p">
-							<strong>Filière</strong>
-							<br>
-							<p class="text-muted"><?= $tuteur->filiere ?></p>
-						</div>
-						<div class="about-info-p">
 							<strong>Département</strong>
 							<br>
 							<p class="text-muted"><?= $tuteur->departement ?></p>

@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="card-box col-sm-12">	
 					<div class="panel-heading"> 
-						<h3 class="text-center">Élèves de la filière <?= $chef->filiere ?></h3>
+						<h3 class="text-center">Élèves de la filière <?= $filiere->titre ?></h3>
 					</div>
 					<div class="panel-body">
 						<table class="table m-0" >

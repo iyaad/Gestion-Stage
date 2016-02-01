@@ -17,7 +17,7 @@
 					<select name="filiere" class="form-control">
 						<option value="">Choisissez une filiere</option>
 						<?php foreach ($filieres as $f): ?>
-						<option value="<?= $f->code ?>" <?= set_select('filiere', $f->code) ?>><?= $f->titre ?></option>
+						<option value="<?= $f->filiereId ?>" <?= set_select('filiere', $f->code) ?>><?= $f->titre ?></option>
 						<?php endforeach ?>
 					</select>
 					<?= form_error('filiere') ?>

@@ -39,29 +39,7 @@
 			</div>
 			<div class="row">
 				<?php $this->load->view('superviseur/ajouter_chef_filiere') ?>
-				<div class="col-sm-6 col-sm-offset-1 card-box">
-					<div class="panel-heading">
-						<h3 class="text-center">Chefs de Filieres</h3>
-					</div>
-					<div class="panel-body">
-						<table class="table table-striped">
-							<tr>
-								<th>Nom Complet</th>
-								<th>Filière</th>
-								<th>Département</th>
-								<th>Email</th>
-							</tr>
-							<?php foreach ($chefs as $c): ?>
-							<tr>
-								<td><?= "$c->nom $c->prenom" ?></td>
-								<td><?= $c->filiere ?></td>
-								<td><?= $c->departement ?></td>
-								<td><?= $this->user_model->getUser(['userId' => $c->tuteurId])->email ?></td>
-							</tr>
-							<?php endforeach ?>
-						</table>
-					</div>
-				</div>
+				<?php $this->load->view('superviseur/ajouter_Jury') ?>1
 			</div>
 		</div>
 	</div>

@@ -51,4 +51,8 @@ class Tuteur_model extends CI_Model {
 		return $this->db->insert('Tuteur', $data);
 		
 	}
+
+	public function createJury($data){
+		return $this->db->insert('Jury',$data);
+	}
 }

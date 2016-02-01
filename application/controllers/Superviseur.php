@@ -21,6 +21,7 @@ class Superviseur extends MY_Controller{
 		$data['filieres'] = $this->filiere_model->getFilieres();
 		$data['chefs'] = $this->tuteur_model->getTuteurs(['chefId' => null]);
 		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
+		$data['tuteurs'] = $this->tuteur_model->getTuteurs([]);
 		$data['title'] = 'Accueil Superviseur';
 		$this->render('superviseur/acceuil',$data);
 	}
@@ -55,9 +56,8 @@ class Superviseur extends MY_Controller{
 			$data = array(
 				'nom' => $nom,
 				'prenom' => $prenom,
-				'departement' => $this->input->post('departement'),
-				'filiere' => $this->input->post('filiere'),
-				'chefId' => NULL,
+				'departement' => $this->input->post('departement'), 
+				'chefId' => $this->input->post('filiere'),
 			);
 			$this->tuteur_model->createChefFiliere($userData, $data);
 			if ($this->email_model->emailChefFiliere($userData['email'], $username, $rand)) {
@@ -97,5 +97,79 @@ class Superviseur extends MY_Controller{
 		$e = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
 		$this->db->delete('entreprise',['entrepriseId' => $id]);
 		return redirect('superviseur');
+	}
+
+	public function tuteurs(){
+		if(!isSuperviseur()){
+			return redirect('home');
+		}
+
+		$data['tuteurs'] = $this->tuteur_model->getTuteurs(['chefId' =>null]);
+		$data['title'] = 'Tuteurs';
+		$this->render('superviseur/tuteurs', $data);
+
+	}
+
+	public function ajouter_tuteur(){
+		if (!isSuperviseur())
+			return show_404();
+		$this->form_validation->set_rules('nom', 'nom', 'required|trim');
+		$this->form_validation->set_rules('prenom', 'prenom', 'required|trim');
+		$this->form_validation->set_rules('departement', 'Département', 'required|trim');
+		$this->form_validation->set_rules('numtel', 'telephone', 'required|trim');
+		$this->form_validation->set_rules('email', 'email', 'required|trim|valid_email');
+		$this->form_validation->set_message('required', 'Le champ %s est obligatoire');
+		$this->form_validation->set_message('valid_email', 'Email invalide');
+		
+		if (!$this->form_validation->run()) {
+			$this->tuteurs();
+		} else {
+			$rand = $this->random->generateString(10);
+			
+			
+			$data = array(
+				'nom' => $this->input->post('nom'),
+				'prenom' =>$this->input->post('prenom'),
+				'chefId' => NULL,
+				'departement' => $this->input->post('departement'),
+
+			);
+
+			$userData = array(
+				'username' =>$this->input->post('email'),
+				'password' => $this->hash->password($rand),
+				'email' =>$this->input->post('email'),
+				'numTel' => $this->input->post('numtel'),
+				'role' => 'tuteur',
+				'adresse' => '',
+				'createdAt' => gmdate('Y-m-d H:i:s'),
+				'updatedAt' => gmdate('Y-m-d H:i:s'),
+			);
+
+			$this->tuteur_model->createTuteur($userData,$data);
+				$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
+			redirect('Superviseur/tuteurs');
+		}
+	}
+
+	public function ajouter_jury(){
+
+		$this->form_validation->set_rules('tuteur1', "1er Jury",'required|trim');
+		$this->form_validation->set_rules('tuteur2', "2eme Jury",'required|trim');
+		$this->form_validation->set_rules('tuteur3', "3eme Jury",'required|trim');
+
+		if (!$this->form_validation->run()) {
+			$this->index();
+		}
+		else{
+			$data = array(
+				'tuteur1Id' => $this->input->post('tuteur1'),
+				'tuteur2Id' => $this->input->post('tuteur2'),
+				'tuteur3Id' => $this->input->post('tuteur3'),
+			);
+
+			$this->tuteur_model->createJury($data);
+			return redirect('superviseur');
+		}
 	}
 }
