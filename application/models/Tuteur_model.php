@@ -55,4 +55,9 @@ class Tuteur_model extends CI_Model {
 	public function createJury($data){
 		return $this->db->insert('Jury',$data);
 	}
+
+	public function getJurys($criteria){
+		$this->db->where($criteria);
+		return $this->db->get('Jury')->result();
+	}
 }

@@ -1,8 +1,7 @@
-<div class="card-box col-sm-6">
-	<div class="panel-heading"> 
+
 		<h3 class="text-center">Ajouter Jury</h3>
-	</div>
-	<div class="panel-body">
+	
+	
 		<?= form_open('superviseur/ajouter_jury', 'class="form-horizontal"') ?>
 			<div class="form-group <?= form_error('tuteur1') ? 'has-error' : '' ?>">
 				<label class="col-md-3 control-label" for="tuteur1">1er Jury</label>
@@ -43,5 +42,4 @@
 			
 			<button class="btn btn-primary pull-right m-t-10" type="submit">Ajouter</button>
 		</form>
-	</div>
-</div>
+	
