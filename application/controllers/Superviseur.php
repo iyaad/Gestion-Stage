@@ -173,4 +173,14 @@ class Superviseur extends MY_Controller{
 			return redirect('superviseur');
 		}
 	}
+
+	public function jury(){
+		if(!isSuperviseur()){
+			return redirect('home');
+		}
+
+		$data['title'] = 'Jury' ;
+		$data['jurys'] = $this->tuteur_model->getJurys([]);
+		return $this->render('superviseur/jury',$data);
+	}
 }
