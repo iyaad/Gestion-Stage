@@ -50,8 +50,7 @@ class User_model extends CI_Model {
 			case 'etudiant':
 				$name = $this->etudiant_model->getEtudiant(['etudiantId' => $id]);
 				$name = $name->nom.' '.$name->prenom;
-				break;
-			
+				break;	
 			case 'tuteur':
 				$name = $this->tuteur_model->getTuteur(['tuteurId' => $id]);
 				$name = $name->nom.' '.$name->prenom;
@@ -64,8 +63,6 @@ class User_model extends CI_Model {
 				$name = $this->entreprise_model->getEntreprise(['entrepriseId' => $id]);
 				$name = $name->nom;
 				break;
-
-
 			default:
 				# code...
 				break;

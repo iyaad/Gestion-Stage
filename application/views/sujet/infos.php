@@ -48,18 +48,19 @@
 							<br>
 							<p class="text-muted"><?= nl2br($sujet->prerequis) ?></p>
 						</div>
-						<?php if (isEtudiant() && $this->sujet_model->EstB(currentId(),$sujet->sujetId)): ?>
-							<div class="alert alert-warning"><strong>État:</strong> Vous etes En attente de la finalisation d'un autre ,Alors vous pouriez plus postuler pour d'autres </div>
+						<?php if (isEtudiant() && $this->sujet_model->sujetIndisponible(currentId(),$sujet->sujetId)): ?>
+							<div class="alert alert-danger"><strong>État:</strong> Vous ne pouvez plus postuler pour ce stage.</div>
 						<?php elseif(isEtudiant() && !$this->sujet_model->aPostule($sujet->sujetId, currentSession()['id'])): ?>
 							<a href="<?= base_url('sujet/postuler/'.$sujet->sujetId) ?>" class="btn btn-success waves-effect waves-light pull-right">Postuler</a>
 							<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'W')): ?>
-							<div class="alert alert-warning"><strong>État:</strong> En attente de la confirmation de l'entreprise</div>
+							<div class="alert alert-success"><strong>État:</strong> En attente de la confirmation de l'entreprise</div>
 						<?php elseif(isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'C')): ?>
 							<a href="<?= base_url('sujet/confirmePostulat/'.$sujet->sujetId.'/'.currentId()).'/'.$sujet->entrepriseId ?>" class="btn btn-success waves-effect waves-light pull-right">Confirmer</a>
 							<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'B')): ?>
-							<div class="alert alert-warning"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
+							<div class="alert alert-success"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
+						
 						<?php endif ?>
 					</div>
 				</div>
