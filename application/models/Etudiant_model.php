@@ -69,4 +69,17 @@ class Etudiant_model extends CI_Model {
 		$this->db->where($criteria);
 		$this->db->update('Etudiant', $data);
 	}
+
+	public function getSoutenance($criteria = [])
+	{
+		$this->db->where($criteria);
+		return $this->db->get('Soutenance')->row();
+	}
+
+	public function preSoutenance($id)
+	{
+		$stage = $this->sujet_model->getStage(['e.etudiantId' => $id]);
+		$dateFinale = Carbon::parse($stage->dateDebut)->addWeeks($stage->periode);
+		return Carbon::now()->gte($dateFinale) && !$this->getSoutenance(['stageId' => $stage->stageId]);
+	}
 }

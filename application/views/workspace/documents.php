@@ -2,5 +2,5 @@
 <?php foreach (glob(FCPATH."uploads/workspace/".$id."_*") as $filename): 
 $file = substr(basename($filename), 3);
 ?>
-	<?= $file . " - " . anchor('workspace/download_file/'.urlencode(basename($filename)), 'Télécharger') ?>
+	<?= $file . ' ('. date('d/m/Y H:i', strtotime($this->message_model->getMessage(['filename' => $file])->date)) .') - ' . anchor('workspace/download_file/'.urlencode(basename($filename)), 'Télécharger') ?>
 <?php endforeach ?>
