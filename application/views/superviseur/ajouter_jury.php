@@ -1,5 +1,5 @@
 
-		<h3 class="text-center">Ajouter Jury</h3>
+		<h3 class="text-center">Ajouter un Jury</h3>
 	
 	
 		<?= form_open('superviseur/ajouter_jury', 'class="form-horizontal"') ?>

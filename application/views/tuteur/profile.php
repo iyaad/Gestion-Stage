@@ -5,7 +5,7 @@
 				<div class="card-box m-t-20 text-center">
 					<div class="picture text-center container-fluid m-b-20">
 						<div class="bg-picture-overlay">
-							<img src="<?= $this->etudiant_model->getAvatarUrl($tuteur->tuteurId) ?>" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+							<img src="<?= $this->user_model->getAvatarUrl($this->user_model->getUser(['userId'=>$tuteur->tuteurId ])->email) ?>" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
 						</div>
 						<div class="profile-info-name">
 							<h4 class="m-b-5"><b><?= "$tuteur->nom $tuteur->prenom" ?></b></h4>

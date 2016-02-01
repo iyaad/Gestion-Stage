@@ -10,11 +10,7 @@ class Superviseur extends MY_Controller{
 		$this->load->library('email');
 		$this->load->library('hash');
 		$this->load->library('random');
-		$this->load->model('user_model');
-		$this->load->model('email_model');
-		$this->load->model('entreprise_model');
-		$this->load->model('filiere_model');
-		$this->load->model('tuteur_model');
+		if (!isSuperviseur()) return redirect('home');
 	}
 
 	public function index(){
@@ -126,8 +122,6 @@ class Superviseur extends MY_Controller{
 			$this->tuteurs();
 		} else {
 			$rand = $this->random->generateString(10);
-			
-			
 			$data = array(
 				'nom' => $this->input->post('nom'),
 				'prenom' =>$this->input->post('prenom'),
@@ -135,7 +129,6 @@ class Superviseur extends MY_Controller{
 				'departement' => $this->input->post('departement'),
 
 			);
-
 			$userData = array(
 				'username' =>$this->input->post('email'),
 				'password' => $this->hash->password($rand),
@@ -146,31 +139,27 @@ class Superviseur extends MY_Controller{
 				'createdAt' => gmdate('Y-m-d H:i:s'),
 				'updatedAt' => gmdate('Y-m-d H:i:s'),
 			);
-
 			$this->tuteur_model->createTuteur($userData,$data);
 				$this->email_model->emailTuteurExt($this->input->post('email'),$rand);
 			redirect('Superviseur/tuteurs');
 		}
 	}
 
-	public function ajouter_jury(){
-
+	public function ajouter_jury() {
 		$this->form_validation->set_rules('tuteur1', "1er Jury",'required|trim');
 		$this->form_validation->set_rules('tuteur2', "2eme Jury",'required|trim');
 		$this->form_validation->set_rules('tuteur3', "3eme Jury",'required|trim');
 
 		if (!$this->form_validation->run()) {
 			$this->index();
-		}
-		else{
+		} else {
 			$data = array(
 				'tuteur1Id' => $this->input->post('tuteur1'),
 				'tuteur2Id' => $this->input->post('tuteur2'),
 				'tuteur3Id' => $this->input->post('tuteur3'),
 			);
-
 			$this->tuteur_model->createJury($data);
-			return redirect('superviseur');
+			return redirect('jury');
 		}
 	}
 
@@ -178,9 +167,9 @@ class Superviseur extends MY_Controller{
 		if(!isSuperviseur()){
 			return redirect('home');
 		}
-
 		$data['title'] = 'Jury' ;
 		$data['jurys'] = $this->tuteur_model->getJurys([]);
+		$data['tuteurs'] = $this->tuteur_model->getTuteurs([]);
 		return $this->render('superviseur/jury',$data);
 	}
 }

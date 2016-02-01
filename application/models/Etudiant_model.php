@@ -43,9 +43,7 @@ class Etudiant_model extends CI_Model {
 		if (file_exists($path)) {
 			return base_url("uploads/photos/$cne.jpg");
 		}
-		$email = $etudiant->email;
-		$size = isset($options['size']) ? $options['size'] : 100;
-		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&d=identicon';
+		return $this->user_model->getAvatarUrl($etudiant->email);
 	}
 
 	public function getEtudiants($criteria)

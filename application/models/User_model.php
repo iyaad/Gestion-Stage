@@ -14,6 +14,12 @@ class User_model extends CI_Model {
 		return $this->db->get('User')->row();
 	}
 
+	public function getAvatarUrl($email, $options = [])
+	{
+		$size = isset($options['size']) ? $options['size'] : 100;
+		return 'http://www.gravatar.com/avatar/'.md5($email).'?s='.$size.'&d=identicon';
+	}
+
 	public function getUserByUsername($username) {
 		return $this->getUser(['username' => $username]);
 	}

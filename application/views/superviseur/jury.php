@@ -13,17 +13,16 @@
 						<li class=""> 
 							<a href="#jury" data-toggle="tab" aria-expanded="false"> 
 								<span class="visible-xs"><i class="fa fa-home"></i></span> 
-								<span class="hidden-xs">Jury</span> 
+								<span class="hidden-xs">Jurys</span> 
 							</a> 
 						</li> 
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="ajouter">
 							<?php $this->load->view('superviseur/ajouter_jury') ?>
-							
 						</div>
 						<div class="tab-pane " id="jury">
-							<h3 class="text-center">Jury</h3>
+							<h3 class="text-center">Liste des jurys</h3>
 							<table class="table " >
 								<tr>
 									<th>Jury Id</th>
