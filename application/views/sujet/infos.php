@@ -63,13 +63,17 @@
 						<?php endif ?>
 					</div>
 				</div>
-				<?php if(isEntreprise() && $sujet->entrepriseId==currentSession()['id'] )  : ?>
+				<?php if(isEntreprise() && $sujet->entrepriseId==currentSession()['id']): ?>
 				<div class="card-box m-t-20">
+					<?php if (!$this->sujet_model->sujetEstSature($sujet->sujetId)): ?>
+					<div class="panel-heading">
+						<h3 class="text-center">Liste des Postulants</h3>
+					</div>
 					<div class="panel-body">
 						<table class="table m-0" >
 							<tr>
 								<th data-toggle="true" class="footable-visible footable-first-column footable-sortable">
-									Nom postulant
+									Nom Complet
 									<span class="footable-sort-indicator"></span>
 								</th>
 								<th data-toggle="true" class="footable-visible footable-first-column footable-sortable">
@@ -86,11 +90,15 @@
 									</a>
 									<a href="<?= base_url('sujet/refusePostulat/'.$e->sujetid.'/'.$e->etudiantId) ?>" class="btn btn-icon btn-danger waves-effect waves-light">
 										<i class="fa fa-remove"></i>
+									</a>
 								</td>								
 							</tr>
 							<?php  endforeach; ?>
 						</table>
 					</div>
+					<?php else: ?>
+						<div class="alert alert-warning">Le nombre de places disponibles pour le stage est dépassé.</div>
+					<?php endif ?>
 				</div>
 				<?php endif ?>
 			</div>			
