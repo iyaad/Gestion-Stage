@@ -1,8 +1,6 @@
-<div class="card-box col-sm-6">
-	<div class="panel-heading"> 
+
 		<h3 class="text-center">Ajouter un Chef de Filiere</h3>
-	</div>
-	<div class="panel-body">
+	
 		<?= form_open('superviseur/ajouter_chef_filiere', 'class="form-horizontal"') ?>
 			<div class="form-group <?= form_error('departement') ? 'has-error' : '' ?>">
 				<label class="col-md-3 control-label" for="departement">Département</label>
@@ -53,5 +51,3 @@
 			</div>
 			<button class="btn btn-primary pull-right m-t-10" type="submit">Ajouter</button>
 		</form>
-	</div>
-</div>

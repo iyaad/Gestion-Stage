@@ -38,7 +38,6 @@
 				</div>
 			</div>
 			<div class="row">
-				<?php $this->load->view('superviseur/ajouter_chef_filiere') ?>
 				<?php $this->load->view('superviseur/ajouter_jury') ?>
 			</div>
 		</div>

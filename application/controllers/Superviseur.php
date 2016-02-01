@@ -105,6 +105,7 @@ class Superviseur extends MY_Controller{
 		}
 
 		$data['tuteurs'] = $this->tuteur_model->getTuteurs(['chefId' =>null]);
+		$data['chefs'] = $this->tuteur_model->getTuteurs(['chefId !=' =>null]);
 		$data['title'] = 'Tuteurs';
 		$this->render('superviseur/tuteurs', $data);
 

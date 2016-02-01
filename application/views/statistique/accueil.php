@@ -21,7 +21,7 @@
 						<div class="tab-pane active" id="etudiant">
 							<h3 class="text-center">Etudiants</h3>
 							<div class="row">
-								<div class="col-md-6 col-lg-3">
+								<div class="col-md-6 col-lg-3 ">
 	                                <div class="widget-bg-color-icon card-box">
 	                                    <div class="bg-icon bg-icon-purple pull-left">
 	                                        <i class="md md-equalizer text-purple"></i>
@@ -51,7 +51,7 @@
 	                                        <i class="md md-equalizer text-purple"></i>
 	                                    </div>
 	                                    <div class="text-right">
-	                                        <h3 class="text-dark"><b class="counter"><?= $etudiantsEnSoutenance*100 ?></b>%</h3>
+	                                        <h3 class="text-dark"><b class="counter"><?= number_format($etudiantsEnSoutenance*100,2) ?></b>%</h3>
 	                                        <p class="text-muted">Etudiant en Soutenance </p>
 	                                    </div>
 	                                    <div class="clearfix"></div>
