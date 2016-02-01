@@ -8,6 +8,7 @@ class Migration_add_column_filiere extends CI_Migration {
 				'type' => 'INT',
 				'constraint' => 11,
 				'NULL' => false,
+				'auto_increment' => TRUE
 			),
 		));
 		$this->dbforge->add_key("FiliereId", TRUE);
