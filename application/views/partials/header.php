@@ -67,7 +67,7 @@
 								<li><?= anchor('tuteur', '<i class="fa-home fa"></i> Acceuil', navIsActive('tuteur', 'index')) ?></li>
 								<li><?= anchor('tuteur/finaliser', '<i class="fa-file-text-o fa"></i> Stage à finaliser', navIsActive('tuteur', 'finaliser')) ?></li>
 							<?php elseif (isTuteur()): ?>
-							<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
+								<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
 								<?php if(isTuteurEnStage()): ?>
 								<li><?= anchor('workspace/tuteur', '<i class="fa fa-home"></i> Workspace', navIsActive('workspace', 'tuteur')) ?></li>
 								<?php endif ?>
@@ -77,6 +77,7 @@
 								<li><?= anchor('workspace/tuteur', '<i class="fa fa-home"></i> Workspace', navIsActive('workspace', 'tuteur')) ?></li>
 								<?php endif ?>		
 							<?php endif ?>
+							<li><?= anchor('statistiques', '<i class="fa-line-chart fa"></i> Statistiques', navIsActive('statistiques')) ?></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>

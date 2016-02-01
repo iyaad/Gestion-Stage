@@ -1,5 +1,5 @@
 <?php
-class Statistique extends MY_Controller {
+class Statistiques extends MY_Controller {
 
 	public function __construct()
 	{

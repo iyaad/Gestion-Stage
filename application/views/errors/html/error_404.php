@@ -9,17 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="assets/images/favicon_1.ico">
-
         <title>Ubold - Responsive Admin Dashboard Template</title>
-
-        <link rel="stylesheet" href="<?= asset_url('css/bootstrap.min.css') ?>">
-		<link rel="stylesheet" href="<?= asset_url('css/core.css') ?>">
-		<link rel="stylesheet" href="<?= asset_url('css/components.css') ?>">
-		<link rel="stylesheet" href="<?= asset_url('css/icons.css') ?>">
-		<link rel="stylesheet" href="<?= asset_url('css/pages.css') ?>">
-		<link rel="stylesheet" href="<?= asset_url('css/responsive.css') ?>">
-		<link rel="stylesheet" href="<?= asset_url('plugins/morris/morris.css') ?>">
+        <link rel="stylesheet" href="/gestion-stage/public/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/gestion-stage/public/css/core.css">
+		<link rel="stylesheet" href="/gestion-stage/public/css/components.css">
+		<link rel="stylesheet" href="/gestion-stage/public/css/icons.css">
+		<link rel="stylesheet" href="/gestion-stage/public/css/pages.css">
+		<link rel="stylesheet" href="/gestion-stage/public/css/responsive.css">
+		<link rel="stylesheet" href="/gestion-stage/public/plugins/morris/morris.css">
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="<?= asset_url('js/modernizr.min.js') ?>"></script>
         
     </head>
     <body>
