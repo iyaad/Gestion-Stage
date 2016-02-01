@@ -62,6 +62,7 @@
 							<?php elseif (isSuperviseur()): ?>
 								<li><?= anchor('superviseur', '<i class="fa-home fa"></i> Accueil', navIsActive('superviseur', 'index')) ?></li>
 								<li><?= anchor('superviseur/tuteurs', '<i class="fa-users fa"></i> Tuteurs', navIsActive('superviseur', 'tuteurs')) ?></li>
+								<li><?= anchor('superviseur/jury', '<i class="fa-users fa"></i> Jurys', navIsActive('superviseur', 'jury')) ?></li>
 							<?php elseif (isChefFiliere()): ?>
 								<li><?= anchor('tuteur/profile/'.currentSession()['id'], '<i class="fa-user fa"></i> Profil du Tuteur', navIsActive('tuteur', 'profile')) ?></li>
 								<li><?= anchor('tuteur', '<i class="fa-home fa"></i> Acceuil', navIsActive('tuteur', 'index')) ?></li>
