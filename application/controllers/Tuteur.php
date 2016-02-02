@@ -8,13 +8,6 @@ class Tuteur extends MY_Controller {
 		$this->load->library('csvimport');
 		$this->load->library('form_validation');
 		$this->load->library('email');
-		$this->load->model('etudiant_model');
-		$this->load->model('email_model');
-		$this->load->model('sujet_model');
-		$this->load->model('entreprise_model');
-		$this->load->model('user_model');
-		$this->load->model('tuteur_model');
-		$this->load->model('filiere_model');
 		$this->load->library('random');
 		$this->load->library('hash');
 	}
@@ -47,7 +40,7 @@ class Tuteur extends MY_Controller {
 				$data['error'] = $this->upload->display_errors();
 			}
 		}
-		$data['title'] = 'Importer depuis CSV';
+		$data['title'] = 'Importer des Etudiants';
 		$this->accueilChefFiliere();
 	}
 
@@ -85,7 +78,7 @@ class Tuteur extends MY_Controller {
 
 		if ($this->form_validation->run() == false) {
 			$data['tuteurs'] = $this->tuteur_model->getTuteurs();
-			$data['title'] = 'Finaliser';
+			$data['title'] = 'Finaliser le stage';
 			$data['e'] = $e;
 			$data['s'] = $s;
 			$this->render('chefFiliere/finaliser_stage', $data);
@@ -115,8 +108,6 @@ class Tuteur extends MY_Controller {
 
 	public function check_lettre()
 	{
-		
-		
 		$etudiant = $this->etudiant_model->getEtudiant(['etudiantId' => $this->input->post('etudiantId')]);
 		$config['upload_path'] = FCPATH.'uploads/lettres';
 		$config['file_name'] = $etudiant->cne;

@@ -23,6 +23,11 @@ $(function() {
 	$.getScript($('#bu').val() + 'public/plugins/morris/morris.js');
 	$.getScript($('#bu').val() + 'public/pages/jquery.dashboard.js');
 	$.getScript($('#bu').val() + 'public/js/jquery.app.js');
+	$('.counter').counterUp({
+		delay: 100,
+		time: 1200
+	});
+	$(".knob").knob();
 });
 </script>
 </body>

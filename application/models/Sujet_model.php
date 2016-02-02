@@ -67,7 +67,7 @@ class Sujet_model extends CI_Model {
 	}
 
 	public function sujetIndisponible($e, $s){
-		$nb = $this->db->query("select count(*) as nb from Postulat where etudiantId = ? and sujetId != ? and (etat = 'B' or etat = 'A')", array($e,$s))->row()->nb;
+		$nb = $this->db->query("select count(*) as nb from Postulat where etudiantId = ? and sujetId != ? and (etat = 'B' or etat = 'A' or etat = 'F')", array($e,$s))->row()->nb;
 		return $nb > 0;
 	}
 

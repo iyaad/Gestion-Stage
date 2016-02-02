@@ -60,6 +60,8 @@
 							<div class="clearfix"></div>
 						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'B')): ?>
 							<div class="alert alert-success"><strong>État:</strong> En attente de la finalisation auprès du chef de la filière.</div>
+						<?php elseif (isEtudiant() && $this->sujet_model->aPostule($sujet->sujetId, currentId(), 'A')): ?>
+							<div class="alert alert-success"><strong>État:</strong>Vous êtes en cours de stage.</div>
 						<?php endif ?>
 					</div>
 				</div>

@@ -11,14 +11,6 @@ class Entreprise extends MY_Controller {
 		$this->load->library('hash');
 		$this->load->library('email');
 		$this->load->library('random');
-		$this->load->model('entreprise_model');
-		$this->load->model('sujet_model');
-		$this->load->model('etudiant_model');
-		$this->load->model('filiere_model');
-		$this->load->model('user_model');
-		$this->load->model('tuteur_model');
-		$this->load->model('email_model');
-
 	}
 
 	public function signup()
@@ -35,7 +27,7 @@ class Entreprise extends MY_Controller {
 		$this->form_validation->set_message('is_unique', 'Une entreprise est déjà enregistrée avec cet email');
 		if ($this->form_validation->run() == false) {
 			$data['NOSIDEBAR'] = true;
-			$data['title'] = 'Inscription entreprises';
+			$data['title'] = 'Inscription des Entreprises';
 			$this->render('signup',$data);
 		} else {
 			$data = array(
@@ -181,10 +173,11 @@ class Entreprise extends MY_Controller {
 		}
 
 		$data['tuteurs'] = $this->tuteur_model->getTuteursExt(['entrepriseId' => currentSession()['id']]);
-		$data['title'] = 'Tuteurs';
+		$data['title'] = 'Vos Tuteurs';
 		$this->render('entreprise/tuteurs', $data);
 
 	}
+	
 	public function ajouter_tuteur(){
 		if (!isEntreprise())
 			return show_404();

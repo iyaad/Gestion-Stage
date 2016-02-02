@@ -1,3 +1,4 @@
+<?php use Carbon\Carbon; ?>
 <div class="content-page">
 	<div class="content">
 		<div class="wraper container-fluid">
@@ -52,15 +53,17 @@
 								<th>Membre 3</th>
 							</tr>
 							<?php foreach ($soutenances as $s): ?>
-							<tr>
-								<?php $stage = $this->sujet_model->getStage(['stageId' => $s->stageId]);
-								$jury = $this->tuteur_model->getJury(['juryId' => $s->juryId]); ?>
-								<td><?= $this->user_model->resolveName($stage->etudiantId) ?></td>
-								<td><?= date('d-m-Y', strtotime($s->dateSoutenance)) ?></td>
-								<td><?= $this->user_model->resolveName($jury->tuteur1Id) ?></td>
-								<td><?= $this->user_model->resolveName($jury->tuteur2Id) ?></td> 
-								<td><?= $this->user_model->resolveName($jury->tuteur3Id) ?></td>
-							</tr>
+								<?php if (Carbon::parse($s->dateSoutenance)->gt(Carbon::now())): ?>
+								<tr>
+									<?php $stage = $this->sujet_model->getStage(['stageId' => $s->stageId]);
+									$jury = $this->tuteur_model->getJury(['juryId' => $s->juryId]); ?>
+									<td><?= $this->user_model->resolveName($stage->etudiantId) ?></td>
+									<td><?= date('d-m-Y', strtotime($s->dateSoutenance)) ?></td>
+									<td><?= $this->user_model->resolveName($jury->tuteur1Id) ?></td>
+									<td><?= $this->user_model->resolveName($jury->tuteur2Id) ?></td> 
+									<td><?= $this->user_model->resolveName($jury->tuteur3Id) ?></td>
+								</tr>
+							<?php endif ?>
 							<?php  endforeach; ?>
 						</table>
 					</div>

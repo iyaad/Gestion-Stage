@@ -8,10 +8,6 @@ class Etudiant extends MY_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->library('hash');
-		$this->load->model('etudiant_model');
-		$this->load->model('user_model');
-		$this->load->model('sujet_model');
-		$this->load->model('entreprise_model');
 	}
 
 	public function index(){

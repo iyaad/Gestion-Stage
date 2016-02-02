@@ -25,7 +25,7 @@ class Users extends MY_Controller {
 		if ($this->form_validation->run() == false) {
 			$data['NOTOPBAR'] = true;
 			$data['NOSIDEBAR'] = true;
-			$data['title'] = 'Login';
+			$data['title'] = 'Connexion';
 			$this->render('login', $data);
 		} else {
 			// Start the session and redirect
@@ -67,6 +67,7 @@ class Users extends MY_Controller {
 			} else {
 				// Alert error
 			}
+			return redirect('login');
 		}
 	}
 
@@ -121,11 +122,6 @@ class Users extends MY_Controller {
 		if (!$user) return false;
 		$this->form_validation->set_message('check_password', 'Mot de passe incorrect');
 		return $this->hash->check_password($password, $user->password);
-	}
-
-	public function test()
-	{
-		
 	}
 
 }

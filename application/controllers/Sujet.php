@@ -9,13 +9,6 @@ class Sujet extends MY_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('hash');
 		$this->load->library('email');
-		$this->load->model('etudiant_model');
-		$this->load->model('email_model');
-		$this->load->model('entreprise_model');
-		$this->load->model('tuteur_model');
-		$this->load->model('filiere_model');
-		$this->load->model('sujet_model');
-		$this->load->model('user_model');
 	}
 
 	public function index($id)
@@ -45,7 +38,7 @@ class Sujet extends MY_Controller {
 		);
 		if ($this->form_validation->run() == false) {
 			$data['sujet'] = $sujet;
-			$data['title'] = 'Modifier un sujet';
+			$data['title'] = 'Modifier un Sujet';
 			$this->render('sujet/edit', $data);
 		} else {
 			$data = array(
