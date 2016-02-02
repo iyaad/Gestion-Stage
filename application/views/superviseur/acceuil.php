@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="card-box col-sm-12">	
 					<div class="panel-heading"> 
-						<h3 class="text-center"> Entreprises non vérifiées </h3>
+						<h2 class="text-center"><i class="fa fa-briefcase m-r-15"></i> Entreprises non vérifiées </h2>
 					</div>
 					<div class="panel-body">
 						<table class="table m-0" >
@@ -31,6 +31,35 @@
 										<i class="fa fa-remove"></i>
 									</a>
 								</td>
+							</tr>
+							<?php  endforeach; ?>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="card-box col-sm-12">
+					<div class="panel-heading"> 
+						<h2 class="text-center"><i class="fa fa-graduation-cap m-r-15"></i>Soutenances</h2>
+					</div>
+					<div class="panel-body">
+						<table class="table m-0" >
+							<tr>
+								<th>Etudiant</th>
+								<th>Date</th>
+								<th>Membre 1</th>
+								<th>Membre 2</th>
+								<th>Membre 3</th>
+							</tr>
+							<?php foreach ($soutenances as $s): ?>
+							<tr>
+								<?php $stage = $this->sujet_model->getStage(['stageId' => $s->stageId]);
+								$jury = $this->tuteur_model->getJury(['juryId' => $s->juryId]); ?>
+								<td><?= $this->user_model->resolveName($stage->etudiantId) ?></td>
+								<td><?= date('d-m-Y', strtotime($s->dateSoutenance)) ?></td>
+								<td><?= $this->user_model->resolveName($jury->tuteur1Id) ?></td>
+								<td><?= $this->user_model->resolveName($jury->tuteur2Id) ?></td> 
+								<td><?= $this->user_model->resolveName($jury->tuteur3Id) ?></td>
 							</tr>
 							<?php  endforeach; ?>
 						</table>

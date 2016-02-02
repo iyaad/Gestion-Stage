@@ -70,6 +70,12 @@ class Etudiant_model extends CI_Model {
 		$this->db->update('Etudiant', $data);
 	}
 
+	public function getSoutenances($criteria = [])
+	{
+		$this->db->where($criteria);
+		return $this->db->get('Soutenance')->result();
+	}
+
 	public function getSoutenance($criteria = [])
 	{
 		$this->db->where($criteria);

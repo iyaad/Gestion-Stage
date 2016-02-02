@@ -93,10 +93,8 @@ class Sujet extends MY_Controller {
 			'etudiantId' => $e,
 		);
 		$data = array(
-			'sujetId' => $s,
-			'etudiantId' => $e,
 			'etat' => 'C',
-			);
+		);
 		$this->email_model->emailAcc($s,$entreprise,$etudiant->email);
 		$this->sujet_model->updatePostulat($criteria,$data);
 		return redirect('sujet/index/'.$s);
@@ -115,8 +113,6 @@ class Sujet extends MY_Controller {
 				'etudiantId' => $e,
 			);
 			$data = array(
-				'sujetId' => $postulat->sujetid,
-				'etudiantId' => $e,
 				'etat' => 'R',
 			);
 			$this->sujet_model->updatePostulat($criteria,$data);	

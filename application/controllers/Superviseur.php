@@ -15,6 +15,7 @@ class Superviseur extends MY_Controller{
 
 	public function index(){
 		$data['filieres'] = $this->filiere_model->getFilieres();
+		$data['soutenances'] = $this->etudiant_model->getSoutenances(['juryId !=' => null]);
 		$data['chefs'] = $this->tuteur_model->getTuteurs(['chefId' => null]);
 		$data['ent_non_verif'] = $this->entreprise_model->getTempEntreprise();
 		$data['tuteurs'] = $this->tuteur_model->getTuteurs([]);
@@ -168,9 +169,18 @@ class Superviseur extends MY_Controller{
 		if(!isSuperviseur()){
 			return redirect('home');
 		}
-		$data['title'] = 'Jury' ;
+		$data['title'] = 'Gérer les Jurys';
+		$data['soutenances'] = $this->etudiant_model->getSoutenances(['juryId' => null]);
 		$data['jurys'] = $this->tuteur_model->getJurys([]);
 		$data['tuteurs'] = $this->tuteur_model->getTuteurs([]);
 		return $this->render('superviseur/jury',$data);
+	}
+
+	public function affecter_jury($soutId)
+	{
+		$data['juryId'] = $this->input->post('jury');
+		$this->db->where('soutenanceId', $soutId);
+		$this->db->update('Soutenance', $data);
+		return redirect('superviseur/jury');
 	}
 }

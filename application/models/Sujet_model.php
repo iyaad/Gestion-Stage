@@ -94,7 +94,6 @@ class Sujet_model extends CI_Model {
 		$this->db->join('Etudiant e','e.etudiantId = p.etudiantId');
 		$this->db->where($criteria);
 		return $this->db->get()->result();
-
 	}
 
 	public function updatePostulat($criteria,$data){

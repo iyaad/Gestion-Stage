@@ -60,4 +60,9 @@ class Tuteur_model extends CI_Model {
 		$this->db->where($criteria);
 		return $this->db->get('Jury')->result();
 	}
+
+	public function getJury($criteria){
+		$this->db->where($criteria);
+		return $this->db->get('Jury')->row();
+	}
 }

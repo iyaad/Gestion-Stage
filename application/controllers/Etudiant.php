@@ -122,21 +122,21 @@ class Etudiant extends MY_Controller {
 	public function finaliserSoutenance(){
 		if(!isEtudiant())
 			return redirect('home');
-		$this->form_validation->set_rules('date', 'Date', 'trim|required');
-
-		if($this->form_validation->run() == false){
-			redirect('home');
-		}
-		else{
-			$stage = $this->sujet_model->getStage(['e.etudiantId' => currentId()])->stageId;
-			$data = array(
-				'stageId' => $stage,
-				'dateSoutenance' => Carbon::createFromFormat('d/m/Y',$this->input->post('date'))->toDateString(),
-				);
-			$this->db->insert('Soutenance',$data);
-			return redirect('home');
-		}
-
+		$stage = $this->sujet_model->getStage(['e.etudiantId' => currentId()]);
+		$data = array(
+			'stageId' => $stage->stageId,
+			'dateSoutenance' => Carbon::createFromFormat('d/m/Y',$this->input->post('date'))->toDateString(),
+		);
+		$this->db->insert('Soutenance',$data);
+		$criteria = array(
+			'sujetId' =>  $stage->sujetId,
+			'etudiantId' => $stage->etudiantId,
+		);
+		$data = array(
+			'etat' => 'F',
+		);
+		$this->sujet_model->updatePostulat($criteria,$data);
+		return redirect('home');
 	}
 	
 }

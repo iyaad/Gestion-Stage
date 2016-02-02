@@ -16,34 +16,31 @@ class Statistique_model extends CI_Model {
 
 	}
 
-
-
 	public function nbEtudiant(){
 		return count($this->db->get('Etudiant')->result());
 	}
 
 	public function nbTuteur(){
+		$this->db->where('chefId', null);
 		return count($this->db->get('Tuteur')->result());
 	}
 
 	public function nbTuteurExt(){
 		return count($this->db->get('TuteurExt')->result());
 	}
+
 	public function chefFiliere(){
-		$id=currentId();
-		$filiereId = $this->tuteur_model->getTuteur(['tuteurId' => $id])->chefId;
-		$filiere = $this->filiere_model->getFiliere(['filiereId' => $filiereId ])->code ;
+		$id = currentId();
+		$etudiant = $this->etudiant_model->getEtudiants([]);
 
-		$etudiant = $this->etudiant_model->getEtudiants(['filiere' =>$filiere]);
+		$etudiantEnRecherche = $this->sujet_model->postulats(['p.etat' => 'W']);
+		$etudiantEnRecherche = count($etudiantEnRecherche) / count($etudiant);
 
-		$etudiantEnRecherche = $this->sujet_model->postulats(['p.etat' => 'W' , 'e.filiere'=>$filiere]);
-		$etudiantEnRecherche =count($etudiant);
-		return [$etudiantEnRecherche];
+		$etudiantEnStage = count($this->sujet_model->postulats(['p.etat' => 'A'])) / count($etudiant);
+
+		$etudiantPreSoutenance = count($this->sujet_model->postulats(['p.etat' => 'F'])) / count($etudiant);
+		return [$etudiantEnRecherche, $etudiantEnStage, $etudiantPreSoutenance];
 	}
-
-
-	
-
 
 	public function nbEntreprises()
 	{
