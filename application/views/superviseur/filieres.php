@@ -33,7 +33,11 @@
 								<tr>
 									<td class="col-sm-2"><?= $filiere->code ?></td>
 									<td class="col-sm-2"><?= $filiere->titre ?></td>
-									<td class="col-sm-2"><?= $this->user_model->resolveName($this->tuteur_model->getTuteur(['chefId' => $filiere->filiereId ])->tuteurId) ?></td>
+									<td class="col-sm-2">
+										<?php $chef = $this->tuteur_model->getTuteur(['chefId' => $filiere->filiereId ]);
+										$name = $chef != null ? $this->user_model->resolveName($chef->tuteurId) : 'Non affecté'; ?>
+										<?= $name ?>
+									</td>
 								</tr>
 								<?php endforeach ; ?>
 							</table>

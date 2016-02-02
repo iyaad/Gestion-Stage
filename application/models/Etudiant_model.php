@@ -85,7 +85,10 @@ class Etudiant_model extends CI_Model {
 	public function preSoutenance($id)
 	{
 		$stage = $this->sujet_model->getStage(['e.etudiantId' => $id]);
-		$dateFinale = Carbon::parse($stage->dateDebut)->addWeeks($stage->periode);
-		return Carbon::now()->gte($dateFinale) && !$this->getSoutenance(['stageId' => $stage->stageId]);
+		if ($stage != null) {
+			$dateFinale = Carbon::parse($stage->dateDebut)->addWeeks($stage->periode);
+			return Carbon::now()->gte($dateFinale) && !$this->getSoutenance(['stageId' => $stage->stageId]);
+		}
+		return false;
 	}
 }

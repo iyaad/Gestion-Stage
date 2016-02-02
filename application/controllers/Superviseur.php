@@ -199,7 +199,7 @@ class Superviseur extends MY_Controller{
 				'titre' => $this->input->post('titre'),
 			);
 			$this->filiere_model->createFiliere($data);
-			return redirect('filiere');
+			return redirect('superviseur/filiere');
 		}
 	}
 
