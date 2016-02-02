@@ -17,4 +17,9 @@ class Filiere_model extends CI_Model {
 		return $this->etudiant_model->getEtudiants(['filiere'=>$filiere]);
 
 	}
+	public function createFiliere($data)
+	{
+		return $this->db->insert('Filiere', $data);
+	}
+
 }

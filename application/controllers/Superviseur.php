@@ -176,6 +176,33 @@ class Superviseur extends MY_Controller{
 		return $this->render('superviseur/jury',$data);
 	}
 
+	public function filiere(){
+		if(!isSuperviseur()){
+			return redirect('home');
+		}
+		$data['title'] = 'Gérer les Filières';
+		$data['filieres'] = $this->filiere_model->getFilieres() ;
+
+		return $this->render('superviseur/filieres',$data);
+	}
+
+	public function ajouter_filiere() {
+		$this->form_validation->set_rules('titre', "Titre",'required|trim');
+		$this->form_validation->set_rules('code', "Code",'required|trim');
+		
+
+		if (!$this->form_validation->run()) {
+			$this->filiere();
+		} else {
+			$data = array(
+				'code' => $this->input->post('code'),
+				'titre' => $this->input->post('titre'),
+			);
+			$this->filiere_model->createFiliere($data);
+			return redirect('filiere');
+		}
+	}
+
 	public function affecter_jury($soutId)
 	{
 		$data['juryId'] = $this->input->post('jury');
